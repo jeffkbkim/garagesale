@@ -109,5 +109,7 @@ html, body {
 }
 
 .content {
+  padding: 50px;
   max-width: 1080px;
 }
+
