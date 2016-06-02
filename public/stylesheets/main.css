@@ -1,0 +1,113 @@
+html, body {
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+}
+.user {
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.layout .header .mdl-textfield {
+  padding: 0px;
+  margin-top: 41px;
+}
+.layout .header .mdl-textfield .mdl-textfield__expandable-holder {
+  bottom: 19px;
+}
+.layout .mdl-layout__header .mdl-layout__drawer-button {
+  color: rgba(0, 0, 0, 0.54);
+  margin-top: 5px;
+}
+
+.drawer {
+  background-image: url("/assets/images/drawer-background.png");
+  background-size: 250px 160px;
+  background-repeat: no-repeat;
+  border: none;
+}
+
+.drawer .mdl-menu .mdl-menu__item {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.drawer-header {
+  box-sizing: border-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  font-weight: 400;
+  padding: 16px;
+  height: 160px;
+}
+
+.user-dropdown {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+
+.user-dropdown .material-icons {
+  margin-right: 10px;
+}
+
+.user-dropdown .user-text {
+  margin-bottom: -10px;
+}
+
+.navigation {
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.layout .navigation .mdl-navigation__link {
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 500;
+  margin-left: -20px;
+}
+
+.layout .navigation .mdl-navigation__link:hover {
+  background-color: #00BCD4;
+  color: #37474F;
+}
+
+.navigation .mdl-navigation__link .material-icons {
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.8);
+  margin-right: 15px;
+}
+
+.content {
+  max-width: 1080px;
+}
