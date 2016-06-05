@@ -1,10 +1,7 @@
-New log file opened at Sun Jun 05 17:57:09 EDT 2016 by 1092@Sunhos-MacBook-Pro.local
-Taking next connection to: 52490
-New client attempting to connect on port: 52493-52490
-  Address = /172.16.109.51:52490
-This client on port 52493 has uuid 299df4ca-0a99-45c6-8171-a72777565432 configName activator humanReadableName Activator protocolVersion 3 featureTags Vector()
-Connected Clients: activator-299df4ca-0a99-45c6-8171-a72777565432
-Taking next connection to: 52490
-Checking to see if clients are empty...
-We have 1 non-daemon clients, continuing serving connections.
-Taking next connection to: 52490
+New log file opened at Sun Jun 05 18:04:16 EDT 2016 by 1200@Sunhos-MacBook-Pro.local
+Taking next connection to: 52812
+New client attempting to connect on port: 52813-52812
+  Address = /172.16.109.51:52812
+This client on port 52813 has uuid b7b96b7a-092d-47c1-bcf1-76b8640950c9 configName activator humanReadableName Activator protocolVersion 3 featureTags Vector()
+Connected Clients: activator-b7b96b7a-092d-47c1-bcf1-76b8640950c9
+Taking next connection to: 52812
