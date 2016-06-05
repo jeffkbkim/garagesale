@@ -6,14 +6,17 @@ html {
   background-size: cover;
 }
 
-.login {
-  background-color: #fff;
-  opacity: 0.8;
-  text-color: white;
+.mdl-layout {
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  width: 400px;
-  height: 300px;
-  padding: 25px;
-  margin: auto;
-  margin-top: 125px;
+}
+
+.mdl-layout__content {
+  padding: 24px;
+  flex: none;
+}
+.mdl-button {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
