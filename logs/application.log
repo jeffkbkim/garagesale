@@ -1,0 +1,7 @@
+2016-06-05 21:46:06,682 [INFO] from play.core.server.NettyServer in play-fork-run-akka.actor.default-dispatcher-5 - Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+2016-06-05 21:46:29,375 [INFO] from play.api.Play in ForkJoinPool-1-worker-1 - Application started (Dev)
+2016-06-05 21:59:07,123 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-2 - Application started (Dev)
+2016-06-05 22:10:59,514 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-106 - Application started (Dev)
+2016-06-05 22:14:12,755 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-7 - Application started (Dev)
+2016-06-05 22:15:46,818 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-6 - Application started (Dev)
+2016-06-05 22:25:09,161 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-49 - Application started (Dev)
