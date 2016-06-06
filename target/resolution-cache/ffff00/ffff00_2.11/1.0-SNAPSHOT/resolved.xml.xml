@@ -4,7 +4,7 @@
 		module="ffff00_2.11"
 		revision="1.0-SNAPSHOT"
 		status="integration"
-		publication="20160605214229"
+		publication="20160606193707"
 	>
 		<description>
 		ffff00
@@ -47,5 +47,6 @@
 		<dependency org="com.typesafe.play" name="play-java-jdbc_2.11" rev="2.5.3" conf="compile->default(compile)"/>
 		<dependency org="com.typesafe.play" name="play-cache_2.11" rev="2.5.3" conf="compile->default(compile)"/>
 		<dependency org="com.typesafe.play" name="play-java-ws_2.11" rev="2.5.3" conf="compile->default(compile)"/>
+		<dependency org="org.postgresql" name="postgresql" rev="9.3-1100-jdbc4" conf="compile->default(compile)"/>
 	</dependencies>
 </ivy-module>

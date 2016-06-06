@@ -118,10 +118,10 @@ Seq[Any](format.raw/*1.1*/("""<!DOCTYPE html>
 object login extends login_Scope0.login
               /*
                   -- GENERATED --
-                  DATE: Sun Jun 05 21:42:30 EDT 2016
-                  SOURCE: C:/Users/Douglas/Documents/GitHub/ffff00/app/views/login.scala.html
-                  HASH: 6f2852ee82013ffbff6e3847d83f7854dd8d727c
-                  MATRIX: 827->0|1275->422|1289->428|1351->470|4119->3211|4134->3217|4196->3258|4271->3305|4300->3306|4342->3320|4393->3343|4422->3344|4468->3362|4691->3557|4720->3558|4759->3570|4788->3571
+                  DATE: Mon Jun 06 19:32:29 EDT 2016
+                  SOURCE: /Users/yudawinata/Documents/School/Subjects/CS2340/ffff00/app/views/login.scala.html
+                  HASH: 8c5e2ce69700500476f9696cd5c7b461f01fe809
+                  MATRIX: 827->0|1269->416|1283->422|1345->464|4064->3156|4079->3162|4141->3203|4214->3248|4243->3249|4284->3262|4335->3285|4364->3286|4409->3303|4628->3494|4657->3495|4695->3506|4724->3507
                   LINES: 32->1|38->7|38->7|38->7|87->56|87->56|87->56|89->58|89->58|90->59|90->59|90->59|91->60|95->64|95->64|96->65|96->65
                   -- GENERATED --
               */
