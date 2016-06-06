@@ -1,1 +1,1 @@
-web: play run --http.port=$PORT $PLAY_OPTS -Dplay.evolutions.db.default.autoApplyDowns=true
+web: target/universal/stage/bin/ffff00 -Dhttp.port=12681 -Dplay.crypto.secret=${APPLICATION_SECRET} -Dplay.evolutions.db.default.autoApplyDowns=true
