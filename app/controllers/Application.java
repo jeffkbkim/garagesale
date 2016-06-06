@@ -52,7 +52,7 @@ public class Application extends Controller {
     public Result logout() {
         session().clear();
         flash("success", "You have logged out.");
-        return redirect (routes.Application.login());
+        return redirect (routes.Application.home());
     }
 
 }
