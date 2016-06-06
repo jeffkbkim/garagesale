@@ -1,1 +1,12 @@
-New log file opened at Sun Jun 05 21:11:25 EDT 2016 by 3922@Sunhos-MacBook-Pro.local
+New log file opened at Sun Jun 05 21:45:21 EDT 2016 by 4500@Sunhos-MacBook-Pro.local
+Taking next connection to: 60010
+New client attempting to connect on port: 60011-60010
+  Address = /172.16.109.51:60010
+This client on port 60011 has uuid 743918b7-0e43-4803-b91e-94f532d47c88 configName activator humanReadableName Activator protocolVersion 3 featureTags Vector()
+Connected Clients: activator-743918b7-0e43-4803-b91e-94f532d47c88
+Taking next connection to: 60010
+Server socket closed java.net.SocketException: Socket closed
+Server socket thread exiting.
+1 clients open, will close them...
+All client sockets have been closed.
+Closing the 4500@Sunhos-MacBook-Pro.local logs at Sun Jun 05 21:45:47 EDT 2016, goodbye.

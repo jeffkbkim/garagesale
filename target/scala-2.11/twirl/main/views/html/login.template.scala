@@ -40,12 +40,25 @@ Seq[Any](format.raw/*1.1*/("""<!DOCTYPE html>
 </head>
 
 <body>
+<<<<<<< HEAD
     <div class="mdl-layout mdl-js-layout">
         <main class="mdl-layout__content">
             <div class="mdl-card mdl-shadow--6dp">
                 <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
                     <h3 class="mdl-card__title-text">Login</h3>
                 </div>
+=======
+    <div id="translucent-background"></div>
+    <div class="mdl-layout mdl-js-layout">
+        <div class="mdl-typography--display-4">
+        <div class="mdl-logo title-logo">#ffff00</div>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="mdl-card mdl-shadow--6dp login-window">
+<!--                 <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
+                    <h3 class="mdl-card__title-text">Login</h3>
+                </div> -->
+>>>>>>> f9ffb3ff6c0aae7c2ba943720b927f92ad2696f2
                 <div class="mdl-card__supporting-text">
                     <form action="#">
                         <i class="material-icons">person</i>
@@ -69,7 +82,11 @@ Seq[Any](format.raw/*1.1*/("""<!DOCTYPE html>
                             </label>
                         </div>
                         <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone login">
+<<<<<<< HEAD
                             <a href=""><button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Log in</button></a>
+=======
+                            <a href=""><button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect login-button">Log in</button></a>
+>>>>>>> f9ffb3ff6c0aae7c2ba943720b927f92ad2696f2
                         </div>
                     </div>
                 </div>
@@ -79,6 +96,21 @@ Seq[Any](format.raw/*1.1*/("""<!DOCTYPE html>
             </div>
         </main>
     </div>
+<<<<<<< HEAD
+=======
+    <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+    <script src=""""),_display_(/*56.19*/routes/*56.25*/.Assets.versioned("javascripts/typed.js")),format.raw/*56.66*/(""""></script>
+    <script>
+        $(function()"""),format.raw/*58.21*/("""{"""),format.raw/*58.22*/("""
+            """),format.raw/*59.13*/("""$(".title-logo").typed("""),format.raw/*59.36*/("""{"""),format.raw/*59.37*/("""
+                """),format.raw/*60.17*/("""strings: ["#ffff00 ^400", "Buy... ^400", "Sell... ^400", "Trade... ^400", "#ffff00"],
+                typeSpeed: 70,
+                backSpeed: 30,
+                backDelay: 100
+            """),format.raw/*64.13*/("""}"""),format.raw/*64.14*/(""");
+        """),format.raw/*65.9*/("""}"""),format.raw/*65.10*/(""");
+    </script>
+>>>>>>> f9ffb3ff6c0aae7c2ba943720b927f92ad2696f2
     <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
 </body>
 
@@ -102,11 +134,19 @@ Seq[Any](format.raw/*1.1*/("""<!DOCTYPE html>
 object login extends login_Scope0.login
               /*
                   -- GENERATED --
+<<<<<<< HEAD
                   DATE: Sun Jun 05 20:02:22 EDT 2016
                   SOURCE: /Users/sunho207/courses/cs2340/ffff00/app/views/login.scala.html
                   HASH: 1be6ec556caeff982dcf236f1639ceddc535f09e
                   MATRIX: 827->0|1269->416|1283->422|1345->464
                   LINES: 32->1|38->7|38->7|38->7
+=======
+                  DATE: Sun Jun 05 21:42:30 EDT 2016
+                  SOURCE: C:/Users/Douglas/Documents/GitHub/ffff00/app/views/login.scala.html
+                  HASH: 6f2852ee82013ffbff6e3847d83f7854dd8d727c
+                  MATRIX: 827->0|1275->422|1289->428|1351->470|4119->3211|4134->3217|4196->3258|4271->3305|4300->3306|4342->3320|4393->3343|4422->3344|4468->3362|4691->3557|4720->3558|4759->3570|4788->3571
+                  LINES: 32->1|38->7|38->7|38->7|87->56|87->56|87->56|89->58|89->58|90->59|90->59|90->59|91->60|95->64|95->64|96->65|96->65
+>>>>>>> f9ffb3ff6c0aae7c2ba943720b927f92ad2696f2
                   -- GENERATED --
               */
           

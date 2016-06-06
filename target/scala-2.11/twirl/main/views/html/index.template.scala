@@ -51,9 +51,15 @@ Seq[Any](_display_(/*1.2*/main(title = "Test")/*1.22*/ {_display_(Seq[Any](forma
 object index extends index_Scope0.index
               /*
                   -- GENERATED --
+<<<<<<< HEAD
                   DATE: Sat Jun 04 14:36:37 EDT 2016
                   SOURCE: /Users/sunho207/courses/cs2340/ffff00/app/views/index.scala.html
                   HASH: 89456367b48c87de81c8c15a52e379b5a163ecb5
+=======
+                  DATE: Sun Jun 05 21:42:30 EDT 2016
+                  SOURCE: C:/Users/Douglas/Documents/GitHub/ffff00/app/views/index.scala.html
+                  HASH: 47c8e43ae0331c8cc797f8f3307d535666265325
+>>>>>>> f9ffb3ff6c0aae7c2ba943720b927f92ad2696f2
                   MATRIX: 827->1|855->21|894->23
                   LINES: 32->1|32->1|32->1
                   -- GENERATED --
