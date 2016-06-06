@@ -28,6 +28,7 @@ html {
   text-align: center;
 }
 
+
 .mdl-layout__content {
   display: -webkit-flex;
   display: flex;
@@ -78,8 +79,7 @@ html {
 
 
 .mdl-logo {
-  margin: 0px;
-  padding: 10px;
+  margin-top: 200px;
 }
 
 .title-logo {
