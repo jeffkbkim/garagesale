@@ -13,10 +13,40 @@ html {
 }
 
 .mdl-layout__content {
-  padding: 24px;
   flex: none;
 }
-.mdl-button {
-  margin-top: 5px;
-  margin-bottom: 5px;
+
+.mdl-textfield {
+  width: 260px;
+  margin-top: -10px;
+  margin-bottom: -5px;
+}
+
+.mdl-checkbox {
+  margin-top: 7px;
+  text-align: left;
+}
+
+.mdl-cell {
+  margin-top: -10px;
+  height: 20px;
+}
+
+.login {
+  text-align: right;
+}
+
+.register {
+  margin-top: 10px;
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+}
+
+.register a {
+  font-weight: 100;
+  color: #fff;
+  text-decoration: none;
+}
+
+.register a:hover {
+  color: #B3E5FC;
 }
