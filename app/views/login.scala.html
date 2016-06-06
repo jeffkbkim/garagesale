@@ -20,7 +20,7 @@
                     <h3 class="mdl-card__title-text">Login</h3>
                 </div> -->
                 <div class="mdl-card__supporting-text">
-                    <form action="#">
+                    <form action="#" class="login-form">
                         <i class="material-icons">person</i>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input class="mdl-textfield__input" type="text" id="username" />
@@ -31,6 +31,23 @@
                             <input class="mdl-textfield__input" type="password" id="password" />
                             <label class="mdl-textfield__label" for="password">Password</label>
                         </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label firstname registration">
+                            <input class="mdl-textfield__input" type="text" id="fname" />
+                            <label class="mdl-textfield__label" for="firstname">First Name</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label lastname registration">
+                            <input class="mdl-textfield__input" type="text" id="lname" />
+                            <label class="mdl-textfield__label" for="lastname">Last Name</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label emailaddress registration">
+                            <input class="mdl-textfield__input" type="text" id="email" />
+                            <label class="mdl-textfield__label" for="email">Email Address</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label phonenumber registration">
+                            <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="phone" />
+                            <label class="mdl-textfield__label" for="phone">Phone</label>
+                        </div>
+
                     </form>
                 </div>
                 <div class="mdl-card__actions mdl-card--border">
@@ -48,12 +65,13 @@
                 </div>
             </div>
             <div class="register">
-                <a href="">Create an account</a>
+                <a href="/#">Create an account</a>
             </div>
         </main>
     </div>
     <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
     <script src="@routes.Assets.versioned("javascripts/typed.js")"></script>
+    <script src="@routes.Assets.versioned("javascripts/login-registration.js")"></script>
     <script>
         $(function(){
             $(".title-logo").typed({

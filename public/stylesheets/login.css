@@ -72,6 +72,7 @@ html {
   color: #B3E5FC;
 }
 
+
 .mdl-logo {
   margin: 0px;
   padding: 10px;
@@ -80,7 +81,6 @@ html {
 .title-logo {
   height: 150px;
   margin: 0px;
-  font-weight: black;
 }
 
 .typed-cursor{
@@ -104,4 +104,9 @@ html {
     0% { opacity:1; }
     50% { opacity:0; }
     100% { opacity:1; }
+}
+
+.registration {
+  display:none;
+  margin-left: 32px;
 }
