@@ -21374,3 +21374,55 @@ Copy resource mappings:
 Total time: 2 s, completed Jun 5, 2016 8:02:23 PM
 > server-post-command-cleanup
 > server-handle-next-server-request
+> {file:/Users/sunho207/courses/cs2340/ffff00/}root/*:playForkReload
+Evaluating tasks: *:playForkReload
+Running task... Cancel: sbt.server.ServerTaskCancellation@7a596f5d, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set()
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set()
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set()
+
+Copy resource mappings: 
+	(/Users/sunho207/courses/cs2340/ffff00/conf/application.conf,/Users/sunho207/courses/cs2340/ffff00/target/scala-2.11/classes/application.conf)
+	(/Users/sunho207/courses/cs2340/ffff00/conf/logback.xml,/Users/sunho207/courses/cs2340/ffff00/target/scala-2.11/classes/logback.xml)
+	(/Users/sunho207/courses/cs2340/ffff00/conf/routes,/Users/sunho207/courses/cs2340/ffff00/target/scala-2.11/classes/routes)
+Total time: 1 s, completed Jun 5, 2016 8:04:07 PM
+> server-post-command-cleanup
+> server-handle-next-server-request
+> {file:/Users/sunho207/courses/cs2340/ffff00/}root/*:playForkReload
+Evaluating tasks: *:playForkReload
+Running task... Cancel: sbt.server.ServerTaskCancellation@19e16a97, check cycles: false
+
+Initial source changes: 
+	removed:Set()
+	added: Set()
+	modified: Set()
+Removed products: Set()
+External API changes: API Changes: Set()
+Modified binary dependencies: Set()
+Initial directly invalidated sources: Set()
+
+Sources indirectly invalidated by:
+	product: Set()
+	binary dep: Set()
+	external source: Set()
+All initially invalidated sources: Set()
+
+Copy resource mappings: 
+	(/Users/sunho207/courses/cs2340/ffff00/conf/application.conf,/Users/sunho207/courses/cs2340/ffff00/target/scala-2.11/classes/application.conf)
+	(/Users/sunho207/courses/cs2340/ffff00/conf/logback.xml,/Users/sunho207/courses/cs2340/ffff00/target/scala-2.11/classes/logback.xml)
+	(/Users/sunho207/courses/cs2340/ffff00/conf/routes,/Users/sunho207/courses/cs2340/ffff00/target/scala-2.11/classes/routes)
+Total time: 1 s, completed Jun 5, 2016 8:04:14 PM
+> server-post-command-cleanup
+> server-handle-next-server-request
