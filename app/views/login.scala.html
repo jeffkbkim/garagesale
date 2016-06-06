@@ -33,11 +33,11 @@
                         </div>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label firstname registration">
                             <input class="mdl-textfield__input" type="text" id="fname" />
-                            <label class="mdl-textfield__label" for="firstname">First Name</label>
+                            <label class="mdl-textfield__label" for="fname">First Name</label>
                         </div>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label lastname registration">
                             <input class="mdl-textfield__input" type="text" id="lname" />
-                            <label class="mdl-textfield__label" for="lastname">Last Name</label>
+                            <label class="mdl-textfield__label" for="lname">Last Name</label>
                         </div>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label emailaddress registration">
                             <input class="mdl-textfield__input" type="text" id="email" />
@@ -50,7 +50,7 @@
 
                     </form>
                 </div>
-                <div class="mdl-card__actions mdl-card--border">
+                <div class="mdl-card__actions mdl-card--border login-elements">
                     <div class="mdl-grid">
                         <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
                             <label class="mdl-checkbox mdl-js-checkbox" for="checkbox">
@@ -62,13 +62,39 @@
                             <a href=""><button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect login-button">Log in</button></a>
                         </div>
                     </div>
+                    <div class="mdl-grid registration">
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+                            <a href="/#"><button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect cancel-button">Cancel</button></a>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+                            <a href=""><button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect register-button">Register</button></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="mdl-card__actions mdl-card--border registration">
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+                            <a href="/#"><button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect cancel-button">Cancel</button></a>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+                            <a href=""><button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect register-button">Register</button></a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="register">
                 <a href="/#">Create an account</a>
             </div>
+
         </main>
-    </div>
+        <div class="mdl-layout-spacer"></div>
+            <footer class="mdl-mini-footer">
+                <div class="mdl-mini-footer__right-section">
+                    #ffff00 Version 1.0
+                </div>
+            </footer>
+        </div>
+
     <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
     <script src="@routes.Assets.versioned("javascripts/typed.js")"></script>
     <script src="@routes.Assets.versioned("javascripts/login-registration.js")"></script>
@@ -83,11 +109,8 @@
         });
     </script>
     <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+    
 </body>
-<footer class="mdl-mini-footer">
-    <div class="mdl-mini-footer__right-section">
-        #ffff00 Version 1.0
-    </div>
-</footer>
+
 
 </html>
