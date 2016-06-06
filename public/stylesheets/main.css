@@ -113,3 +113,10 @@ html, body {
   max-width: 1080px;
 }
 
+a:link, a:visited {
+    color: black;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+

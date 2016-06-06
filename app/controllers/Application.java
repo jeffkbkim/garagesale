@@ -24,4 +24,9 @@ public class Application extends Controller {
         return ok(login.render());
     }
 
+    public Result logout() {
+        session().clear();
+        flash("success", "You have logged out.");
+        return redirect (routes.Application.login());
+    }
 }
