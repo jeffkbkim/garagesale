@@ -10,6 +10,16 @@ html, body {
   border-width: 1px;
 }
 
+.header {
+  background: #FAFAFA;
+}
+
+@media only screen and (min-width: 1025px) {
+  .mdl-layout-title {
+    margin-left: 200px;
+  }
+}
+
 .layout .header .mdl-textfield {
   padding: 0px;
   margin-top: 41px;
@@ -17,9 +27,9 @@ html, body {
 .layout .header .mdl-textfield .mdl-textfield__expandable-holder {
   bottom: 19px;
 }
-.layout .mdl-layout__header .mdl-layout__drawer-button {
+.layout .mdl-layout__drawer-button {
   color: rgba(0, 0, 0, 0.54);
-  margin-top: 5px;
+  margin-top: 15px;
 }
 
 .mdl-layout__content {
@@ -117,7 +127,6 @@ html, body {
 
 .content {
   padding: 50px;
-  max-width: 1080px;
 }
 
 .mdl-mini-footer {
@@ -139,4 +148,17 @@ html, body {
 
 .mdl-logo {
   color: #d3d3d3;
+}
+
+.mdl-card {
+  margin: auto;
+  width: auto;
+}
+.mdl-card__title {
+  color: #fff;
+  height: 176px;
+  background: #03a9f4;
+}
+.mdl-card__menu {
+  color: #fff;
 }
