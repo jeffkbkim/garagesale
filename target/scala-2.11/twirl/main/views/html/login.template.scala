@@ -51,7 +51,7 @@ Seq[Any](format.raw/*1.1*/("""<!DOCTYPE html>
                     <h3 class="mdl-card__title-text">Login</h3>
                 </div> -->
                 <div class="mdl-card__supporting-text">
-                    <form action="#">
+                    <form action="#" class="login-form">
                         <i class="material-icons">person</i>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input class="mdl-textfield__input" type="text" id="username" />
@@ -62,6 +62,23 @@ Seq[Any](format.raw/*1.1*/("""<!DOCTYPE html>
                             <input class="mdl-textfield__input" type="password" id="password" />
                             <label class="mdl-textfield__label" for="password">Password</label>
                         </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label firstname registration">
+                            <input class="mdl-textfield__input" type="text" id="fname" />
+                            <label class="mdl-textfield__label" for="firstname">First Name</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label lastname registration">
+                            <input class="mdl-textfield__input" type="text" id="lname" />
+                            <label class="mdl-textfield__label" for="lastname">Last Name</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label emailaddress registration">
+                            <input class="mdl-textfield__input" type="text" id="email" />
+                            <label class="mdl-textfield__label" for="email">Email Address</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label phonenumber registration">
+                            <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="phone" />
+                            <label class="mdl-textfield__label" for="phone">Phone</label>
+                        </div>
+
                     </form>
                 </div>
                 <div class="mdl-card__actions mdl-card--border">
@@ -79,24 +96,30 @@ Seq[Any](format.raw/*1.1*/("""<!DOCTYPE html>
                 </div>
             </div>
             <div class="register">
-                <a href="">Create an account</a>
+                <a href="/#">Create an account</a>
             </div>
         </main>
     </div>
     <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
-    <script src=""""),_display_(/*56.19*/routes/*56.25*/.Assets.versioned("javascripts/typed.js")),format.raw/*56.66*/(""""></script>
+    <script src=""""),_display_(/*73.19*/routes/*73.25*/.Assets.versioned("javascripts/typed.js")),format.raw/*73.66*/(""""></script>
+    <script src=""""),_display_(/*74.19*/routes/*74.25*/.Assets.versioned("javascripts/login-registration.js")),format.raw/*74.79*/(""""></script>
     <script>
-        $(function()"""),format.raw/*58.21*/("""{"""),format.raw/*58.22*/("""
-            """),format.raw/*59.13*/("""$(".title-logo").typed("""),format.raw/*59.36*/("""{"""),format.raw/*59.37*/("""
-                """),format.raw/*60.17*/("""strings: ["#ffff00 ^400", "Buy... ^400", "Sell... ^400", "Trade... ^400", "#ffff00"],
+        $(function()"""),format.raw/*76.21*/("""{"""),format.raw/*76.22*/("""
+            """),format.raw/*77.13*/("""$(".title-logo").typed("""),format.raw/*77.36*/("""{"""),format.raw/*77.37*/("""
+                """),format.raw/*78.17*/("""strings: ["#ffff00 ^400", "Buy... ^400", "Sell... ^400", "Trade... ^400", "#ffff00"],
                 typeSpeed: 70,
                 backSpeed: 30,
                 backDelay: 100
-            """),format.raw/*64.13*/("""}"""),format.raw/*64.14*/(""");
-        """),format.raw/*65.9*/("""}"""),format.raw/*65.10*/(""");
+            """),format.raw/*82.13*/("""}"""),format.raw/*82.14*/(""");
+        """),format.raw/*83.9*/("""}"""),format.raw/*83.10*/(""");
     </script>
     <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
 </body>
+<footer class="mdl-mini-footer">
+    <div class="mdl-mini-footer__right-section">
+        #ffff00 Version 1.0
+    </div>
+</footer>
 
 </html>"""))
       }
@@ -118,11 +141,11 @@ Seq[Any](format.raw/*1.1*/("""<!DOCTYPE html>
 object login extends login_Scope0.login
               /*
                   -- GENERATED --
-                  DATE: Sun Jun 05 21:46:39 EDT 2016
-                  SOURCE: /Users/sunho207/courses/cs2340/ffff00/app/views/login.scala.html
-                  HASH: 8c5e2ce69700500476f9696cd5c7b461f01fe809
-                  MATRIX: 827->0|1269->416|1283->422|1345->464|4064->3156|4079->3162|4141->3203|4214->3248|4243->3249|4284->3262|4335->3285|4364->3286|4409->3303|4628->3494|4657->3495|4695->3506|4724->3507
-                  LINES: 32->1|38->7|38->7|38->7|87->56|87->56|87->56|89->58|89->58|90->59|90->59|90->59|91->60|95->64|95->64|96->65|96->65
+                  DATE: Sun Jun 05 22:50:10 EDT 2016
+                  SOURCE: C:/Users/Douglas/Documents/GitHub/ffff00/app/views/login.scala.html
+                  HASH: 90e06a882fdf60e1ed39a2e00561fde6d8ceed8c
+                  MATRIX: 827->0|1275->422|1289->428|1351->470|5535->4627|5550->4633|5612->4674|5670->4705|5685->4711|5760->4765|5835->4812|5864->4813|5906->4827|5957->4850|5986->4851|6032->4869|6255->5064|6284->5065|6323->5077|6352->5078
+                  LINES: 32->1|38->7|38->7|38->7|104->73|104->73|104->73|105->74|105->74|105->74|107->76|107->76|108->77|108->77|108->77|109->78|113->82|113->82|114->83|114->83
                   -- GENERATED --
               */
           
