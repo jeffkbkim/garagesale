@@ -1,0 +1,52 @@
+html {
+  background: url(/assets/images/login-background.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.mdl-layout {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.mdl-layout__content {
+  flex: none;
+}
+
+.mdl-textfield {
+  width: 250px;
+  margin-top: -10px;
+  margin-bottom: -5px;
+}
+
+.mdl-checkbox {
+  margin-top: 7px;
+  text-align: left;
+}
+
+.mdl-cell {
+  margin-top: -10px;
+  height: 20px;
+}
+
+.login {
+  text-align: right;
+}
+
+.register {
+  margin-top: 10px;
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+}
+
+.register a {
+  font-weight: 100;
+  color: #fff;
+  text-decoration: none;
+}
+
+.register a:hover {
+  color: #B3E5FC;
+}

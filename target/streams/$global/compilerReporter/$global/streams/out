@@ -1,0 +1,10 @@
+[0m[[31merror[0m] [0m/Users/sunho207/courses/cs2340/ffff00/conf/routes:6: type HomeController is not a member of package controllers[0m
+[0m[[31merror[0m] [0mGET     /                           controllers.HomeController.login[0m
+[0m[[31merror[0m] [0m/Users/sunho207/courses/cs2340/ffff00/conf/routes:6: type HomeController is not a member of package controllers[0m
+[0m[[31merror[0m] [0mGET     /                           controllers.HomeController.login[0m
+[0m[[31merror[0m] [0m/Users/sunho207/courses/cs2340/ffff00/conf/routes:6: type HomeController is not a member of package controllers[0m
+[0m[[31merror[0m] [0mGET     /                           controllers.HomeController.login[0m
+[0m[[31merror[0m] [0m/Users/sunho207/courses/cs2340/ffff00/app/views/login.scala.html:23: value Application is not a member of object controllers.routes[0m
+[0m[[31merror[0m] [0m        <button class="mdl-button" href="@routes.Application.show("some")">Login</button>[0m
+[0m[[31merror[0m] [0m                                                 ^[0m
+[0m[[31merror[0m] [0mfour errors found[0m
