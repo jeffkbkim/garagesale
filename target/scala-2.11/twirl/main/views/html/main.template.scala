@@ -78,9 +78,27 @@ Seq[Any](format.raw/*1.32*/("""
         </nav>
       </div>
 
-      <main class="mdl-layout__content mdl-color--grey-50 content">
-        """),_display_(/*51.10*/content),format.raw/*51.17*/("""
-      """),format.raw/*52.7*/("""</main>
+      <main class="mdl-layout__content mdl-color--grey-50">
+        <div class="content">
+          """),_display_(/*52.12*/content),format.raw/*52.19*/(""" 
+        """),format.raw/*53.9*/("""</div>
+
+        <div class="mdl-layout-spacer"></div>
+
+        <footer class="mdl-mini-footer">
+          <div class="mdl-mini-footer__left-section">
+            <ul class="mdl-mini-footer__link-list">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="#">Privacy</a></li>
+            </ul>
+          </div>
+          <div class="mdl-mini-footer__right-section">
+            <div class="mdl-logo">Build - version 1.0.0</div>
+          </div>
+        </footer>
+      </main>
     </div>
     <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
   </body>
@@ -105,11 +123,11 @@ Seq[Any](format.raw/*1.32*/("""
 object main extends main_Scope0.main
               /*
                   -- GENERATED --
-                  DATE: Sun Jun 05 22:50:11 EDT 2016
-                  SOURCE: C:/Users/Douglas/Documents/GitHub/ffff00/app/views/main.scala.html
-                  HASH: 4feaf0bf2cf1efe726147f0fda9826a429098367
-                  MATRIX: 748->1|873->31|903->35|1319->424|1334->430|1394->469|1816->864|1831->870|1893->911|2187->1178|2202->1184|2259->1220|4126->3060|4154->3067|4189->3075
-                  LINES: 27->1|32->1|34->3|42->11|42->11|42->11|47->16|47->16|47->16|55->24|55->24|55->24|82->51|82->51|83->52
+                  DATE: Sun Jun 05 23:20:24 EDT 2016
+                  SOURCE: /Users/sunho207/courses/cs2340/ffff00/app/views/main.scala.html
+                  HASH: 9c1057b19b59abafa72f16443aa9fffeb08d5ffc
+                  MATRIX: 748->1|873->31|901->33|1309->414|1324->420|1384->459|1801->849|1816->855|1878->896|2164->1155|2179->1161|2236->1197|4100->3034|4128->3041|4165->3051
+                  LINES: 27->1|32->1|34->3|42->11|42->11|42->11|47->16|47->16|47->16|55->24|55->24|55->24|83->52|83->52|84->53
                   -- GENERATED --
               */
           

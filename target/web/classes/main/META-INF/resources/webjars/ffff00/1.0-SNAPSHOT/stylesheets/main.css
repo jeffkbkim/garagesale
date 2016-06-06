@@ -22,6 +22,13 @@ html, body {
   margin-top: 5px;
 }
 
+.mdl-layout__content {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+
 .drawer {
   background-image: url("/assets/images/drawer-background.png");
   background-size: 250px 160px;
@@ -113,3 +120,23 @@ html, body {
   max-width: 1080px;
 }
 
+.mdl-mini-footer {
+  height: 0px;
+  background: rgba(0, 0, 0, 0.0);
+  border-top: solid;
+  border-color: #d3d3d3;
+  border-width: 1px;
+}
+
+.mdl-mini-footer__left-section {
+  margin-top: -15px;
+  margin-left: 10px;
+}
+
+.mdl-mini-footer__right-section {
+  margin-top: -18px;
+}
+
+.mdl-logo {
+  color: #d3d3d3;
+}

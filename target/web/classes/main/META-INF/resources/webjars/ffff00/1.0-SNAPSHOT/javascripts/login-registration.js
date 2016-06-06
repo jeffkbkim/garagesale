@@ -1,9 +1,9 @@
-var registering = false;
 $(".register").click(function() {
-    if (!registering) {
-        registering = true;
         $(".registration").slideDown("fast");
-        $(".login-button").empty();
-        $(".login-button").append('Register');
-    }
+        $(".login-elements").slideUp("fast");
 });
+
+$(".cancel-button").click(function() {
+    $(".registration").slideUp("fast");
+    $(".login-elements").slideDown("fast");
+})
