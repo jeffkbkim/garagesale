@@ -13,7 +13,8 @@ public class User {
     protected String email;
     protected String password;
     public User(){}
-    public User(String firstName,
+    public User(String userName,
+                String firstName,
                 String lastName,
                 String phoneNumber,
                 String email,
