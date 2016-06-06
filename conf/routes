@@ -5,6 +5,9 @@
 #Index Route
 GET     /                           controllers.Application.login
 
+#Logout Route
+GET     /                           controllers.Application.logout
+
 #Home Route
 GET     /index.html                 controllers.Application.index
 
