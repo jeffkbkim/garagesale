@@ -42,11 +42,11 @@ public class User {
     }
     public static User makeInstance(UserFormData formData) {
         User user = new User();
-        user.userName = formData.userName;
-        user.firstName = formData.firstName;
-        user.lastName = formData.lastName;
+        user.userName = formData.username;
+        user.firstName = formData.firstname;
+        user.lastName = formData.lastname;
         user.password = formData.password;
-        user.phoneNumber = formData.phoneNumber;
+        user.phoneNumber = formData.phone;
         user.email = formData.email;
         return user;
     }

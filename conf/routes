@@ -3,7 +3,12 @@
 # ~~~~
 
 #Index Route
-GET     /                           controllers.Application.login
+GET     /                           controllers.Application.home
+
+POST    /loginAttempt               controllers.Application.loginAttempt
+
+
+POST    /register                   controllers.Application.register
 
 #Home Route
 GET     /index.html                 controllers.Application.index

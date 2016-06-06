@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,34 +22,43 @@
                     <h3 class="mdl-card__title-text">Login</h3>
                 </div> -->
                 <div class="mdl-card__supporting-text">
-                    <form action="#" class="login-form">
+                    <form action="@routes.Application.loginAttempt" class="login-form login-elements" method="post">
                         <i class="material-icons">person</i>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="username" />
+                            <input class="mdl-textfield__input" type="text" id="username" name="username"/>
                             <label class="mdl-textfield__label" for="username">Username</label>
                         </div>
                         <i class="material-icons">lock</i>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="password" id="password" />
+                            <input class="mdl-textfield__input" type="password" id="password" name="password"/>
                             <label class="mdl-textfield__label" for="password">Password</label>
                         </div>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label firstname registration">
-                            <input class="mdl-textfield__input" type="text" id="fname" />
+                    </form>
+                    <form action="@routes.Application.register" class="register-form registration" method="post">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="username" name="username"/>
+                            <label class="mdl-textfield__label" for="username">Username</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="password" id="password" name="password"/>
+                            <label class="mdl-textfield__label" for="password">Password</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label firstname">
+                            <input class="mdl-textfield__input" type="text" id="fname" name="firstname"/>
                             <label class="mdl-textfield__label" for="fname">First Name</label>
                         </div>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label lastname registration">
-                            <input class="mdl-textfield__input" type="text" id="lname" />
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label lastname">
+                            <input class="mdl-textfield__input" type="text" id="lname" name="lastname"/>
                             <label class="mdl-textfield__label" for="lname">Last Name</label>
                         </div>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label emailaddress registration">
-                            <input class="mdl-textfield__input" type="text" id="email" />
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label emailaddress">
+                            <input class="mdl-textfield__input" type="text" id="email" name="email"/>
                             <label class="mdl-textfield__label" for="email">Email Address</label>
                         </div>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label phonenumber registration">
-                            <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="phone" />
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label phonenumber">
+                            <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="phone" name="phone"/>
                             <label class="mdl-textfield__label" for="phone">Phone</label>
                         </div>
-
                     </form>
                 </div>
                 <div class="mdl-card__actions mdl-card--border login-elements">
@@ -59,15 +70,7 @@
                             </label>
                         </div>
                         <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone login">
-                            <a href=""><button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect login-button">Log in</button></a>
-                        </div>
-                    </div>
-                    <div class="mdl-grid registration">
-                        <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
-                            <a href="/#"><button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect cancel-button">Cancel</button></a>
-                        </div>
-                        <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
-                            <a href=""><button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect register-button">Register</button></a>
+                            <a href="#"><button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect login-button">Log in</button></a>
                         </div>
                     </div>
                 </div>
@@ -77,7 +80,7 @@
                             <a href="/#"><button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect cancel-button">Cancel</button></a>
                         </div>
                         <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
-                            <a href=""><button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect register-button">Register</button></a>
+                            <a href="#"><button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect register-button">Register</button></a>
                         </div>
                     </div>
                 </div>
@@ -87,7 +90,7 @@
             </div>
 
         </main>
-
+    </div>
     <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
     <script src="@routes.Assets.versioned("javascripts/typed.js")"></script>
     <script src="@routes.Assets.versioned("javascripts/login-registration.js")"></script>
