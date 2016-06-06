@@ -1,0 +1,4 @@
+[0m[[0mdebug[0m] [0mCopy resource mappings: [0m
+[0m[[0mdebug[0m] [0m	(/Users/sunho207/courses/cs2340/ffff00/conf/application.conf,/Users/sunho207/courses/cs2340/ffff00/target/scala-2.11/classes/application.conf)[0m
+[0m[[0mdebug[0m] [0m	(/Users/sunho207/courses/cs2340/ffff00/conf/logback.xml,/Users/sunho207/courses/cs2340/ffff00/target/scala-2.11/classes/logback.xml)[0m
+[0m[[0mdebug[0m] [0m	(/Users/sunho207/courses/cs2340/ffff00/conf/routes,/Users/sunho207/courses/cs2340/ffff00/target/scala-2.11/classes/routes)[0m
