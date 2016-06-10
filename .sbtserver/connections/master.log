@@ -1,7 +1,0 @@
-New log file opened at Sun Jun 05 21:42:15 EDT 2016 by 1464@dcheong-pc
-Taking next connection to: 64489
-New client attempting to connect on port: 64490-64489
-  Address = /172.16.109.178:64489
-This client on port 64490 has uuid 783b48f6-3565-4793-aab9-1bfee41043a2 configName activator humanReadableName Activator protocolVersion 3 featureTags Vector()
-Connected Clients: activator-783b48f6-3565-4793-aab9-1bfee41043a2
-Taking next connection to: 64489

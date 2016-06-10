@@ -1,7 +1,1 @@
-# ffff00
-## Look at me now, bitch
-* Douglas
-* Sunho
-* Hayun
-* Kang Bin
-* Yuda
+# Welcome to ffff00, the greatest Garage Sale application, yet 
