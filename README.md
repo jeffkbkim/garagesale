@@ -1,1 +1,1 @@
-# Welcome to the greatest Garage Sell App, yet
+# Welcome to ffff00, the greatest Garage Sale application, yet
