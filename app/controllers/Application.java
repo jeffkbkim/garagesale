@@ -27,7 +27,7 @@ public class Application extends Controller {
     }
 
     public Result home() {
-        return ok(login.render());
+        return ok(login.render(false));
     }
 
     public Result loginAttempt() {
@@ -37,7 +37,7 @@ public class Application extends Controller {
         if (attemptUser.equals("user") && attemptPass.equals("pass")) {
             return ok(index.render());
         }
-        return ok(login.render());
+        return unauthorized(login.render(true));
     }
 
 

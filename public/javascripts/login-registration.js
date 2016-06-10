@@ -12,6 +12,16 @@ $(".login").click(function() {
     $(".login-form").submit();
 });
 
+$(".cancel").click(function() {
+    $(".login-input").val("");
+});
+
 $(".register-button").click(function() {
     $(".register-form").submit();
+});
+
+$(".login-input").keyup(function(event){
+    if(event.keyCode == 13) { // ENTER
+        $(".login").click();
+    }
 });

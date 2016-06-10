@@ -1,4 +1,4 @@
-
+@(failedLogin: Boolean)
 
 <!DOCTYPE html>
 <html>
@@ -25,12 +25,12 @@
                     <form action="@routes.Application.loginAttempt" class="login-form login-elements" method="post">
                         <i class="material-icons">person</i>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="username" name="username"/>
+                            <input class="mdl-textfield__input login-input" type="text" id="username" name="username"/>
                             <label class="mdl-textfield__label" for="username">Username</label>
                         </div>
                         <i class="material-icons">lock</i>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="password" id="password" name="password"/>
+                            <input class="mdl-textfield__input login-input" type="password" id="password" name="password"/>
                             <label class="mdl-textfield__label" for="password">Password</label>
                         </div>
                     </form>
@@ -63,14 +63,19 @@
                 </div>
                 <div class="mdl-card__actions mdl-card--border login-elements">
                     <div class="mdl-grid">
+                        <!--
                         <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
                             <label class="mdl-checkbox mdl-js-checkbox" for="checkbox">
                                 <input type="checkbox" id="checkbox" class="mdl-checkbox__input" checked>
                                 <span class="mdl-checkbox__label">Remember me</span>
                             </label>
                         </div>
+                        -->
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone cancel">
+                            <a href="#"><button class="mdl-button mdl-button--colored mdl-color-text--red mdl-js-button mdl-js-ripple-effect">Cancel</button></a>
+                        </div>
                         <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone login">
-                            <a href="#"><button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect login-button">Log in</button></a>
+                            <a href="#"><button id="login-button" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect login-button">Log in</button></a>
                         </div>
                     </div>
                 </div>
@@ -103,6 +108,10 @@
                 backDelay: 100
             });
         });
+
+        @if(failedLogin) {
+            alert("Login Failed. Please Try Again.");
+        }
     </script>
     <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
     
