@@ -34,7 +34,7 @@ public class Application extends Controller {
         Form<LoginFormData> loginForm = formFactory.form(LoginFormData.class).bindFromRequest();
         String attemptUser = loginForm.get().username;
         String attemptPass = loginForm.get().password;
-        if (attemptUser.equals("user") && attemptPass.equals("password")) {
+        if (attemptUser.equals("user") && attemptPass.equals("pass")) {
             return ok(index.render());
         }
         return ok(login.render());
