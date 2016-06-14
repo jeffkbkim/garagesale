@@ -10,6 +10,7 @@ import play.api.*;
 import play.api.data.*;
 import play.api.data.Forms;
 import play.data.Form;
+import play.data.DynamicForm;
 
 import views.html.*;
 
@@ -27,19 +28,11 @@ public class Application extends Controller {
     }
 
     public Result home() {
-        return ok(login.render());
-    }
-
-    public Result loginAttempt() {
-        Form<LoginFormData> loginForm = formFactory.form(LoginFormData.class).bindFromRequest();
-        String attemptUser = loginForm.get().username;
-        String attemptPass = loginForm.get().password;
-        if (attemptUser.equals("user") && attemptPass.equals("password")) {
-            return ok(index.render());
+        if (session("connected") == null) {
+            return ok(login.render());
         }
-        return ok(login.render());
+        return ok(index.render());
     }
-
 
 
     public Result register() {
