@@ -28,8 +28,20 @@ public class Application extends Controller {
     }
 
     public Result home() {
+<<<<<<< HEAD
         if (session("connected") == null) {
             return ok(login.render());
+=======
+        return ok(login.render());
+    }
+
+    public Result loginAttempt() {
+        Form<LoginFormData> loginForm = formFactory.form(LoginFormData.class).bindFromRequest();
+        String attemptUser = loginForm.get().username;
+        String attemptPass = loginForm.get().password;
+        if (attemptUser.equals("user") && attemptPass.equals("pass")) {
+            return ok(index.render());
+>>>>>>> f03ea3c58bf8028afafab278ca76bb111e595e8d
         }
         return ok(index.render());
     }
