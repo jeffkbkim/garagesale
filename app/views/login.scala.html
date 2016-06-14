@@ -22,7 +22,7 @@
                     <h3 class="mdl-card__title-text">Login</h3>
                 </div> -->
                 <div class="mdl-card__supporting-text">
-                    <form action="@routes.Application.loginAttempt" class="login-form login-elements" method="post">
+                    <form action="@routes.LoginController.loginAttempt" class="login-form login-elements" method="post">
                         <i class="material-icons">person</i>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input class="mdl-textfield__input" type="text" id="username" name="username"/>
@@ -34,7 +34,7 @@
                             <label class="mdl-textfield__label" for="password">Password</label>
                         </div>
                     </form>
-                    <form action="@routes.Application.register" class="register-form registration" method="post">
+                    <form action="@routes.LoginController.register" class="register-form registration" method="post">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input class="mdl-textfield__input" type="text" id="username" name="username"/>
                             <label class="mdl-textfield__label" for="username">Username</label>

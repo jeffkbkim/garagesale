@@ -5,10 +5,10 @@
 #Index Route
 GET     /                           controllers.Application.home
 
-POST    /loginAttempt               controllers.Application.loginAttempt
+POST    /loginAttempt               controllers.LoginController.loginAttempt
 
 
-POST    /register                   controllers.Application.register
+POST    /register                   controllers.LoginController.register
 
 #Home Route
 GET     /index.html                 controllers.Application.index

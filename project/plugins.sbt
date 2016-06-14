@@ -9,6 +9,7 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-rjs" % "1.0.7")
 addSbtPlugin("com.typesafe.sbt" % "sbt-digest" % "1.1.0")
 addSbtPlugin("com.typesafe.sbt" % "sbt-mocha" % "1.1.0")
 addSbtPlugin("org.irundaia.sbt" % "sbt-sassify" % "1.4.2")
+addSbtPlugin("com.typesafe.sbt" % "sbt-play-ebean" % "1.0.0")
 addSbtPlugin("com.heroku" % "sbt-heroku" % "1.0.1")
 
 // Play enhancer - this automatically generates getters/setters for public fields

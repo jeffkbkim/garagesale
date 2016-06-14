@@ -1,11 +1,14 @@
 package models;
 
+import com.avaje.ebean.Model;
 
+import javax.persistence.Entity;
 
 /**
  * Created by Douglas on 6/6/2016.
  */
-public class User {
+@Entity
+public class User extends Model{
     protected String userName;
     protected String firstName;
     protected String lastName;
@@ -19,12 +22,17 @@ public class User {
                 String phoneNumber,
                 String email,
                 String password) {
+        this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
     }
+    public User(String userName, String password) {
+        this(userName, null, null, null, null, password);
+    }
+    public String getUserName() { return userName; }
     public String getFirstName() {
         return firstName;
     }
@@ -49,5 +57,15 @@ public class User {
         user.phoneNumber = formData.phone;
         user.email = formData.email;
         return user;
+    }
+
+    public boolean equals(Object o) {
+        if (o instanceof User) {
+            User tester = (User) o;
+            if (tester.getUserName() != null && userName.equals(tester.getUserName())) {
+                return true;
+            }
+        }
+        return false;
     }
 }
