@@ -3,18 +3,22 @@ package models;
 import com.avaje.ebean.Model;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  * Created by Douglas on 6/6/2016.
  */
 @Entity
 public class User extends Model{
+    @Id
+    protected int id;
     protected String userName;
     protected String firstName;
     protected String lastName;
     protected String phoneNumber;
     protected String email;
     protected String password;
+    protected int level;
     public User(){}
     public User(String userName,
                 String firstName,
@@ -45,6 +49,19 @@ public class User extends Model{
     public String getEmail() {
         return email;
     }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    public void setPhone(String phone) {
+        this.phoneNumber = phone;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public String getPassword() { return password; }
     public boolean checkPassword(String check) {
         return password.equals(check);
     }

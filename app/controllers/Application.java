@@ -3,6 +3,7 @@ package controllers;
 import play.mvc.*;
 import play.api.*;
 import play.api.data.*;
+import play.Logger;
 
 import views.html.*;
 
@@ -19,6 +20,7 @@ public class Application extends Controller {
     }
 
     public Result home() {
+        Logger.debug("home called");
         if (session("connected") == null) {
             return ok(login.render());
         }
@@ -28,6 +30,8 @@ public class Application extends Controller {
 
 
     public Result logout() {
+        Logger.debug("Logout called");
+        session().remove("connected");
         session().clear();
         flash("success", "You have logged out.");
         return redirect (routes.Application.home());

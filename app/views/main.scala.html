@@ -39,14 +39,14 @@
         <header class="drawer-header">
           <img src="@routes.Assets.versioned("images/user.png")" class="user">
           <div class="user-dropdown">
-            <span class="user-text">Welcome Hayun</span>
+            <span class="user-text">#ffff00</span>
             <div class="mdl-layout-spacer"></div>
             <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon user-text">
               <i class="material-icons" role="presentation">arrow_drop_down</i>
               <span class="visuallyhidden">Accounts</span>
             </button>
             <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
-              <li class="mdl-menu__item"><i class="material-icons">settings</i>Profile</li>
+              <li class="mdl-menu__item"><i class="material-icons">settings</i><a href="@routes.ProfileController.view()">Profile</a></li>
               <li class="mdl-menu__item"><i class="material-icons">person</i><a href="@routes.Application.logout()">Logout</a></li>
             </ul>
           </div>

@@ -11,6 +11,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.index;
 import views.html.*;
+import play.Logger;
 
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class LoginController extends Controller {
     FormFactory formFactory;
 
     public Result loginAttempt() {
+        Logger.debug("Login attempt called");
         Form<LoginFormData> loginForm = formFactory.form(LoginFormData.class).bindFromRequest();
         String attemptUser = loginForm.get().username;
         String attemptPass = loginForm.get().password;
@@ -41,9 +43,11 @@ public class LoginController extends Controller {
 
 
     public Result register() {
+        Logger.debug("Register called");
         Form<UserFormData> userForm = formFactory.form(UserFormData.class).bindFromRequest();
         User user = User.makeInstance(userForm.get());
         user.save();
+        Logger.debug("User created: " + user.getUserName());
         return ok(login.render());
     }
 }
