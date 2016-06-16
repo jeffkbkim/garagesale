@@ -5,3 +5,8 @@
 .save {
     padding: 0;
 }
+
+.detail-card-header {
+    background: url(/assets/images/login-background-alt.jpg) no-repeat center center;
+    background-size: cover
+}
