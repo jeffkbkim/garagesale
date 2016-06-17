@@ -23,3 +23,10 @@ GET     /logout                     controllers.Application.logout
 GET     /profile                    controllers.ProfileController.view
 
 POST    /updateprofile              controllers.ProfileController.updateProfile
+
+#Sale Route
+GET     /sale                       controllers.SalesController.view
+
+POST    /createsale                 controllers.SalesController.createSale
+
+POST    /getsale                    controllers.SalesController.getSale

@@ -1,0 +1,73 @@
+@(user: User, sale: Sale)
+@main(title = "Current Sales of " + user.getFirstName) {
+
+  <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/createsale.css")">
+
+    <div class = "demo-card-wide">
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+            <thead>
+                <tr>
+                    <th>saleID</th>
+                    <th class="mdl-data-table__cell--non-numeric">Sale Name</th>
+                    <th>Date</th>
+                    <th class="mdl-data-table__cell--non-numeric">Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                <form action="routes.SalesController.getSale">
+                    <tr>
+                        <td>12</td>
+                        <td class="mdl-data-table__cell--non-numeric">@sale.name</td>
+                        <td>02/30/2016</td>
+                        <td class="mdl-data-table__cell--non-numeric">@sale.location</td>
+                    </tr>
+
+                </form>
+            </tbody>
+        </table>
+    </div>
+
+  <div class="demo-card-wide">
+      <div class="mdl-card mdl-card--border mdl-shadow--2dp mdl-card__supporting-text">
+        <form action="@routes.SalesController.createSale" class="update-form" method="post">
+          <ul>
+            <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="fname"/>
+            <label class="mdl-textfield__label" for="salename">Title of Sale</label>
+            </li>
+            <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="fname"/>
+            <label class="mdl-textfield__label" for="location">Location</label>
+            </li>
+            <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text"/>
+            <label class="mdl-textfield__label" for="date">Date</label>
+            </li>
+          </ul>
+        </form>
+      </div>
+      <div class="mdl-card__actions mdl-card--border save">
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+          </div>
+          <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+            <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createButton">
+              Create
+            </button>
+          </div>
+        </div>
+      </div>
+  </div>
+  <script>
+          var saveButton = document.querySelector('.saveButton');
+          saveButton.addEventListener('click', function() {
+            $.post('@routes.ProfileController.updateProfile',
+                    {
+                      name: $('#salename').val(),
+                      location: $('#location').val(),
+                      date: $('#date').val(),
+                    });
+          });
+  </script>
+
+}

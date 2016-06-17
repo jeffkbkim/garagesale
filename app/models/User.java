@@ -4,6 +4,7 @@ import com.avaje.ebean.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.ArrayList;
 
 /**
  * Created by Douglas on 6/6/2016.
@@ -19,6 +20,7 @@ public class User extends Model{
     protected String email;
     protected String password;
     protected int level;
+    protected ArrayList<Sale> saleList;
     public User(){}
     public User(String userName,
                 String firstName,
@@ -32,6 +34,7 @@ public class User extends Model{
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
+        this.saleList = new ArrayList<Sale>();
     }
     public User(String userName, String password) {
         this(userName, null, null, null, null, password);
@@ -49,6 +52,7 @@ public class User extends Model{
     public String getEmail() {
         return email;
     }
+    public ArrayList<Sale> getSaleList() { return saleList; }
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -61,6 +65,7 @@ public class User extends Model{
     public void setEmail(String email) {
         this.email = email;
     }
+    public void setSaleList(ArrayList<Sale> saleList) { this.saleList = saleList; }
     public String getPassword() { return password; }
     public boolean checkPassword(String check) {
         return password.equals(check);
