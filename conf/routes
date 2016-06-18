@@ -12,8 +12,32 @@ POST    /register                   controllers.LoginController.register
 #Home Route
 GET     /index.html                 controllers.Application.index
 
+#Catalog Route
+GET     /catalog.html               controllers.Application.catalog
+
+#Create Sale Route
+GET     /createSale.html            controllers.Application.createSale
+
+#Print Tags Route
+GET     /printTags.html             controllers.Application.printTags
+
+#Inventory Route
+GET     /inventory.html             controllers.Application.inventory
+
+#Reports Route
+GET     /reports.html               controllers.Application.reports
+
 #Administration Route
 GET     /administration.html        controllers.Application.administration
+
+#About Route
+GET     /about.html                 controllers.Application.about
+
+#Contact Route
+GET     /contact.html               controllers.Application.contact
+
+#Privacy Policy Route
+GET     /privacy.html               controllers.Application.privacy
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

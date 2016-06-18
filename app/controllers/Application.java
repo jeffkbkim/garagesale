@@ -30,9 +30,41 @@ public class Application extends Controller {
         return ok(index.render());
     }
 
+    public Result catalog() {
+        return ok(catalog.render());
+    }
+
+    public Result createSale() {
+        return ok(createSale.render());
+    }
+
+    public Result printTags() {
+        return ok(printTags.render());
+    }
+
+    public Result inventory() {
+        return ok(inventory.render());
+    }
+
+    public Result reports() {
+        return ok(reports.render());
+    }
+
     public Result administration() {
         List<User> listUsers = new Model.Finder(User.class).all();
         return ok(administration.render(listUsers));
+    }
+
+    public Result about() {
+        return ok(about.render());
+    }
+
+    public Result contact() {
+        return ok(contact.render());
+    }
+
+    public Result privacy() {
+        return ok(privacy.render());
     }
 
     public Result logout() {
