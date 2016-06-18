@@ -1,46 +1,28 @@
-@(user: User, sale: Sale)
+@(user: User)
 @main(title = "Current Sales of " + user.getFirstName) {
 
   <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/createsale.css")">
-
     <div class = "demo-card-wide">
-        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-            <thead>
-                <tr>
-                    <th>saleID</th>
-                    <th class="mdl-data-table__cell--non-numeric">Sale Name</th>
-                    <th>Date</th>
-                    <th class="mdl-data-table__cell--non-numeric">Location</th>
-                </tr>
-            </thead>
-            <tbody>
-                <form action="routes.SalesController.getSale">
-                    <tr>
-                        <td>12</td>
-                        <td class="mdl-data-table__cell--non-numeric">@sale.name</td>
-                        <td>02/30/2016</td>
-                        <td class="mdl-data-table__cell--non-numeric">@sale.location</td>
-                    </tr>
+        <div class="mdl-card mdl-card--border mdl-shadow--2dp mdl-card__supporting-text" id="testSaleJSON">
 
-                </form>
-            </tbody>
-        </table>
+        </div>
     </div>
+
 
   <div class="demo-card-wide">
       <div class="mdl-card mdl-card--border mdl-shadow--2dp mdl-card__supporting-text">
         <form action="@routes.SalesController.createSale" class="update-form" method="post">
           <ul>
             <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="fname"/>
+            <input class="mdl-textfield__input" type="text" id="salename"/>
             <label class="mdl-textfield__label" for="salename">Title of Sale</label>
             </li>
             <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="fname"/>
+            <input class="mdl-textfield__input" type="text" id="location"/>
             <label class="mdl-textfield__label" for="location">Location</label>
             </li>
             <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text"/>
+            <input class="mdl-textfield__input" type="text" id="date"/>
             <label class="mdl-textfield__label" for="date">Date</label>
             </li>
           </ul>
@@ -58,16 +40,7 @@
         </div>
       </div>
   </div>
-  <script>
-          var saveButton = document.querySelector('.saveButton');
-          saveButton.addEventListener('click', function() {
-            $.post('@routes.ProfileController.updateProfile',
-                    {
-                      name: $('#salename').val(),
-                      location: $('#location').val(),
-                      date: $('#date').val(),
-                    });
-          });
-  </script>
+  <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+  <script src="@routes.Assets.versioned("javascripts/sales.js")"></script>
 
 }

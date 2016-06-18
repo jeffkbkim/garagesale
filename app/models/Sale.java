@@ -23,19 +23,19 @@ public class Sale extends Model{
     public DateTime dateTime;
     public double earnings;
     public HashMap<String, Integer> userList;
-    public List<Item> inventory;
+    public HashMap<Integer, Integer> inventory;
     public Sale() {
-        inventory = new ArrayList<Item>();
-        userList = new HashMap();
+        inventory = new HashMap<>();
+        userList = new HashMap<>();
     }
     public Sale(String creator) {
         this();
         userList.put(creator, 0);
     }
-    public void addItems(List<Item> itemList) {
-        for(Item i : itemList) {
-            inventory.add(i);
-        }
+    public Sale(String name, String location, DateTime dateTime) {
+        this.name = name;
+        this.location = location;
+        this.dateTime = dateTime;
     }
     public void addUser(String username, int role) {
         userList.put(username, role);
@@ -48,7 +48,7 @@ public class Sale extends Model{
         sale.location = saleFormData.location;
         sale.dateTime = saleFormData.dateTime;
         sale.userList = saleFormData.userList;
-        sale.inventory = saleFormData.inventory;
+        sale.inventory = new HashMap<>();
         return sale;
     }
 

@@ -16,16 +16,13 @@ public class SaleFormData {
     public DateTime dateTime;
     public double earnings;
     public HashMap<String, Integer> userList;
-    public List<Item> inventory;
     public SaleFormData(){}
     public SaleFormData(int saleID, String name, String location,
-                        DateTime dateTime, HashMap<String, Integer> userList,
-                        List<Item> inventory) {
+                        DateTime dateTime, HashMap<String, Integer> userList) {
         this.saleID = saleID;
         this.name = name;
         this.location = location;
         this.dateTime = dateTime;
         this.userList = userList;
-        this.inventory = inventory;
     }
 }
