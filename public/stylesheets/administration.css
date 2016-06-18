@@ -1,0 +1,15 @@
+.user-table {
+  margin: auto;
+}
+
+.mdl-select {
+  margin-top: -20px;
+  width: 150px;
+  height: 25px;
+}
+
+.administration-control {
+  margin-top: 10px;
+  margin-right: 20px;
+  text-align: right;
+}

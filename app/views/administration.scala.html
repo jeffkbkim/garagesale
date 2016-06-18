@@ -1,0 +1,53 @@
+@(users: List[User])
+@main(title = "Administration") {
+<link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/administration.css")">
+
+<h4 class="mdl-color-text--grey-600">Manage Users</h4>
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp user-table">
+    <thead>
+    <tr>
+        <th class="mdl-data-table__cell--non-numeric">Username</th>
+        <th class="mdl-data-table__cell--non-numeric">Name</th>
+        <th>Phone Number</th>
+        <th class="mdl-data-table__cell--non-numeric">Email Address</th>
+        <th class="mdl-data-table__cell--non-numeric">Account Type</th>
+        <th class="mdl-data-table__cell--non-numeric">Locked</th>
+    </tr>
+    </thead>
+    <tbody>
+    @for(index <- 0 until users.size) {
+        <tr>
+            <td class="mdl-data-table__cell--non-numeric">@users.get(index).getUserName</td>
+            <td class="mdl-data-table__cell--non-numeric">@users.get(index).getFirstName @users.get(index).getLastName</td>
+            <td>@users.get(index).getPhone</td>
+            <td class="mdl-data-table__cell--non-numeric">@users.get(index).getEmail</td>
+            <td><div class="mdl-textfield mdl-js-textfield mdl-select">
+                <select id="privilege" class="mdl-textfield__input">
+                    <option value="0">Super User</option>
+                    <option value="1">Sale Admin</option>
+                    <option value="2">Seller</option>
+                    <option value="3">Clerk</option>
+                    <option value="4">Cashier</option>
+                    <option value="5">Bookkeeper</option>
+                    <option value="6">Guest</option>
+                </select>
+            </div></td>
+            <td><label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
+                <input type="checkbox" id="switch-1" class="mdl-switch__input" unchecked>
+                <span class="mdl-switch__label"></span>
+            </label></td>
+        </tr>
+    }
+
+    </tbody>
+</table>
+
+<div class="administration-control">
+    <button id="confirm-control" class="mdl-button mdl-js-button mdl-color-text--blue-300">
+        Confirm
+    </button>
+    <button id="delete-control" class="mdl-button mdl-js-button mdl-color-text--blue-300">
+        Delete
+    </button>
+</div>
+}

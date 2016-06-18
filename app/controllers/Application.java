@@ -4,6 +4,9 @@ import play.mvc.*;
 import play.api.*;
 import play.api.data.*;
 import play.Logger;
+import models.User;
+import java.util.List;
+import com.avaje.ebean.Model;
 
 import views.html.*;
 
@@ -27,7 +30,10 @@ public class Application extends Controller {
         return ok(login.render());
     }
 
-
+    public Result administration() {
+        List<User> listUsers = new Model.Finder(User.class).all();
+        return ok(administration.render(listUsers));
+    }
 
     public Result logout() {
         Logger.debug("Logout called");
