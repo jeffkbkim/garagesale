@@ -37,10 +37,9 @@ public class LoginController extends Controller {
         if (attemptUser.equals("user") && attemptPass.equals("pass")) {
             return ok(index.render());
         } else {
-            return unauthorized(login.render());
+            return unauthorized(login.render(true));
         }
     }
-
 
     public Result register() {
         Logger.debug("Register called");
@@ -48,6 +47,6 @@ public class LoginController extends Controller {
         User user = User.makeInstance(userForm.get());
         user.save();
         Logger.debug("User created: " + user.getUserName());
-        return ok(login.render());
+        return ok(index.render());
     }
 }

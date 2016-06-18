@@ -25,9 +25,9 @@ public class Application extends Controller {
     public Result home() {
         Logger.debug("home called");
         if (session("connected") == null) {
-            return ok(login.render());
+            return ok(login.render(false));
         }
-        return ok(login.render());
+        return ok(index.render());
     }
 
     public Result administration() {

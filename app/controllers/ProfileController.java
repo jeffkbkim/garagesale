@@ -33,7 +33,7 @@ public class ProfileController extends Controller {
                 return ok(profile.render(displayUser));
             }
         }
-        return ok(login.render());
+        return ok(login.render(true));
 
     }
     public Result updateProfile() {
@@ -54,6 +54,6 @@ public class ProfileController extends Controller {
             }
             return ok(profile.render(thisUser));
         }
-        return ok(login.render());
+        return ok(login.render(true));
     }
 }

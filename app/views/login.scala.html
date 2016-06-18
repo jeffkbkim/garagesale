@@ -1,5 +1,4 @@
-
-
+@(invalid : Boolean)
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,9 +17,9 @@
         </div>
         <main class="mdl-layout__content">
             <div class="mdl-card mdl-shadow--6dp login-window">
-<!--                 <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
-                    <h3 class="mdl-card__title-text">Login</h3>
-                </div> -->
+                <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
+                    <h6 class="mdl-card__title-text">Registration</h6>
+                </div>
                 <div class="mdl-card__supporting-text">
                     <form action="@routes.LoginController.loginAttempt" class="login-form login-elements" method="post">
                         <i class="material-icons">person</i>
@@ -33,32 +32,42 @@
                             <input class="mdl-textfield__input" type="password" id="password" name="password"/>
                             <label class="mdl-textfield__label" for="password">Password</label>
                         </div>
+                        @if(invalid == true) {
+                            <p class="incorrectError mdl-color-text--red-400">Invalid credentials, please try again.</p>
+                        }
                     </form>
                     <form action="@routes.LoginController.register" class="register-form registration" method="post">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="username" name="username"/>
-                            <label class="mdl-textfield__label" for="username">Username</label>
+                            <input class="mdl-textfield__input" type="text" id="usernameReg" name="username" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$"/>
+                            <label class="mdl-textfield__label" for="usernameReg">Username</label>
+                            <span class="mdl-textfield__error">Please enter a valid username</span>
                         </div>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="password" id="password" name="password"/>
-                            <label class="mdl-textfield__label" for="password">Password</label>
+                            <input class="mdl-textfield__input" type="password" id="passwordReg" name="password" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{5,20}$"/>
+                            <label class="mdl-textfield__label" for="passwordReg">Password</label>
+                            <span class="mdl-textfield__error">Please enter a password with at least 6 digits</span>
                         </div>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label firstname">
-                            <input class="mdl-textfield__input" type="text" id="fname" name="firstname"/>
+                            <input class="mdl-textfield__input" type="text" id="fname" name="firstname" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{0,20}$"/>
                             <label class="mdl-textfield__label" for="fname">First Name</label>
+                            <span class="mdl-textfield__error">Please enter a valid name</span>
                         </div>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label lastname">
-                            <input class="mdl-textfield__input" type="text" id="lname" name="lastname"/>
+                            <input class="mdl-textfield__input" type="text" id="lname" name="lastname" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{0,20}$"/>
                             <label class="mdl-textfield__label" for="lname">Last Name</label>
+                            <span class="mdl-textfield__error">Please enter a valid name</span>
                         </div>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label emailaddress">
-                            <input class="mdl-textfield__input" type="text" id="email" name="email"/>
+                            <input class="mdl-textfield__input" type="text" id="email" name="email" pattern="[a-z0-9._%+-]+@@[a-z0-9.-]+\.[a-z]{2,3}$"/>
                             <label class="mdl-textfield__label" for="email">Email Address</label>
+                            <span class="mdl-textfield__error">Please enter a valid email address</span>
                         </div>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label phonenumber">
-                            <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="phone" name="phone"/>
+                            <input class="mdl-textfield__input" type="text" id="phone" name="phone" pattern="[0-9]{10,10}$"/>
                             <label class="mdl-textfield__label" for="phone">Phone</label>
+                            <span class="mdl-textfield__error">Please enter a valid phone number</span>
                         </div>
+                        <p class="registrationError mdl-color-text--red-400">Please fill out the entire registration form.</p>
                     </form>
                 </div>
                 <div class="mdl-card__actions mdl-card--border login-elements">
@@ -85,7 +94,7 @@
                     </div>
                 </div>
             </div>
-            <div class="register">
+            <div class="register login-elements">
                 <a href="#">Create an account</a>
             </div>
 
