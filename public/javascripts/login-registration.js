@@ -5,6 +5,7 @@ $(".register").click(function() {
 });
 
 $(".cancel-button").click(function() {
+    $(".registrationError").slideUp("fast");
     $(".registration").slideUp("fast");
     $(".mdl-card__title").slideUp("fast");
     $(".login-elements").slideDown("fast");

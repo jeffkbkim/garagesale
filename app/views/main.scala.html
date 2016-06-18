@@ -39,7 +39,7 @@
         <header class="drawer-header">
           <img src="@routes.Assets.versioned("images/user.png")" class="user">
           <div class="user-dropdown">
-            <span class="user-text">#ffff00</span>
+            <span class="user-text">Welcome @session.get("connected")!</span>
             <div class="mdl-layout-spacer"></div>
             <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon user-text">
               <i class="material-icons" role="presentation">arrow_drop_down</i>
@@ -54,10 +54,10 @@
 
         <nav class="navigation mdl-navigation mdl-color--white">
           <a class="mdl-navigation__link" href="@routes.Application.home"><i class="material-icons" role="presentation">home</i>Home</a>
-          <a class="mdl-navigation__link" href=""><i class="material-icons" role="presentation">inbox</i>Inventory</a>
+          <a class="mdl-navigation__link" href=""><i class="material-icons" role="presentation">inbox</i>Catalog</a>
           <a class="mdl-navigation__link" href=""><i class="material-icons" role="presentation">shopping_cart</i>Create Sale</a>
           <a class="mdl-navigation__link" href=""><i class="material-icons" role="presentation">local_offer</i>Print Tags</a>
-          <a class="mdl-navigation__link" href=""><i class="material-icons" role="presentation">account_balance</i>Statement</a>
+          <a class="mdl-navigation__link" href=""><i class="material-icons" role="presentation">account_balance</i>Inventory</a>
           <a class="mdl-navigation__link" href=""><i class="material-icons" role="presentation">monetization_on</i>Reports</a>
           <a class="mdl-navigation__link" href="@routes.Application.administration"><i class="material-icons" role="presentation">people</i>Administration</a>
         </nav>
@@ -73,14 +73,14 @@
         <footer class="mdl-mini-footer">
           <div class="mdl-mini-footer__left-section">
             <ul class="mdl-mini-footer__link-list">
-              <li><a href="#">Home</a></li>
+              <li><a href="@routes.Application.home">Home</a></li>
               <li><a href="#">About</a></li>
               <li><a href="#">Contact</a></li>
               <li><a href="#">Privacy</a></li>
             </ul>
           </div>
           <div class="mdl-mini-footer__right-section">
-            <div class="mdl-logo">Build - version 1.0.0</div>
+            <div class="mdl-logo">Build - version 1.5.0</div>
           </div>
         </footer>
       </main>
