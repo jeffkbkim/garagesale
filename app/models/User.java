@@ -36,6 +36,7 @@ public class User extends Model{
         this.email = email;
         this.password = password;
         this.saleList = new ArrayList<>();
+        saleList.add(5);
     }
     public User(String userName, String password) {
         this(userName, null, null, null, null, password);
@@ -57,8 +58,9 @@ public class User extends Model{
     public void addSale(int saleID) {
         if (saleList == null) {
             Logger.debug("Sale list is null");
-            saleList = new ArrayList<Integer>();
+            this.saleList = new ArrayList<>();
         }
+        this.saleList = new ArrayList<>();
         this.saleList.add(saleID);
     }
     public void setFirstName(String firstName) {

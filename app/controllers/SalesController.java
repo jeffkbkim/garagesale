@@ -41,8 +41,6 @@ public class SalesController extends Controller {
                 }
             }
         }
-        Sale newSale = new Sale();
-        //displayUser.getSaleList().add(newSale);
         return ok(sale.render(displayUser));
     }
 
