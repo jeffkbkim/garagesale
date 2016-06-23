@@ -13,8 +13,8 @@
     color: #fff;
 }
 
-.mdl-data-table {
-    width: 50%;
+.sales-table {
+    width: 100%;
     height: 20%;
     margin-left: auto;
     margin-right: auto;
@@ -22,4 +22,14 @@
 
 .mdl-card {
     width: 50%;
+}
+
+.createsale-link {
+    float: right;
+    margin-bottom: 20px;
+}
+
+.createsale-button {
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
 }

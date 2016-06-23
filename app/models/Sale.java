@@ -20,23 +20,28 @@ public class Sale extends Model{
     public int saleID;
     public String name;
     public String location;
-    public DateTime dateTime;
     public double earnings;
     public HashMap<String, Integer> userList;
     public HashMap<Integer, Integer> inventory;
+
+    public static Finder<Integer, Sale> find
+            = new Model.Finder<>(Integer.class, Sale.class);
+
     public Sale() {
         inventory = new HashMap<>();
         userList = new HashMap<>();
     }
+
     public Sale(String creator) {
         this();
         userList.put(creator, 0);
     }
-    public Sale(String name, String location, DateTime dateTime) {
+
+    public Sale(String name, String location) {
         this.name = name;
         this.location = location;
-        this.dateTime = dateTime;
     }
+
     public void addUser(String username, int role) {
         userList.put(username, role);
     }
@@ -46,7 +51,6 @@ public class Sale extends Model{
         sale.saleID = saleFormData.saleID;
         sale.name = saleFormData.name;
         sale.location = saleFormData.location;
-        sale.dateTime = saleFormData.dateTime;
         sale.userList = saleFormData.userList;
         sale.inventory = new HashMap<>();
         return sale;

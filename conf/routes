@@ -25,8 +25,10 @@ GET     /profile                    controllers.ProfileController.view
 POST    /updateprofile              controllers.ProfileController.updateProfile
 
 #Sale Route
-GET     /sale                       controllers.SalesController.view
+GET     /sale                       controllers.SalesController.getSales
 
-POST    /sales                      controllers.SalesController.createSale
+GET     /createsale                 controllers.SalesController.createSalePage
+
+POST    /createsale                 controllers.SalesController.createSale
 
 GET    /sales                       controllers.SalesController.getSales
