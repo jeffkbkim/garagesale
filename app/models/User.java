@@ -5,7 +5,10 @@ import play.Logger;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Douglas on 6/6/2016.
@@ -13,15 +16,18 @@ import java.util.ArrayList;
 @Entity
 public class User extends Model{
     @Id
-    protected int id;
-    protected String userName;
-    protected String firstName;
-    protected String lastName;
+    public int id;
+    public String userName;
+    public String firstName;
+    public String lastName;
     protected String phoneNumber;
     protected String email;
     protected String password;
     protected int level;
-    protected ArrayList<Integer> saleList;
+    protected int role;
+    @OneToMany(mappedBy = "user")
+    public ArrayList<Sale> sales = new ArrayList<>();
+
     public User(){}
     public User(String userName,
                 String firstName,
@@ -35,8 +41,6 @@ public class User extends Model{
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
-        this.saleList = new ArrayList<>();
-        saleList.add(5);
     }
     public User(String userName, String password) {
         this(userName, null, null, null, null, password);
@@ -54,14 +58,16 @@ public class User extends Model{
     public String getEmail() {
         return email;
     }
-    public ArrayList<Integer> getSaleList() { return saleList; }
-    public void addSale(int saleID) {
-        if (saleList == null) {
-            Logger.debug("Sale list is null");
-            this.saleList = new ArrayList<>();
-        }
-        this.saleList = new ArrayList<>();
-        this.saleList.add(saleID);
+
+    public static Finder<Integer, User> find
+            = new Model.Finder<>(Integer.class, User.class);
+
+    public List<Sale> getSales() {
+        return sales;
+    }
+    public void addSale(Sale sale) {
+        Sale.find.select("*").where().eq("user", sale).findUnique();
+        this.sales.add(sale);
     }
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -75,7 +81,7 @@ public class User extends Model{
     public void setEmail(String email) {
         this.email = email;
     }
-    public void setSaleList(ArrayList<Integer> saleList) { this.saleList = saleList; }
+    public void setSaleList(ArrayList<Sale> sales) { this.sales = sales; }
     public String getPassword() { return password; }
     public boolean checkPassword(String check) {
         return password.equals(check);

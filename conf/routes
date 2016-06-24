@@ -30,5 +30,3 @@ GET     /sale                       controllers.SalesController.getSales
 GET     /createsale                 controllers.SalesController.createSalePage
 
 POST    /createsale                 controllers.SalesController.createSale
-
-GET    /sales                       controllers.SalesController.getSales

@@ -3,6 +3,8 @@ package models;
 import play.data.format.Formats;
 import play.data.format.Formats.DateTime;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,14 +17,14 @@ public class SaleFormData {
     public String location;
     public DateTime dateTime;
     public double earnings;
-    public HashMap<String, Integer> userList;
+    public ArrayList<User> users;
     public SaleFormData(){}
     public SaleFormData(int saleID, String name, String location,
-                        DateTime dateTime, HashMap<String, Integer> userList) {
+                        DateTime dateTime, ArrayList<User> users) {
         this.saleID = saleID;
         this.name = name;
         this.location = location;
         this.dateTime = dateTime;
-        this.userList = userList;
+        this.users = users;
     }
 }

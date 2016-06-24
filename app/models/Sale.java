@@ -4,8 +4,7 @@ import com.avaje.ebean.Model;
 import play.data.format.Formats;
 import play.data.format.Formats.DateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +20,9 @@ public class Sale extends Model{
     public String name;
     public String location;
     public double earnings;
-    public HashMap<String, Integer> userList;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    public User user;
     public HashMap<Integer, Integer> inventory;
 
     public static Finder<Integer, Sale> find
@@ -29,12 +30,10 @@ public class Sale extends Model{
 
     public Sale() {
         inventory = new HashMap<>();
-        userList = new HashMap<>();
     }
 
     public Sale(String creator) {
         this();
-        userList.put(creator, 0);
     }
 
     public Sale(String name, String location) {
@@ -42,16 +41,16 @@ public class Sale extends Model{
         this.location = location;
     }
 
-    public void addUser(String username, int role) {
-        userList.put(username, role);
-    }
+    //public void addUser(User user) {
+       // user.add(user);
+    //}
 
     public static Sale makeInstance(SaleFormData saleFormData) {
         Sale sale = new Sale();
         sale.saleID = saleFormData.saleID;
         sale.name = saleFormData.name;
         sale.location = saleFormData.location;
-        sale.userList = saleFormData.userList;
+        //sale.user = saleFormData.user;
         sale.inventory = new HashMap<>();
         return sale;
     }

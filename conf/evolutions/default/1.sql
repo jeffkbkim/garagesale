@@ -17,6 +17,7 @@ create table sale (
   name                      varchar(255),
   location                  varchar(255),
   earnings                  double,
+  user_id                   integer,
   constraint pk_sale primary key (sale_id))
 ;
 
@@ -29,6 +30,7 @@ create table user (
   email                     varchar(255),
   password                  varchar(255),
   level                     integer,
+  role                      integer,
   constraint pk_user primary key (id))
 ;
 
@@ -38,6 +40,8 @@ create sequence sale_seq;
 
 create sequence user_seq;
 
+alter table sale add constraint fk_sale_user_1 foreign key (user_id) references user (id) on delete restrict on update restrict;
+create index ix_sale_user_1 on sale (user_id);
 
 
 
