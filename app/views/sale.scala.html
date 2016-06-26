@@ -17,10 +17,14 @@
                 </thead>
                 <tbody>
                     @for(sale <- sales) {
-                        <tr>
-                            <td class="mdl-data-table__cell--non-numeric">@sale.getName()</td>
-                            <td>@sale.getLocation()</td>
-                        </tr>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">
+                                    <a href="/catalog?saleId=@sale.getId()">
+                                        @sale.getName()
+                                    </a>
+                                </td>
+                                <td>@sale.getLocation()</td>
+                            </tr>
                     }
                 </tbody>
             </table>

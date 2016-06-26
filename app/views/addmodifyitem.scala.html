@@ -1,0 +1,35 @@
+@(user: User)(sale: Sale)
+@main(title = "Add/Modify Item") {
+
+      <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/createsale.css")">
+
+      <div class="demo-card-wide">
+          <div class="mdl-card mdl-card--border mdl-shadow--2dp mdl-card__supporting-text">
+            <form action="@routes.CatalogController.addItem" class="update-form" method="post">
+              <ul>
+                <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" name="name" id="item-name"/>
+                    <label class="mdl-textfield__label" for="item-name">Item Name</label>
+                </li>
+                <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" name="description" id="item-description"/>
+                    <label class="mdl-textfield__label" for="item-description">Description</label>
+                </li>
+                  <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <input class="mdl-textfield__input" type="text" name="price" id="item-price"/>
+                      <label class="mdl-textfield__label" for="item-price">Price</label>
+                  </li>
+                  <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <input class="mdl-textfield__input" type="text" name="quantity" id="item-quantity"/>
+                      <label class="mdl-textfield__label" for="item-quantity">Quantity</label>
+                  </li>
+                  <input type="hidden" value="@sale.getId" name="saleId" />
+              </ul>
+                <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="submit">
+                    Add Item
+                </button>
+            </form>
+        </div>
+    </div>
+
+}

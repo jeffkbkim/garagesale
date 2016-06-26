@@ -30,3 +30,10 @@ GET     /sale                       controllers.SalesController.getSales
 GET     /createsale                 controllers.SalesController.createSalePage
 
 POST    /createsale                 controllers.SalesController.createSale
+
+#Catalog Routes
+GET     /catalog                    controllers.CatalogController.renderCatalogPage(saleId: Int ?=0)
+
+GET     /additem                    controllers.CatalogController.renderAddModifyItemPage(saleId: Int ?=0)
+
+POST    /additem                    controllers.CatalogController.addItem

@@ -6,9 +6,10 @@
 create table item (
   id                        integer not null,
   name                      varchar(255),
-  quantity                  double,
-  price                     double,
   description               varchar(255),
+  quantity                  integer,
+  price                     double,
+  sale_id                   integer,
   constraint pk_item primary key (id))
 ;
 
@@ -40,8 +41,10 @@ create sequence sale_seq;
 
 create sequence user_seq;
 
-alter table sale add constraint fk_sale_user_1 foreign key (user_id) references user (id) on delete restrict on update restrict;
-create index ix_sale_user_1 on sale (user_id);
+alter table item add constraint fk_item_sale_1 foreign key (sale_id) references sale (sale_id) on delete restrict on update restrict;
+create index ix_item_sale_1 on item (sale_id);
+alter table sale add constraint fk_sale_user_2 foreign key (user_id) references user (id) on delete restrict on update restrict;
+create index ix_sale_user_2 on sale (user_id);
 
 
 

@@ -24,6 +24,9 @@ public class Sale extends Model{
     @JoinColumn(name = "user_id")
     protected User user;
 
+    @OneToMany(mappedBy = "sale")
+    protected ArrayList<Item> items = new ArrayList<>();
+
     public static Finder<Integer, Sale> find
             = new Finder<>(Sale.class);
 
@@ -47,6 +50,9 @@ public class Sale extends Model{
         return sale;
     }
 
+    public int getId() {
+        return this.saleID;
+    }
 
     public String getName() {
         return this.name;
@@ -70,5 +76,15 @@ public class Sale extends Model{
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public static Sale fetchSaleById(int id) {
+        Sale sale = find.byId(id);
+        return sale;
+    }
+
+    public static List<Sale> fetchSalesByUser(User user) {
+        List<Sale> sales = Sale.find.select("*").where().eq("user_id", user.getId()).findList();
+        return sales;
     }
 }

@@ -1,0 +1,35 @@
+@(user: User)(sale: Sale)(items: List[Item])
+@main(title = "Catalog of Sale \"" + sale.getName() + "\"") {
+
+  <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/createsale.css")">
+
+    <a href="/additem?saleId=@sale.getId" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
+        Add New Item
+    </a>
+    @*<div class="demo-card-wide">*@
+        @*<div class="mdl-card--border">*@
+            <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp sales-table">
+                <thead>
+                    <tr>
+                        <th class="mdl-data-table__cell--non-numeric">Item Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for(item <- items) {
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">@item.getName()</td>
+                            <td>@item.getDescription()</td>
+                            <td>@item.getPrice()</td>
+                            <td>@item.getQuantity()</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        @*</div>*@
+    @*</div>*@
+
+
+}

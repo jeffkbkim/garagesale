@@ -16,10 +16,10 @@ import java.util.List;
 @Entity
 public class User extends Model{
     @Id
-    public int id;
-    public String userName;
-    public String firstName;
-    public String lastName;
+    protected int id;
+    protected String userName;
+    protected String firstName;
+    protected String lastName;
     protected String phoneNumber;
     protected String email;
     protected String password;
@@ -46,6 +46,10 @@ public class User extends Model{
 
     public User(String userName, String password) {
         this(userName, null, null, null, null, password);
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getUserName() { return userName; }
@@ -122,5 +126,10 @@ public class User extends Model{
             }
         }
         return false;
+    }
+
+    public static User fetchUserByUsername(String username) {
+        User user = User.find.select("*").where().eq("userName", username).findUnique();
+        return user;
     }
 }
