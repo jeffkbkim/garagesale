@@ -17,12 +17,18 @@ import play.Logger;
 
 /**
  * Created by Yuda on 6/26/16.
+ * This controller is used to the render the catalog page, add, and modify Item.
  */
 public class CatalogController extends Controller {
     // TODO: check validity of parameters for security
     @Inject
     FormFactory formFactory;
 
+    /**
+     * renders catalog page.
+     * @param saleId id of sale
+     * @return catalog page
+     */
     public Result renderCatalogPage(int saleId) {
         //TODO: handle invalid saleId
         User user = Utils.getUserSession();
@@ -33,6 +39,11 @@ public class CatalogController extends Controller {
         return ok(catalog.render(user, sale, items));
     }
 
+    /**
+     * renders add item page.
+     * @param saleId id of sale
+     * @return additem page
+     */
     public Result renderAddItemPage(int saleId) {
         // TODO: handle invalid saleId
         User user = Utils.getUserSession();
@@ -41,6 +52,12 @@ public class CatalogController extends Controller {
         return ok(additem.render(user, sale));
     }
 
+    /**
+     * renders modify item page.
+     * @param saleId sale id
+     * @param itemId item id
+     * @return modifyitem page
+     */
     public Result renderModifyItemPage(int saleId, int itemId) {
         // TODO: handle invalid saleId
         User user = Utils.getUserSession();
@@ -50,6 +67,11 @@ public class CatalogController extends Controller {
         return ok(modifyitem.render(user, sale, item));
     }
 
+    /**
+     * adds item
+     *
+     * @return redirect to add item page with added item.
+     */
     public Result addItem() {
         //TODO: need to validate form, sale, and user
         Form<ItemFormData> itemForm = formFactory.form(ItemFormData.class).bindFromRequest();
@@ -64,6 +86,10 @@ public class CatalogController extends Controller {
         return redirect("/catalog?saleId=" + sale.getId());
     }
 
+    /**
+     * changes item information
+     * @return add item page with modified item information.
+     */
     public Result modifyItem() {
         //TODO: need to validate form, sale, and user
         Form<ItemFormData> itemForm = formFactory.form(ItemFormData.class).bindFromRequest();

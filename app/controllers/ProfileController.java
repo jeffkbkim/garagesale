@@ -17,12 +17,17 @@ import play.Logger;
 
 /**
  * Created by Douglas on 6/15/2016.
+ * This controller handles changing profile information.
  */
 public class ProfileController extends Controller {
 
     @Inject
     FormFactory formFactory;
 
+    /**
+     * renders profile page.
+     * @return profile page.
+     */
     public Result view() {
         Logger.debug("ProfileController view called!");
         String user = session("connected");
@@ -36,6 +41,11 @@ public class ProfileController extends Controller {
         return ok(login.render());
 
     }
+
+    /**
+     * changes user information
+     * @return updated profile page.
+     */
     public Result updateProfile() {
         Logger.debug("updateProfile called!");
         Form<ProfileFormData> profileForm = formFactory.form(ProfileFormData.class).bindFromRequest();

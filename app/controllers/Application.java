@@ -8,13 +8,16 @@ import play.Logger;
 import views.html.*;
 
 /**
- * This controller contains an action to handle HTTP requests
+ * This controller contains an action to handle HTTP (home and logout) requests
  * to the application.
  */
 public class Application extends Controller {
 
 
-
+    /**
+     * this method renders login scala template.
+     * @return login page.
+     */
     public Result index() {
         return ok(index.render());
     }
@@ -27,8 +30,9 @@ public class Application extends Controller {
         return ok(login.render());
     }
 
-
-
+    /**
+     * clears user session and redirects to home page.
+     */
     public Result logout() {
         Logger.debug("Logout called");
         session().remove("connected");

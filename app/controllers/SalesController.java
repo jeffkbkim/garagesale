@@ -25,11 +25,16 @@ import static play.libs.Json.toJson;
 
 /**
  * Created by Jeff on 6/16/16.
+ * This controller handles HTTP requests related to sales.
  */
 public class SalesController extends Controller {
     @Inject
     FormFactory formFactory;
 
+    /**
+     * saves new sale to database.
+     * @return sale page with added sale.
+     */
     public Result createSale() {
         Form<SaleFormData> saleForm = formFactory.form(SaleFormData.class).bindFromRequest();
 
@@ -44,11 +49,19 @@ public class SalesController extends Controller {
         return redirect("/sale");
     }
 
+    /**
+     * renders create sale page.
+     * @return create sale page with user session.
+     */
     public Result createSalePage() {
         User user = Utils.getUserSession();
         return ok(views.html.createsale.render(user));
     }
 
+    /**
+     *
+     * @return current sales of user.
+     */
     public Result getSales() {
         User user = Utils.getUserSession();
         if (user == null) {
