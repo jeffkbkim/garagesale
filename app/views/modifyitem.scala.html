@@ -29,7 +29,7 @@
                 <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="submit">
                     Update Item
                 </button>
-                <a href="/catalog?saleId=@sale.getId">
+                <a href="@routes.CatalogController.renderCatalogPage(sale.getId)">
                     <button class="mdl-button mdl-button--colored mdl-color-text--red mdl-js-button mdl-js-ripple-effect" type="button">
                         Cancel
                     </button>

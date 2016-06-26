@@ -3,7 +3,7 @@
 
   <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/createsale.css")">
 
-    <a href="/additem?saleId=@sale.getId" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
+    <a href="@routes.CatalogController.renderAddItemPage(sale.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
         Add New Item
     </a>
     @*<div class="demo-card-wide">*@

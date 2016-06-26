@@ -3,7 +3,7 @@
 
   <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/createsale.css")">
 
-    <a href="/createsale" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
+    <a href="@routes.SalesController.createSalePage" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
         Create
     </a>
     @*<div class="demo-card-wide">*@
@@ -19,7 +19,7 @@
                     @for(sale <- sales) {
                             <tr>
                                 <td class="mdl-data-table__cell--non-numeric">
-                                    <a href="/catalog?saleId=@sale.getId()">
+                                    <a href="@routes.CatalogController.renderCatalogPage(sale.getId)">
                                         @sale.getName()
                                     </a>
                                 </td>
