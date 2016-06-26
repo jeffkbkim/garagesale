@@ -46,7 +46,7 @@ public class SalesController extends Controller {
             sale.setUser(user);
             sale.save();
         }
-        return redirect("/sale");
+        return redirect(routes.SalesController.getSales());
     }
 
     /**

@@ -83,7 +83,7 @@ public class CatalogController extends Controller {
         item.setSale(sale);
         item.save();
 
-        return redirect("/catalog?saleId=" + sale.getId());
+        return redirect(routes.CatalogController.renderCatalogPage(sale.getId()));
     }
 
     /**
@@ -105,7 +105,7 @@ public class CatalogController extends Controller {
         item.setSale(sale);
         item.save();
 
-        return redirect("/catalog?saleId=" + sale.getId());
+        return redirect(routes.CatalogController.renderCatalogPage(sale.getId()));
     }
 
 }
