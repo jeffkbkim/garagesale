@@ -2,6 +2,7 @@
 @main(title = "Catalog of Sale \"" + sale.getName() + "\"") {
 
   <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/createsale.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/table.css")">
 
     <a href="@routes.CatalogController.renderAddItemPage(sale.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
         Add New Item
@@ -19,7 +20,7 @@
                 </thead>
                 <tbody>
                     @for(item <- items) {
-                        <tr class="item-row">
+                        <tr class="item-row" onClick="window.location = $(this).find('a').attr('href');">
                             <td class="mdl-data-table__cell--non-numeric">
                                 <a href="@routes.CatalogController.renderModifyItemPage(sale.getId, item.getId)">@item.getName()</a>
                             </td>

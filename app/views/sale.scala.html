@@ -1,7 +1,9 @@
 @(user: User)(sales: List[Sale])
 @main(title = "Current Sales of " + user.getFirstName) {
 
-  <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/createsale.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/createsale.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/table.css")">
+    <script src="@routes.Assets.versioned("javascripts/table.js")"></script>
 
     <a href="@routes.SalesController.createSalePage" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
         Create
@@ -17,7 +19,7 @@
                 </thead>
                 <tbody>
                     @for(sale <- sales) {
-                            <tr>
+                            <tr onclick="window.location = $(this).find('a').attr('href')">
                                 <td class="mdl-data-table__cell--non-numeric">
                                     <a href="@routes.CatalogController.renderCatalogPage(sale.getId)">
                                         @sale.getName()
