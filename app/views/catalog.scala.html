@@ -19,7 +19,7 @@
                 </thead>
                 <tbody>
                     @for(item <- items) {
-                        <tr>
+                        <tr class="item-row">
                             <td class="mdl-data-table__cell--non-numeric">
                                 <a href="@routes.CatalogController.renderModifyItemPage(sale.getId, item.getId)">@item.getName()</a>
                             </td>
@@ -30,6 +30,21 @@
                     }
                 </tbody>
             </table>
+            <script>
+                $("#search").on("keyup", function() {
+                    var query = $(this).val().toLowerCase().trim();
+
+                    $(".item-row").each( function() {
+                        var text = $(this).children().text().toLowerCase().trim();
+
+                        if (text.indexOf(query) != -1) {
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+                });
+            </script>
         @*</div>*@
     @*</div>*@
 
