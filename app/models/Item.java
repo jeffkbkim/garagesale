@@ -80,12 +80,21 @@ public class Item extends Model{
         this.sale = sale;
     }
 
+    public void setAllFields(String name, String description, int quantity, double price) {
+        this.name = name;
+        this.description = description;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
     public static List<Item> fetchItemsBySale(Sale sale) {
+        //TODO: need to handle empty list/null
         List<Item> items = Item.find.select("*").where().eq("sale_id", sale.getId()).findList();
         return items;
     }
 
     public static Item fetchItemById(int id) {
+        //TODO: need to handle empty list/null
         Item item = find.byId(id);
         return item;
     }

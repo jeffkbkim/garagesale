@@ -14,6 +14,7 @@ public class ItemFormData {
     public double price;
     public int quantity;
     public int saleId;
+    public int itemId;
 
     public ItemFormData(){}
 

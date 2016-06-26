@@ -35,27 +35,22 @@ public class SalesController extends Controller {
 
         if (saleForm != null) {
             SaleFormData newSale = saleForm.get();
-            String username = session("connected");
-            User user = User.fetchUserByUsername(username);
+            User user = Utils.getUserSession();
             List<Sale> allSales = Sale.find.all();
             Sale sale = new Sale(newSale.name, newSale.location);
             sale.setUser(user);
-            user.addSale(sale);
             sale.save();
-            user.save();
         }
         return redirect("/sale");
     }
 
     public Result createSalePage() {
-        String username = session("connected");
-        User user = User.fetchUserByUsername(username);
+        User user = Utils.getUserSession();
         return ok(views.html.createsale.render(user));
     }
 
     public Result getSales() {
-        String username = session("connected");
-        User user = User.fetchUserByUsername(username);
+        User user = Utils.getUserSession();
         if (user == null) {
             Logger.debug("User is null");
             return redirect("/");

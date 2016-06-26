@@ -20,7 +20,9 @@
                 <tbody>
                     @for(item <- items) {
                         <tr>
-                            <td class="mdl-data-table__cell--non-numeric">@item.getName()</td>
+                            <td class="mdl-data-table__cell--non-numeric">
+                                <a href="@routes.CatalogController.renderModifyItemPage(sale.getId, item.getId)">@item.getName()</a>
+                            </td>
                             <td>@item.getDescription()</td>
                             <td>@item.getPrice()</td>
                             <td>@item.getQuantity()</td>

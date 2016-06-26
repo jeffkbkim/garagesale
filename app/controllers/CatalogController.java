@@ -6,7 +6,8 @@ import play.data.Form;
 import play.data.FormFactory;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.addmodifyitem;
+import views.html.additem;
+import views.html.modifyitem;
 import views.html.sale;
 import views.html.catalog;
 
@@ -18,6 +19,7 @@ import play.Logger;
  * Created by Yuda on 6/26/16.
  */
 public class CatalogController extends Controller {
+    // TODO: check validity of parameters for security
     @Inject
     FormFactory formFactory;
 
@@ -31,14 +33,21 @@ public class CatalogController extends Controller {
         return ok(catalog.render(user, sale, items));
     }
 
-    public Result renderAddModifyItemPage(int saleId) {
+    public Result renderAddItemPage(int saleId) {
         // TODO: handle invalid saleId
-        // TODO: handle modify item
         User user = Utils.getUserSession();
 
-        // Item item = Item.fetchItemById(itemId);
         Sale sale = Sale.fetchSaleById(saleId);
-        return ok(addmodifyitem.render(user, sale));
+        return ok(additem.render(user, sale));
+    }
+
+    public Result renderModifyItemPage(int saleId, int itemId) {
+        // TODO: handle invalid saleId
+        User user = Utils.getUserSession();
+
+        Item item = Item.fetchItemById(itemId);
+        Sale sale = Sale.fetchSaleById(saleId);
+        return ok(modifyitem.render(user, sale, item));
     }
 
     public Result addItem() {
@@ -54,4 +63,23 @@ public class CatalogController extends Controller {
 
         return redirect("/catalog?saleId=" + sale.getId());
     }
+
+    public Result modifyItem() {
+        //TODO: need to validate form, sale, and user
+        Form<ItemFormData> itemForm = formFactory.form(ItemFormData.class).bindFromRequest();
+        ItemFormData itemFormData = itemForm.get();
+
+        int itemId = itemFormData.itemId;
+        Item item = Item.fetchItemById(itemId);
+        item.setAllFields(itemFormData.name,
+                            itemFormData.description,
+                            itemFormData.quantity,
+                            itemFormData.price);
+        Sale sale = Sale.fetchSaleById(itemFormData.saleId);
+        item.setSale(sale);
+        item.save();
+
+        return redirect("/catalog?saleId=" + sale.getId());
+    }
+
 }
