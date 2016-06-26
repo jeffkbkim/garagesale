@@ -18,8 +18,8 @@
                 <tbody>
                     @for(sale <- sales) {
                         <tr>
-                            <td class="mdl-data-table__cell--non-numeric">@sale.name</td>
-                            <td>@sale.location</td>
+                            <td class="mdl-data-table__cell--non-numeric">@sale.getName()</td>
+                            <td>@sale.getLocation()</td>
                         </tr>
                     }
                 </tbody>

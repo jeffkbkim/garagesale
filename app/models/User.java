@@ -29,6 +29,7 @@ public class User extends Model{
     public ArrayList<Sale> sales = new ArrayList<>();
 
     public User(){}
+
     public User(String userName,
                 String firstName,
                 String lastName,
@@ -42,50 +43,67 @@ public class User extends Model{
         this.email = email;
         this.password = password;
     }
+
     public User(String userName, String password) {
         this(userName, null, null, null, null, password);
     }
+
     public String getUserName() { return userName; }
+
     public String getFirstName() {
         return firstName;
     }
+
     public String getLastName() {
         return lastName;
     }
+
     public String getPhone() {
         return phoneNumber;
     }
+
     public String getEmail() {
         return email;
     }
 
     public static Finder<Integer, User> find
-            = new Model.Finder<>(Integer.class, User.class);
+            = new Finder<>(User.class);
 
     public List<Sale> getSales() {
         return sales;
     }
+
     public void addSale(Sale sale) {
         Sale.find.select("*").where().eq("user", sale).findUnique();
         this.sales.add(sale);
     }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    public void setPhone(String phone) {
+
+    public void setPhone(String phone)
+    {
         this.phoneNumber = phone;
     }
-    public void setEmail(String email) {
+
+    public void setEmail(String email)
+    {
         this.email = email;
     }
+
     public void setSaleList(ArrayList<Sale> sales) { this.sales = sales; }
+
     public String getPassword() { return password; }
+
     public boolean checkPassword(String check) {
         return password.equals(check);
     }
+
     public static User makeInstance(UserFormData formData) {
         User user = new User(formData.username,
                 formData.firstname,

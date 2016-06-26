@@ -16,20 +16,18 @@ import java.util.List;
 @Entity
 public class Sale extends Model{
     @Id
-    public int saleID;
-    public String name;
-    public String location;
-    public double earnings;
+    protected int saleID;
+    protected String name;
+    protected String location;
+    protected double earnings;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    public User user;
-    public HashMap<Integer, Integer> inventory;
+    protected User user;
 
     public static Finder<Integer, Sale> find
-            = new Model.Finder<>(Integer.class, Sale.class);
+            = new Finder<>(Sale.class);
 
     public Sale() {
-        inventory = new HashMap<>();
     }
 
     public Sale(String creator) {
@@ -41,22 +39,29 @@ public class Sale extends Model{
         this.location = location;
     }
 
-    //public void addUser(User user) {
-       // user.add(user);
-    //}
-
     public static Sale makeInstance(SaleFormData saleFormData) {
         Sale sale = new Sale();
         sale.saleID = saleFormData.saleID;
         sale.name = saleFormData.name;
         sale.location = saleFormData.location;
-        //sale.user = saleFormData.user;
-        sale.inventory = new HashMap<>();
         return sale;
+    }
+
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getLocation() {
+        return this.location;
     }
 
     public void setSaleID(int saleID) {
         this.saleID = saleID;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void setName(String name) {
