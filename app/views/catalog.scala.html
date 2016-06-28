@@ -7,8 +7,8 @@
     <a href="@routes.CatalogController.renderAddItemPage(sale.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
         Add New Item
     </a>
-    @*<div class="demo-card-wide">*@
-        @*<div class="mdl-card--border">*@
+    <div class="demo-card-wide">
+        <div class="mdl-card--border">
             <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp sales-table">
                 <thead>
                     <tr>
@@ -20,13 +20,14 @@
                 </thead>
                 <tbody>
                     @for(item <- items) {
-                        <tr class="item-row" onClick="window.location = $(this).find('a').attr('href');">
+                        <tr class="item-row" >
                             <td class="mdl-data-table__cell--non-numeric">
                                 <a href="@routes.CatalogController.renderModifyItemPage(sale.getId, item.getId)">@item.getName()</a>
                             </td>
-                            <td>@item.getDescription()</td>
-                            <td>@item.getPrice()</td>
-                            <td>@item.getQuantity()</td>
+                            <td onClick="window.location = $(this).parent().find('a').attr('href');">@item.getDescription()</td>
+                            <td onClick="window.location = $(this).parent().find('a').attr('href');">@item.getPrice()</td>
+                            <td onClick="window.location = $(this)parent().find('a').attr('href');">@item.getQuantity()</td>
+                            <td><a href="@routes.CatalogController.renderTag(sale.getId, item.getId)">Print tags</a></td>
                         </tr>
                     }
                 </tbody>
@@ -46,8 +47,8 @@
                     });
                 });
             </script>
-        @*</div>*@
-    @*</div>*@
+        </div>
+    </div>
 
 
 }

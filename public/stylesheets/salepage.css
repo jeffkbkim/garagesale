@@ -1,0 +1,37 @@
+.demo-card-wide {
+    margin-top: 30px;
+
+    background-color: image(saddlebrown);
+}
+
+.demo-card-wide > .mdl-card__title {
+    color: #fff;
+    height: 176px;
+    background: url('../assets/demos/welcome_card.jpg') center / cover;
+}
+.demo-card-wide > .mdl-card__menu {
+    color: #fff;
+}
+
+.sales-table {
+    height: 20%;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mdl-card {
+    width: 50%;
+}
+
+.createsale-link {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: -32px;
+    left: 50%;
+}
+
+.createsale-button {
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+}

@@ -10,6 +10,7 @@ import views.html.additem;
 import views.html.modifyitem;
 import views.html.sale;
 import views.html.catalog;
+import views.html.tag;
 
 import java.util.List;
 
@@ -67,6 +68,13 @@ public class CatalogController extends Controller {
         return ok(modifyitem.render(user, sale, item));
     }
 
+    public Result renderTag(int saleId, int itemId) {
+        User user = Utils.getUserSession();
+        Item item = Item.fetchItemById(itemId);
+        Sale sale = Sale.fetchSaleById(saleId);
+        return ok(tag.render(user, sale, item));
+    }
+
     /**
      * adds item
      *
@@ -107,5 +115,7 @@ public class CatalogController extends Controller {
 
         return redirect(routes.CatalogController.renderCatalogPage(sale.getId()));
     }
+
+
 
 }

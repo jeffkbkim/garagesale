@@ -1,15 +1,13 @@
 @(user: User)(sales: List[Sale])
-@main(title = "Current Sales of " + user.getFirstName) {
+@main(title = "Current Sales of " + user.getFirstName()) {
 
-    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/createsale.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/salepage.css")">
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/table.css")">
     <script src="@routes.Assets.versioned("javascripts/table.js")"></script>
 
-    <a href="@routes.SalesController.createSalePage" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
-        Create
-    </a>
-    @*<div class="demo-card-wide">*@
-        @*<div class="mdl-card--border">*@
+
+    <div class="demo-card-wide">
+        <div class="mdl-card--border">
             <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp sales-table">
                 <thead>
                     <tr>
@@ -30,8 +28,10 @@
                     }
                 </tbody>
             </table>
-        @*</div>*@
-    @*</div>*@
-
+        </div>
+    </div>
+    <a href="@routes.SalesController.createSalePage" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
+        Create
+    </a>
 
 }

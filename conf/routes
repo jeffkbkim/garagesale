@@ -41,3 +41,5 @@ POST    /additem                    controllers.CatalogController.addItem
 GET     /modifyitem                 controllers.CatalogController.renderModifyItemPage(saleId: Int ?=0, itemId: Int ?=0)
 
 POST    /modifyitem                 controllers.CatalogController.modifyItem
+
+GET     /gentag                     controllers.CatalogController.renderTag(saleId: Int ?=0, itemId: Int ?=0)
