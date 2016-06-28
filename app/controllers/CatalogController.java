@@ -11,6 +11,7 @@ import views.html.modifyitem;
 import views.html.sale;
 import views.html.catalog;
 import views.html.tag;
+import views.html.alltags;
 
 import java.util.List;
 
@@ -73,6 +74,13 @@ public class CatalogController extends Controller {
         Item item = Item.fetchItemById(itemId);
         Sale sale = Sale.fetchSaleById(saleId);
         return ok(tag.render(user, sale, item));
+    }
+
+    public Result renderAllTags(int saleId) {
+        User user = Utils.getUserSession();
+        Sale sale = Sale.fetchSaleById(saleId);
+        List<Item> items = Item.fetchItemsBySale(sale);
+        return ok(alltags.render(user, sale, items));
     }
 
     /**

@@ -14,12 +14,15 @@
         <p>id: @item.getId()</p>
         <p>Description: @item.getDescription()</p>
         <p>Price: @item.getPrice()</p>
-        <div id="qrcode"></div>
+        <div class="qrBox" id="@item.getId @sale.getId"></div>
     </div>
 
 </div>
 
 <script>
-    var forQR = window.location.pathname;
-    $('#qrcode').qrcode(forQR);
+    $('.qrBox').each(function() {
+        if($(this).children().length == 0) {
+                $(this).qrcode($(this).attr('id'));
+        }
+    });
 </script>

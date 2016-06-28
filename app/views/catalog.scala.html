@@ -7,6 +7,9 @@
     <a href="@routes.CatalogController.renderAddItemPage(sale.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
         Add New Item
     </a>
+    <a href="@routes.CatalogController.renderAllTags(sale.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
+        Print All Tags
+    </a>
     <div class="demo-card-wide">
         <div class="mdl-card--border">
             <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp sales-table">
@@ -27,7 +30,7 @@
                             <td onClick="window.location = $(this).parent().find('a').attr('href');">@item.getDescription()</td>
                             <td onClick="window.location = $(this).parent().find('a').attr('href');">@item.getPrice()</td>
                             <td onClick="window.location = $(this)parent().find('a').attr('href');">@item.getQuantity()</td>
-                            <td><a href="@routes.CatalogController.renderTag(sale.getId, item.getId)">Print tags</a></td>
+                            <td><a href="@routes.CatalogController.renderTag(sale.getId, item.getId)">TAG</a></td>
                         </tr>
                     }
                 </tbody>

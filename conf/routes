@@ -43,3 +43,5 @@ GET     /modifyitem                 controllers.CatalogController.renderModifyIt
 POST    /modifyitem                 controllers.CatalogController.modifyItem
 
 GET     /gentag                     controllers.CatalogController.renderTag(saleId: Int ?=0, itemId: Int ?=0)
+
+GET     /alltags                    controllers.CatalogController.renderAllTags(saleId: Int ?=0)
