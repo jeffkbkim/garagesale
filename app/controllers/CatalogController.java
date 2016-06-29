@@ -150,7 +150,7 @@ public class CatalogController extends Controller {
         Sale sale = Sale.fetchSaleById(saleID);
 
         Receipt receipt = new Receipt();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         receipt.setDate(dateFormat.format(date));
         receipt.setSale(sale);

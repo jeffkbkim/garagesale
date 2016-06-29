@@ -56,13 +56,13 @@
                 @for(receipt <- receipts) {
                 <tr class="transaction-row" >
                     <td class="mdl-data-table__cell--non-numeric">
-                        @receipt.getId();
+                        @receipt.getId()
                     </td>
                     <td class="mdl-data-table__cell--non-numeric">
-                        @receipt.getDate();
+                        @receipt.getDate()
                     </td>
                     <td class="mdl-data-table__cell">
-                        @receipt.getProfit();
+                        $@receipt.getProfit()
                     </td>
                     <td class="mdl-data-table__cell">
                         <a  href="@routes.CatalogController.renderReceipt(receipt.getId)" class="mdl-button mdl-js-button mdl-button--accent">View</a>
