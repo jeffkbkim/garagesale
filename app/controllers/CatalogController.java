@@ -18,6 +18,9 @@ import views.html.tag;
 import views.html.alltags;
 import views.html.receipt;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -44,8 +47,8 @@ public class CatalogController extends Controller {
 
         List<Item> items = Item.fetchItemsBySale(sale);
         List<Transaction> transactions = Transaction.fetchTransactionsBySale(sale);
-
-        return ok(catalog.render(user, sale, items, transactions));
+        List<Receipt> receipts = Receipt.fetchReceiptsBySale(sale);
+        return ok(catalog.render(user, sale, items, transactions, receipts));
     }
 
     /**
@@ -90,11 +93,12 @@ public class CatalogController extends Controller {
         return ok(alltags.render(user, sale, items));
     }
 
-    public Result renderReceipt(int transactionId) {
+    public Result renderReceipt(int receiptId) {
         User user = Utils.getUserSession();
-        Transaction transaction = Transaction.fetchTransactionById(transactionId);
-        Sale sale = transaction.getSale();
-        return ok(receipt.render(user, sale, transaction));
+        Receipt r = Receipt.fetchReceiptById(receiptId);
+        List<Transaction> transactions = Transaction.fetchTransactionByReceipt(r);
+        Sale sale = r.getSale();
+        return ok(receipt.render(user, sale, r, transactions));
     }
 
     /**
@@ -143,6 +147,16 @@ public class CatalogController extends Controller {
         Iterator i = json.iterator();
         JsonNode firstItem = (JsonNode) i.next();
         int saleID = Integer.parseInt(String.valueOf(firstItem.findValue("saleId")));
+        Sale sale = Sale.fetchSaleById(saleID);
+
+        Receipt receipt = new Receipt();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        receipt.setDate(dateFormat.format(date));
+        receipt.setSale(sale);
+        receipt.save();
+        double totalProfit = 0;
+
         while(i.hasNext()) {
             JsonNode transaction = (JsonNode) i.next();
             int itemID = Integer.parseInt(String.valueOf(transaction.findValue("id")));
@@ -151,15 +165,18 @@ public class CatalogController extends Controller {
             buyer = buyer.substring(1, buyer.length() - 1);
             Logger.debug(itemID + " " + quantity + " " + buyer);
             Item item = Item.fetchItemById(itemID);
-            Sale sale = Sale.fetchSaleById(saleID);
             double profit = item.getPrice() * quantity;
-            Transaction t = new Transaction(itemID, quantity, profit, buyer);
+            totalProfit += profit;
+            Transaction t = new Transaction(quantity, profit, buyer);
             t.setSale(sale);
             t.setItem(item);
+            t.setReceipt(receipt);
+            t.save();
             item.setQuantity(item.getQuantity() - quantity);
             item.update();
-            t.save();
         }
+        receipt.setProfit(totalProfit);
+        receipt.update();
         return (redirect(routes.CatalogController.renderCatalogPage(saleID)));
     }
 

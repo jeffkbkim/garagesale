@@ -1,4 +1,4 @@
-@(user: User)(sale: Sale)(items: List[Item])(transactions: List[Transaction])
+@(user: User)(sale: Sale)(items: List[Item])(transactions: List[Transaction])(receipts: List[Receipt])
 @main(title = "Catalog of Sale \"" + sale.getName() + "\"") {
 
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/createsale.css")">
@@ -47,33 +47,25 @@
             <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp transactions-table">
                 <thead>
                 <tr>
-                    <th class="mdl-data-table__cell--non-numeric">Item Name</th>
-                    <th>Item ID</th>
-                    <th>Buyer</th>
-                    <th>Quantity</th>
+                    <th class="mdl-data-table__cell--non-numeric">Receipt</th>
+                    <th>Date</th>
                     <th>Profit</th>
                 </tr>
                 </thead>
                 <tbody>
-                @for(transaction <- transactions) {
+                @for(receipt <- receipts) {
                 <tr class="transaction-row" >
                     <td class="mdl-data-table__cell--non-numeric">
-                        @transaction.getItem().getName()
+                        @receipt.getId();
                     </td>
                     <td class="mdl-data-table__cell--non-numeric">
-                        @transaction.getItemId()
-                    </td>
-                    <td class="mdl-data-table__cell--non-numeric">
-                        @transaction.getBuyer()
-                    </td>
-                    <td class="mdl-data-table__cell--non-numeric">
-                        @transaction.getQuantity()
-                    </td>
-                    <td class="mdl-data-table__cell--non-numeric">
-                        @transaction.getProfit()
+                        @receipt.getDate();
                     </td>
                     <td class="mdl-data-table__cell">
-                        <a  href="@routes.CatalogController.renderReceipt(transaction.getId)" class="mdl-button mdl-js-button mdl-button--accent">Receipt</a>
+                        @receipt.getProfit();
+                    </td>
+                    <td class="mdl-data-table__cell">
+                        <a  href="@routes.CatalogController.renderReceipt(receipt.getId)" class="mdl-button mdl-js-button mdl-button--accent">View</a>
                     </td>
                 </tr>
                 }

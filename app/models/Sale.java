@@ -28,6 +28,8 @@ public class Sale extends Model{
     protected ArrayList<Transaction> transactions = new ArrayList<>();
     @OneToMany(mappedBy = "sale")
     protected ArrayList<Item> items = new ArrayList<>();
+    @OneToMany(mappedBy = "sale")
+    protected ArrayList<Receipt> receipts = new ArrayList<>();
 
     /**
      * creates Finder for Sale Entity.
