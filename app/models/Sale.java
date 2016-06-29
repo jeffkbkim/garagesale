@@ -24,7 +24,8 @@ public class Sale extends Model{
     @ManyToOne
     @JoinColumn(name = "user_id")
     protected User user;
-
+    @OneToMany(mappedBy = "sale")
+    protected ArrayList<Transaction> transactions = new ArrayList<>();
     @OneToMany(mappedBy = "sale")
     protected ArrayList<Item> items = new ArrayList<>();
 

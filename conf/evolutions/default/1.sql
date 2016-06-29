@@ -22,6 +22,16 @@ create table sale (
   constraint pk_sale primary key (sale_id))
 ;
 
+create table transaction (
+  id                        integer not null,
+  item_id                   integer,
+  quantity                  integer,
+  profit                    double,
+  buyer                     varchar(255),
+  sale_id                   integer,
+  constraint pk_transaction primary key (id))
+;
+
 create table user (
   id                        integer not null,
   user_name                 varchar(255),
@@ -39,12 +49,16 @@ create sequence item_seq;
 
 create sequence sale_seq;
 
+create sequence transaction_seq;
+
 create sequence user_seq;
 
 alter table item add constraint fk_item_sale_1 foreign key (sale_id) references sale (sale_id) on delete restrict on update restrict;
 create index ix_item_sale_1 on item (sale_id);
 alter table sale add constraint fk_sale_user_2 foreign key (user_id) references user (id) on delete restrict on update restrict;
 create index ix_sale_user_2 on sale (user_id);
+alter table transaction add constraint fk_transaction_sale_3 foreign key (sale_id) references sale (sale_id) on delete restrict on update restrict;
+create index ix_transaction_sale_3 on transaction (sale_id);
 
 
 
@@ -56,6 +70,8 @@ drop table if exists item;
 
 drop table if exists sale;
 
+drop table if exists transaction;
+
 drop table if exists user;
 
 SET REFERENTIAL_INTEGRITY TRUE;
@@ -63,6 +79,8 @@ SET REFERENTIAL_INTEGRITY TRUE;
 drop sequence if exists item_seq;
 
 drop sequence if exists sale_seq;
+
+drop sequence if exists transaction_seq;
 
 drop sequence if exists user_seq;
 

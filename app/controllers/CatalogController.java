@@ -1,10 +1,14 @@
 package controllers;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.google.inject.Inject;
 import models.*;
+import play.data.DynamicForm;
 import play.data.Form;
 import play.data.FormFactory;
+import play.libs.Json;
 import play.mvc.Controller;
+import play.mvc.Http;
 import play.mvc.Result;
 import views.html.additem;
 import views.html.modifyitem;
@@ -13,6 +17,7 @@ import views.html.catalog;
 import views.html.tag;
 import views.html.alltags;
 
+import java.util.Iterator;
 import java.util.List;
 
 import play.Logger;
@@ -37,8 +42,9 @@ public class CatalogController extends Controller {
         Sale sale = Sale.fetchSaleById(saleId);
 
         List<Item> items = Item.fetchItemsBySale(sale);
+        List<Transaction> transactions = Transaction.fetchTransactionsBySale(sale);
 
-        return ok(catalog.render(user, sale, items));
+        return ok(catalog.render(user, sale, items, transactions));
     }
 
     /**
@@ -122,6 +128,31 @@ public class CatalogController extends Controller {
         item.save();
 
         return redirect(routes.CatalogController.renderCatalogPage(sale.getId()));
+    }
+
+    public Result makeTransaction() {
+        JsonNode json = request().body().asJson();
+        Iterator i = json.iterator();
+        JsonNode firstItem = (JsonNode) i.next();
+        int saleID = Integer.parseInt(String.valueOf(firstItem.findValue("saleId")));
+        while(i.hasNext()) {
+            JsonNode transaction = (JsonNode) i.next();
+            int itemID = Integer.parseInt(String.valueOf(transaction.findValue("id")));
+            int quantity = Integer.parseInt(String.valueOf(transaction.findValue("quantity")));
+            String buyer = transaction.findValue("buyer").toString();
+            buyer = buyer.substring(1, buyer.length() - 1);
+            Logger.debug(itemID + " " + quantity + " " + buyer);
+            Item item = Item.fetchItemById(itemID);
+            Sale sale = Sale.fetchSaleById(saleID);
+            double profit = item.getPrice() * quantity;
+            Transaction t = new Transaction(itemID, quantity, profit, buyer);
+            t.setSale(sale);
+            t.setItem(item);
+            item.setQuantity(item.getQuantity() - quantity);
+            item.update();
+            t.save();
+        }
+        return (redirect(routes.CatalogController.renderCatalogPage(saleID)));
     }
 
 
