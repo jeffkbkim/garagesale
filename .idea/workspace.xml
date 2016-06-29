@@ -2,18 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="008ce386-facd-4d2d-b303-d05e181fae75" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/Transaction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/catalog.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/catalog.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/receipt.scala.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/receipt.css" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/ffff00.iml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/CatalogController.java" afterPath="$PROJECT_DIR$/app/controllers/CatalogController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Item.java" afterPath="$PROJECT_DIR$/app/models/Item.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Sale.java" afterPath="$PROJECT_DIR$/app/models/Sale.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/catalog.scala.html" afterPath="$PROJECT_DIR$/app/views/catalog.scala.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf/evolutions/default/1.sql" afterPath="$PROJECT_DIR$/conf/evolutions/default/1.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf/routes" afterPath="$PROJECT_DIR$/conf/routes" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/table.css" afterPath="$PROJECT_DIR$/public/stylesheets/table.css" />
     </list>
     <ignored path="ffff00.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,8 +47,8 @@
           <file leaf-file-name="routes" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/conf/routes">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1296">
-                  <caret line="48" column="81" selection-start-line="48" selection-start-column="81" selection-end-line="48" selection-end-column="81" />
+                <state relative-caret-position="1350">
+                  <caret line="50" column="103" selection-start-line="50" selection-start-column="103" selection-end-line="50" selection-end-column="103" />
                   <folding />
                 </state>
               </provider>
@@ -69,14 +64,22 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="CatalogController.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/controllers/CatalogController.java">
+          <file leaf-file-name="receipt.scala.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/views/receipt.scala.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3067">
-                  <caret line="124" column="48" selection-start-line="124" selection-start-column="48" selection-end-line="124" selection-end-column="48" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
+                <state relative-caret-position="243">
+                  <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="receipt.css" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/stylesheets/receipt.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -93,11 +96,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="catalog.scala.html" pinned="false" current-in-tab="false">
+          <file leaf-file-name="catalog.scala.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/views/catalog.scala.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-936">
-                  <caret line="68" column="44" selection-start-line="68" selection-start-column="44" selection-end-line="68" selection-end-column="44" />
+                <state relative-caret-position="1008">
+                  <caret line="68" column="66" selection-start-line="68" selection-start-column="66" selection-end-line="68" selection-end-column="66" />
                   <folding />
                 </state>
               </provider>
@@ -123,16 +126,6 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="profile.scala.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/views/profile.scala.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="484">
-                  <caret line="36" column="88" selection-start-line="36" selection-start-column="88" selection-end-line="36" selection-end-column="88" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="ProfileController.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/controllers/ProfileController.java">
               <provider selected="true" editor-type-id="text-editor">
@@ -143,35 +136,47 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="createsale.css" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/public/stylesheets/createsale.css">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="567">
-                  <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
         </leaf>
       </split-first>
       <split-second>
         <leaf>
+          <file leaf-file-name="CatalogController.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/controllers/CatalogController.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1863">
+                  <caret line="156" column="28" selection-start-line="156" selection-start-column="28" selection-end-line="156" selection-end-column="28" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="catalog.scala.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/views/catalog.scala.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1269">
-                  <caret line="161" column="58" selection-start-line="161" selection-start-column="58" selection-end-line="161" selection-end-column="58" />
+                <state relative-caret-position="1134">
+                  <caret line="48" column="20" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Transaction.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="tag.scala.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/views/tag.scala.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="135">
+                  <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Transaction.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/models/Transaction.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="700">
-                  <caret line="37" column="29" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
+                <state relative-caret-position="1726">
+                  <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -230,11 +235,12 @@
         <option value="$PROJECT_DIR$/public/stylesheets/table.css" />
         <option value="$PROJECT_DIR$/public/javascripts/catalog.js" />
         <option value="$PROJECT_DIR$/public/stylesheets/catalog.css" />
-        <option value="$PROJECT_DIR$/conf/routes" />
         <option value="$PROJECT_DIR$/app/models/Sale.java" />
         <option value="$PROJECT_DIR$/app/models/Item.java" />
-        <option value="$PROJECT_DIR$/app/views/catalog.scala.html" />
         <option value="$PROJECT_DIR$/app/models/Transaction.java" />
+        <option value="$PROJECT_DIR$/app/views/catalog.scala.html" />
+        <option value="$PROJECT_DIR$/conf/routes" />
+        <option value="$PROJECT_DIR$/app/views/receipt.scala.html" />
         <option value="$PROJECT_DIR$/app/controllers/CatalogController.java" />
       </list>
     </option>
@@ -877,14 +883,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tag.scala.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/login.scala.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1530">
@@ -957,14 +955,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/conf/routes">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1296">
-          <caret line="48" column="81" selection-start-line="48" selection-start-column="81" selection-end-line="48" selection-end-column="81" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/stylesheets/catalog.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -991,31 +981,63 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/catalog.scala.html">
+    <entry file="file://$PROJECT_DIR$/public/stylesheets/receipt.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1269">
-          <caret line="161" column="58" selection-start-line="161" selection-start-column="58" selection-end-line="161" selection-end-column="58" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/CatalogController.java">
+    <entry file="file://$PROJECT_DIR$/app/views/tag.scala.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3067">
-          <caret line="124" column="48" selection-start-line="124" selection-start-column="48" selection-end-line="124" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="135">
+          <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/conf/routes">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1350">
+          <caret line="50" column="103" selection-start-line="50" selection-start-column="103" selection-end-line="50" selection-end-column="103" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/receipt.scala.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/Transaction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="700">
-          <caret line="37" column="29" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
+        <state relative-caret-position="1726">
+          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/CatalogController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1863">
+          <caret line="156" column="28" selection-start-line="156" selection-start-column="28" selection-end-line="156" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/catalog.scala.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1008">
+          <caret line="68" column="66" selection-start-line="68" selection-start-column="66" selection-end-line="68" selection-end-column="66" />
+          <folding />
         </state>
       </provider>
     </entry>

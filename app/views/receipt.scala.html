@@ -1,0 +1,25 @@
+@(user: User)(sale: Sale)(transaction: Transaction)
+<link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/receipt.css")">
+<h3>Receipt for : @transaction.getBuyer() </h3>
+<table>
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>#</th>
+            <th>Charge</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @transaction.getItem().getName()
+            </td>
+            <td>
+                @transaction.getQuantity()
+            </td>
+            <td>
+                @transaction.getProfit()
+            </td>
+        </tr>
+    </tbody>
+</table>

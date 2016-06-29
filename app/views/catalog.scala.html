@@ -72,6 +72,9 @@
                     <td class="mdl-data-table__cell--non-numeric">
                         @transaction.getProfit()
                     </td>
+                    <td class="mdl-data-table__cell">
+                        <a  href="@routes.CatalogController.renderReceipt(transaction.getId)" class="mdl-button mdl-js-button mdl-button--accent">Receipt</a>
+                    </td>
                 </tr>
                 }
                 </tbody>

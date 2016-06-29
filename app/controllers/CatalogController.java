@@ -16,6 +16,7 @@ import views.html.sale;
 import views.html.catalog;
 import views.html.tag;
 import views.html.alltags;
+import views.html.receipt;
 
 import java.util.Iterator;
 import java.util.List;
@@ -87,6 +88,13 @@ public class CatalogController extends Controller {
         Sale sale = Sale.fetchSaleById(saleId);
         List<Item> items = Item.fetchItemsBySale(sale);
         return ok(alltags.render(user, sale, items));
+    }
+
+    public Result renderReceipt(int transactionId) {
+        User user = Utils.getUserSession();
+        Transaction transaction = Transaction.fetchTransactionById(transactionId);
+        Sale sale = transaction.getSale();
+        return ok(receipt.render(user, sale, transaction));
     }
 
     /**
