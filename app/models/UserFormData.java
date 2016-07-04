@@ -3,7 +3,6 @@ package models;
 
 /**
  * Created by Douglas on 6/6/2016.
- * User Entity form data
  */
 public class UserFormData {
     public String username;
