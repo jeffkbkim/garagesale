@@ -49,3 +49,29 @@ GET     /logout                     controllers.Application.logout
 GET     /profile                    controllers.ProfileController.view
 
 POST    /updateprofile              controllers.ProfileController.updateProfile
+
+#Sale Route
+GET     /sale                       controllers.SalesController.getSales
+
+GET     /createsale                 controllers.SalesController.createSalePage
+
+POST    /createsale                 controllers.SalesController.createSale
+
+#Catalog Routes
+GET     /catalog                    controllers.CatalogController.renderCatalogPage(saleId: Int ?=0)
+
+GET     /additem                    controllers.CatalogController.renderAddItemPage(saleId: Int ?=0)
+
+POST    /additem                    controllers.CatalogController.addItem
+
+GET     /modifyitem                 controllers.CatalogController.renderModifyItemPage(saleId: Int ?=0, itemId: Int ?=0)
+
+POST    /modifyitem                 controllers.CatalogController.modifyItem
+
+GET     /gentag                     controllers.CatalogController.renderTag(saleId: Int ?=0, itemId: Int ?=0)
+
+GET     /alltags                    controllers.CatalogController.renderAllTags(saleId: Int ?=0)
+
+POST    /makeTransaction            controllers.CatalogController.makeTransaction
+
+GET     /genreceipt                 controllers.CatalogController.renderReceipt(transactionId: Int ?=0)

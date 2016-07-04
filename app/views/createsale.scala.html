@@ -1,0 +1,55 @@
+@(user: User)
+@main(title = "Create new Sale") {
+
+  <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/createsale.css")">
+
+  <div class="demo-card-wide">
+      <div class="mdl-card mdl-card--border mdl-shadow--2dp mdl-card__supporting-text">
+        <form action="@routes.SalesController.createSale" class="update-form" method="post">
+          <ul>
+            <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="name" id="salename"/>
+                <label class="mdl-textfield__label" for="salename">Title of Sale</label>
+            </li>
+            <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="location" id="location"/>
+                <label class="mdl-textfield__label" for="location">Location</label>
+            </li>
+            <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="date" id="date"/>
+                <label class="mdl-textfield__label" for="date">Date</label>
+            </li>
+          </ul>
+            <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="submit">
+                Create
+            </button>
+        </form>
+    </div>
+</div>
+
+      @*<div class="mdl-card__actions mdl-card--border save">*@
+        @*<div class="mdl-grid">*@
+          @*<div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">*@
+          @*</div>*@
+          @*<div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">*@
+            @*<button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createButton">*@
+              @*Create*@
+            @*</button>*@
+          @*</div>*@
+        @*</div>*@
+      @*</div>*@
+
+    @*<script>*@
+            @*var dialog = document.querySelector('dialog');*@
+            @*var saveButton = document.querySelector('.createButton');*@
+            @*saveButton.addEventListener('click', function() {*@
+                @*var enteredPassword = $('#pword').val();*@
+                @*$.post('@routes.SalesController.getSales()',*@
+                        @*{*@
+                            @*salename: $('#salename').val(),*@
+                            @*location: $('#location').val()*@
+                        @*});*@
+            @*});*@
+    @*</script>*@
+
+}

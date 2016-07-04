@@ -1,0 +1,11 @@
+.sales-table tr:hover {
+    cursor: pointer;
+}
+
+.tiny {
+    width: 64px;
+}
+
+.medium {
+    width: 128px;
+}

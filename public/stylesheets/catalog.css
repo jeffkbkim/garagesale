@@ -1,0 +1,11 @@
+.transaction-window {
+    display: none;
+    text-align: center;
+    width: 60%;
+}
+ul {
+    list-style-type: none;
+}
+li {
+    color: rgb(0,188,212);
+}

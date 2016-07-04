@@ -15,11 +15,20 @@ import play.Logger;
 
 import java.util.List;
 
+/**
+ * Created by Douglas on 6/10/16.
+ * This controller is used to handle HTTP requests regarding login and register.
+ */
+
 public class LoginController extends Controller {
 
     @Inject
     FormFactory formFactory;
 
+    /**
+     * validates login attempt.
+     * @return home page if incorrect username or password, index page otherwise.
+     */
     public Result loginAttempt() {
         Logger.debug("Login attempt called");
         Form<LoginFormData> loginForm = formFactory.form(LoginFormData.class).bindFromRequest();
@@ -41,6 +50,10 @@ public class LoginController extends Controller {
         }
     }
 
+    /**
+     * adds new user to database.
+     * @return login page.
+     */
     public Result register() {
         Logger.debug("Register called");
         Form<UserFormData> userForm = formFactory.form(UserFormData.class).bindFromRequest();

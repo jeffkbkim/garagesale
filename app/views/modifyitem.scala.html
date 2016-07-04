@@ -1,0 +1,41 @@
+@(user: User)(sale: Sale)(item: Item)
+@main(title = "Modify Item") {
+
+      <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/createsale.css")">
+
+      <div class="demo-card-wide">
+          <div class="mdl-card mdl-card--border mdl-shadow--2dp mdl-card__supporting-text">
+            <form action="@routes.CatalogController.modifyItem" class="update-form" method="post">
+              <ul>
+                <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" name="name" id="item-name" value="@item.getName" />
+                    <label class="mdl-textfield__label" for="item-name">Item Name</label>
+                </li>
+                <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" name="description" id="item-description" value="@item.getDescription" />
+                    <label class="mdl-textfield__label" for="item-description">Description</label>
+                </li>
+                  <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <input class="mdl-textfield__input" type="text" name="price" id="item-price" value="@item.getPrice"/>
+                      <label class="mdl-textfield__label" for="item-price">Price</label>
+                  </li>
+                  <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <input class="mdl-textfield__input" type="text" name="quantity" id="item-quantity" value="@item.getQuantity"/>
+                      <label class="mdl-textfield__label" for="item-quantity">Quantity</label>
+                  </li>
+                  <input type="hidden" value="@sale.getId" name="saleId" />
+                  <input type="hidden" value="@item.getId" name="itemId" />
+              </ul>
+                <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="submit">
+                    Update Item
+                </button>
+                <a href="@routes.CatalogController.renderCatalogPage(sale.getId)">
+                    <button class="mdl-button mdl-button--colored mdl-color-text--red mdl-js-button mdl-js-ripple-effect" type="button">
+                        Cancel
+                    </button>
+                </a>
+            </form>
+        </div>
+    </div>
+
+}

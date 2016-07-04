@@ -11,13 +11,16 @@ import com.avaje.ebean.Model;
 import views.html.*;
 
 /**
- * This controller contains an action to handle HTTP requests
+ * This controller contains an action to handle HTTP (home and logout) requests
  * to the application.
  */
 public class Application extends Controller {
 
 
-
+    /**
+     * this method renders login scala template.
+     * @return login page.
+     */
     public Result index() {
         return ok(index.render());
     }
@@ -30,43 +33,9 @@ public class Application extends Controller {
         return ok(index.render());
     }
 
-    public Result catalog() {
-        return ok(catalog.render());
-    }
-
-    public Result createSale() {
-        return ok(createSale.render());
-    }
-
-    public Result printTags() {
-        return ok(printTags.render());
-    }
-
-    public Result inventory() {
-        return ok(inventory.render());
-    }
-
-    public Result reports() {
-        return ok(reports.render());
-    }
-
-    public Result administration() {
-        List<User> listUsers = new Model.Finder(User.class).all();
-        return ok(administration.render(listUsers));
-    }
-
-    public Result about() {
-        return ok(about.render());
-    }
-
-    public Result contact() {
-        return ok(contact.render());
-    }
-
-    public Result privacy() {
-        return ok(privacy.render());
-    }
-
+    /**
+     * clears user session and redirects to home page.
+     */
     public Result logout() {
         Logger.debug("Logout called");
         session().remove("connected");
