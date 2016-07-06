@@ -14,12 +14,15 @@ import java.util.*;
 public class User extends Model{
     @Id
     protected int id;
+    @Column(unique = true)
     protected String userName;
     protected String firstName;
     protected String lastName;
     protected String phoneNumber;
     protected String email;
     protected String password;
+    protected int loginAttempts;
+    protected boolean isLocked;
     @OneToMany(mappedBy = "user")
     public ArrayList<Sale> sales = new ArrayList<>();
     @OneToMany(mappedBy = "user")
@@ -133,6 +136,22 @@ public class User extends Model{
     }
 
     /**
+     * returns the number of current user's login attempts
+     * @return user login attempts
+     */
+    public int getLoginAttempts() {
+        return loginAttempts;
+    }
+
+    /**
+     * shows whether user is locked or not.
+     * @return true if user locked, false otherwise.
+     */
+    public boolean getIsLocked() {
+        return isLocked;
+    }
+
+    /**
      * user first name setter method
      * @param firstName first name
      */
@@ -171,6 +190,22 @@ public class User extends Model{
      * @param sales list of sales
      */
     public void setSaleList(ArrayList<Sale> sales) { this.sales = sales; }
+
+    /**
+     * sets user's number of login attempts
+     * @param loginAttempts number of login attempts
+     */
+    public void setLoginAttempts(int loginAttempts) {
+        this.loginAttempts = loginAttempts;
+    }
+
+    /**
+     * sets whether user is locked or not
+     * @param isLocked true if user is locked, false otherwise.
+     */
+    public void setIsLocked(boolean isLocked) {
+        this.isLocked = isLocked;
+    }
 
     /**
      * user password getter method

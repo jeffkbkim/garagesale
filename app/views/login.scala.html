@@ -1,4 +1,4 @@
-
+@(message: String)
 
 <!DOCTYPE html>
 <html>
@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.cyan-light_blue.min.css">
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/login.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/style.css")">
     <title>FFFF00</title>
 </head>
 
@@ -22,8 +23,12 @@
                     <h3 class="mdl-card__title-text">Login</h3>
                 </div> -->
                 <div class="mdl-card__supporting-text">
+                    <p class="login-error-message">
+                        @message
+                    </p>
                     <form action="@routes.LoginController.loginAttempt" class="login-form login-elements" method="post">
                         <i class="material-icons">person</i>
+
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input class="mdl-textfield__input" type="text" id="username" name="username"/>
                             <label class="mdl-textfield__label" for="username">Username</label>

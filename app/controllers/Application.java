@@ -24,9 +24,9 @@ public class Application extends Controller {
 
     public Result home() {
         if (session("connected") == null) {
-            return ok(login.render());
+            return ok(login.render(""));
         }
-        return ok(login.render());
+        return ok(login.render(""));
     }
 
     /**
@@ -35,7 +35,7 @@ public class Application extends Controller {
     public Result logout() {
         session().remove("connected");
         session().clear();
-        flash("success", "You have logged out.");
+        flash("success", "You have successfully logged out.");
         return redirect (routes.Application.home());
     }
 

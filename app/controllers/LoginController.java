@@ -31,21 +31,34 @@ public class LoginController extends Controller {
      */
     public Result loginAttempt() {
         Form<LoginFormData> loginForm = formFactory.form(LoginFormData.class).bindFromRequest();
-        String attemptUser = loginForm.get().username;
+        String attemptUsername = loginForm.get().username;
         String attemptPass = loginForm.get().password;
-        User testUser = new User(attemptUser, attemptPass);
-        List<User> userList = new Model.Finder(User.class).all();
-        int userIndex = userList.indexOf(testUser);
-        if (userIndex > -1) {
-            if (userList.get(userIndex).checkPassword(attemptPass)) {
-                session("connected", userList.get(userIndex).getUserName());
+        User testUser = new User(attemptUsername, attemptPass);
+        User attemptedUser = User.fetchByUsername(attemptUsername);
+        if (attemptedUser != null) {
+            if (attemptedUser.checkPassword(attemptPass) && !attemptedUser.getIsLocked()) {
+                session("connected", attemptUsername);
+                attemptedUser.setIsLocked(false);
+                attemptedUser.setLoginAttempts(0);
+                attemptedUser.update();
                 return ok(index.render());
+            } else if (attemptedUser.getIsLocked()) {
+                return unauthorized(login.render("User is locked!"));
+            } else {
+                attemptedUser.setLoginAttempts(attemptedUser.getLoginAttempts() + 1);
+                attemptedUser.update();
+                if (attemptedUser.getLoginAttempts() > 1) {
+                    attemptedUser.setIsLocked(true);
+                    Logger.debug("Is the user locked? " + (attemptedUser.getIsLocked()? "yes":"no"));
+                    attemptedUser.update();
+                }
             }
+            return unauthorized(login.render("incorect password."));
         }
-        if (attemptUser.equals("user") && attemptPass.equals("pass")) {
+        if (attemptUsername.equals("user") && attemptPass.equals("pass")) {
             return ok(index.render());
         } else {
-            return unauthorized(login.render());
+            return unauthorized(login.render("incorect password."));
         }
     }
 
@@ -57,6 +70,6 @@ public class LoginController extends Controller {
         Form<UserFormData> userForm = formFactory.form(UserFormData.class).bindFromRequest();
         User user = User.makeInstance(userForm.get());
         user.save();
-        return ok(login.render());
+        return ok(login.render(""));
     }
 }
