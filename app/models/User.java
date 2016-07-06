@@ -22,6 +22,9 @@ public class User extends Model{
     protected String password;
     @OneToMany(mappedBy = "user")
     public ArrayList<Sale> sales = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
+    protected ArrayList<Role> roles = new ArrayList<>();
+
 
     /**
      * User no-arg constructor

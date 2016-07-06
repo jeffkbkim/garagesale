@@ -31,12 +31,12 @@ create table role (
 ;
 
 create table sale (
-  sale_id                   integer not null,
+  id                        integer not null,
   name                      varchar(255),
   location                  varchar(255),
   earnings                  double,
   user_id                   integer,
-  constraint pk_sale primary key (sale_id))
+  constraint pk_sale primary key (id))
 ;
 
 create table transaction (
@@ -73,18 +73,22 @@ create sequence transaction_seq;
 
 create sequence user_seq;
 
-alter table item add constraint fk_item_sale_1 foreign key (sale_id) references sale (sale_id) on delete restrict on update restrict;
+alter table item add constraint fk_item_sale_1 foreign key (sale_id) references sale (id) on delete restrict on update restrict;
 create index ix_item_sale_1 on item (sale_id);
-alter table receipt add constraint fk_receipt_sale_2 foreign key (sale_id) references sale (sale_id) on delete restrict on update restrict;
+alter table receipt add constraint fk_receipt_sale_2 foreign key (sale_id) references sale (id) on delete restrict on update restrict;
 create index ix_receipt_sale_2 on receipt (sale_id);
-alter table sale add constraint fk_sale_user_3 foreign key (user_id) references user (id) on delete restrict on update restrict;
-create index ix_sale_user_3 on sale (user_id);
-alter table transaction add constraint fk_transaction_sale_4 foreign key (sale_id) references sale (sale_id) on delete restrict on update restrict;
-create index ix_transaction_sale_4 on transaction (sale_id);
-alter table transaction add constraint fk_transaction_item_5 foreign key (item_id) references item (id) on delete restrict on update restrict;
-create index ix_transaction_item_5 on transaction (item_id);
-alter table transaction add constraint fk_transaction_receipt_6 foreign key (receipt_id) references receipt (id) on delete restrict on update restrict;
-create index ix_transaction_receipt_6 on transaction (receipt_id);
+alter table role add constraint fk_role_user_3 foreign key (user_id) references user (id) on delete restrict on update restrict;
+create index ix_role_user_3 on role (user_id);
+alter table role add constraint fk_role_sale_4 foreign key (sale_id) references sale (id) on delete restrict on update restrict;
+create index ix_role_sale_4 on role (sale_id);
+alter table sale add constraint fk_sale_user_5 foreign key (user_id) references user (id) on delete restrict on update restrict;
+create index ix_sale_user_5 on sale (user_id);
+alter table transaction add constraint fk_transaction_sale_6 foreign key (sale_id) references sale (id) on delete restrict on update restrict;
+create index ix_transaction_sale_6 on transaction (sale_id);
+alter table transaction add constraint fk_transaction_item_7 foreign key (item_id) references item (id) on delete restrict on update restrict;
+create index ix_transaction_item_7 on transaction (item_id);
+alter table transaction add constraint fk_transaction_receipt_8 foreign key (receipt_id) references receipt (id) on delete restrict on update restrict;
+create index ix_transaction_receipt_8 on transaction (receipt_id);
 
 
 

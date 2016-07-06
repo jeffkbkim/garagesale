@@ -4,6 +4,7 @@ import com.avaje.ebean.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,8 +16,10 @@ import java.util.stream.Collectors;
 public class Role extends Model {
     @Id
     protected int id;
-    protected int userId;
-    protected int saleId;
+    @ManyToOne
+    protected User user;
+    @ManyToOne
+    protected Sale sale;
     public enum RoleEnum {
         saledmin,
         seller,
@@ -30,8 +33,8 @@ public class Role extends Model {
     }
 
     public Role(User user, Sale sale, RoleEnum role) {
-        this.userId = user.getId();
-        this.saleId = sale.getId();
+        this.user = user;
+        this.sale = sale;
         this.role = role;
     }
 
@@ -42,29 +45,37 @@ public class Role extends Model {
         return id;
     }
 
+    public User getUser() {
+        return this.user;
+    }
+
+    public Sale getSale() {
+        return this.sale;
+    }
+
     public int getUserId() {
-        return userId;
+        return this.user.getId();
     }
 
     public int getSaleId() {
-        return saleId;
+        return this.sale.getId();
     }
 
     public RoleEnum getRole() {
         return role;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
+//    public void setUserId(int userId) {
+//        this.userId = userId;
+//    }
+//
+//    public void setSaleId(int saleId) {
+//        this.saleId = saleId;
+//    }
 
-    public void setSaleId(int saleId) {
-        this.saleId = saleId;
-    }
-
-    public void setRole(RoleEnum role) {
-        this.role = role;
-    }
+//    public void setRole(RoleEnum role) {
+//        this.role = role;
+//    }
 
     public static List<Integer> mapRolesToSaleIds(List<Role> roles) {
         return roles.stream().map(role -> role.getSaleId()).collect(Collectors.toList());

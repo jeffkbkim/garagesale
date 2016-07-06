@@ -15,7 +15,7 @@ import java.util.*;
 @Entity
 public class Sale extends Model {
     @Id
-    protected int saleID;
+    protected int id;
     protected String name;
     protected String location;
     protected double earnings;
@@ -28,6 +28,8 @@ public class Sale extends Model {
     protected ArrayList<Item> items = new ArrayList<>();
     @OneToMany(mappedBy = "sale")
     protected ArrayList<Receipt> receipts = new ArrayList<>();
+    @OneToMany(mappedBy = "sale")
+    protected ArrayList<Role> roles = new ArrayList<>();
 
     /**
      * creates Finder for Sale Entity.
@@ -60,7 +62,7 @@ public class Sale extends Model {
      */
     public static Sale makeInstance(SaleFormData saleFormData) {
         Sale sale = new Sale();
-        sale.saleID = saleFormData.saleID;
+        sale.id = saleFormData.saleID;
         sale.name = saleFormData.name;
         sale.location = saleFormData.location;
         return sale;
@@ -72,7 +74,7 @@ public class Sale extends Model {
      * @return sale id
      */
     public int getId() {
-        return this.saleID;
+        return this.id;
     }
 
     /**
@@ -96,10 +98,10 @@ public class Sale extends Model {
     /**
      * sale id setter method
      *
-     * @param saleID sale id
+     * @param id sale id
      */
-    public void setSaleID(int saleID) {
-        this.saleID = saleID;
+    public void setSaleID(int id) {
+        this.id = id;
     }
 
     /**
