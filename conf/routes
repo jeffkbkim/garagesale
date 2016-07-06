@@ -49,3 +49,5 @@ GET     /alltags                    controllers.CatalogController.renderAllTags(
 POST    /makeTransaction            controllers.CatalogController.makeTransaction
 
 GET     /genreceipt                 controllers.CatalogController.renderReceipt(transactionId: Int ?=0)
+
+GET     /genreport                  controllers.CatalogController.renderReport(saleId: Int ?=0)

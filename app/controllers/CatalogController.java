@@ -17,6 +17,7 @@ import views.html.catalog;
 import views.html.tag;
 import views.html.alltags;
 import views.html.receipt;
+import views.html.report;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -101,6 +102,14 @@ public class CatalogController extends Controller {
         return ok(receipt.render(user, sale, r, transactions));
     }
 
+    public Result renderReport(int saleId) {
+        User user = Utils.getUserSession();
+        Sale sale = Sale.fetchSaleById(saleId);
+        List<Receipt> receipts = Receipt.fetchReceiptsBySale(sale);
+        List<Item> items = Item.fetchItemsBySale(sale);
+        return ok(report.render(user, sale, receipts, items));
+    }
+
     /**
      * adds item
      *
@@ -176,6 +185,8 @@ public class CatalogController extends Controller {
             item.update();
         }
         receipt.setProfit(totalProfit);
+        sale.addEarnings(totalProfit);
+        sale.update();
         receipt.update();
         return (redirect(routes.CatalogController.renderCatalogPage(saleID)));
     }
