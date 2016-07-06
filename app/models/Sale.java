@@ -19,9 +19,6 @@ public class Sale extends Model {
     protected String name;
     protected String location;
     protected double earnings;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    protected User user;
     @OneToMany(mappedBy = "sale")
     protected ArrayList<Transaction> transactions = new ArrayList<>();
     @OneToMany(mappedBy = "sale")
@@ -102,15 +99,6 @@ public class Sale extends Model {
      */
     public void setSaleID(int id) {
         this.id = id;
-    }
-
-    /**
-     * sale user setter method
-     *
-     * @param user sale user
-     */
-    public void setUser(User user) {
-        this.user = user;
     }
 
     /**
