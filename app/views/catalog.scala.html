@@ -12,8 +12,14 @@
     <a href="@routes.CatalogController.renderAllTags(sale.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
         All Tags
     </a>
-    <a  class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link" id="newtrans">
+    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link" id="newtrans">
         New Transaction
+    </a>
+    <a href="@routes.SalesController.renderSaleRolesPage(sale.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
+        Roles
+        </a>
+    <a href="@routes.CatalogController.renderReport(sale.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
+        Report
     </a>
     <div class="demo-card-wide">
         <div class="mdl-card--border">

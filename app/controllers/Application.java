@@ -23,7 +23,6 @@ public class Application extends Controller {
     }
 
     public Result home() {
-        Logger.debug("home called");
         if (session("connected") == null) {
             return ok(login.render());
         }
@@ -34,7 +33,6 @@ public class Application extends Controller {
      * clears user session and redirects to home page.
      */
     public Result logout() {
-        Logger.debug("Logout called");
         session().remove("connected");
         session().clear();
         flash("success", "You have logged out.");

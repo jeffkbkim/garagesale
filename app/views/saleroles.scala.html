@@ -1,0 +1,75 @@
+@(user: User)(sale: Sale)(saleadmins: List[User])(sellers: List[User])(cashiers: List[User])(clerks: List[User])(bookkeepers: List[User])
+@main(title = "Roles for sales " + sale.getName()) {
+
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/style.css")">
+
+    @if(saleadmins.contains(user)) {
+        <a href="@routes.SalesController.renderAddUserRolePage(sale.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
+            Add User
+        </a>
+    }
+    <div class="demo-card-wide">
+        <div class="mdl-card--border">
+            <h5 class="list-header">Sale Administrators</h5>
+            <ul class="demo-list-icon mdl-list">
+                @for(saleadmin <- saleadmins) {
+                    <li class="mdl-list__item">
+                        <span class="mdl-list__item-primary-content">
+                            <i class="material-icons mdl-list__item-icon">person</i>
+                            @saleadmin.getUserName
+                        </span>
+                    </li>
+                }
+            </ul>
+
+            <h5 class="list-header">Sellers</h5>
+            <ul class="demo-list-icon mdl-list">
+                @for(seller <- sellers) {
+                    <li class="mdl-list__item">
+                        <span class="mdl-list__item-primary-content">
+                            <i class="material-icons mdl-list__item-icon">person</i>
+                            @seller.getUserName
+                        </span>
+                    </li>
+                }
+            </ul>
+
+            <h5 class="list-header">Cashiers</h5>
+            <ul class="demo-list-icon mdl-list">
+                @for(cashier <- cashiers) {
+                    <li class="mdl-list__item">
+                        <span class="mdl-list__item-primary-content">
+                            <i class="material-icons mdl-list__item-icon">person</i>
+                            @cashier.getUserName()
+                        </span>
+                    </li>
+                }
+            </ul>
+
+            <h5 class="list-header">Clerks</h5>
+            <ul class="demo-list-icon mdl-list">
+                @for(clerk <- clerks) {
+                    <li class="mdl-list__item">
+                        <span class="mdl-list__item-primary-content">
+                            <i class="material-icons mdl-list__item-icon">person</i>
+                            @clerk.getUserName()
+                        </span>
+                    </li>
+                }
+            </ul>
+
+            <h5 class="list-header">Bookkeepers</h5>
+            <ul class="demo-list-icon mdl-list">
+                @for(bookkeeper <- bookkeepers) {
+                    <li class="mdl-list__item">
+                        <span class="mdl-list__item-primary-content">
+                            <i class="material-icons mdl-list__item-icon">person</i>
+                            @bookkeeper.getUserName()
+                        </span>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+
+}

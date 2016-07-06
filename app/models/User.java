@@ -3,12 +3,8 @@ package models;
 import com.avaje.ebean.Model;
 import play.Logger;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.*;
+import java.util.*;
 
 /**
  * Created by Douglas on 6/6/2016.
@@ -24,10 +20,11 @@ public class User extends Model{
     protected String phoneNumber;
     protected String email;
     protected String password;
-    protected int level;
-    protected int role;
     @OneToMany(mappedBy = "user")
     public ArrayList<Sale> sales = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
+    protected ArrayList<Role> roles = new ArrayList<>();
+
 
     /**
      * User no-arg constructor
@@ -216,13 +213,36 @@ public class User extends Model{
         return false;
     }
 
+    public static User fetchById(int id) {
+        User user = User.find.byId(id);
+        return user;
+    }
+
     /**
      * Fetches user by username
      * @param username user username
      * @return user corresponding to username
      */
-    public static User fetchUserByUsername(String username) {
+    public static User fetchByUsername(String username) {
         User user = User.find.select("*").where().eq("userName", username).findUnique();
         return user;
+    }
+
+    public static List<User> fetchByIds(List<Integer> ids) {
+        List<User> users = new LinkedList<>();
+        User user;
+        for (Integer id : ids) {
+            user = User.find.byId(id);
+            if (user != null)
+                users.add(user);
+        }
+        return users;
+    }
+
+    public static List<User> fetchAllUsers() {
+        List<User> allUsers = find.select("*").findList();
+        if (allUsers == null)
+            allUsers = new ArrayList<>();
+        return allUsers;
     }
 }

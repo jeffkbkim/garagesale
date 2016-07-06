@@ -5,9 +5,7 @@ import play.data.format.Formats;
 import play.data.format.Formats.DateTime;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Douglas on 6/16/2016.
@@ -15,21 +13,20 @@ import java.util.List;
  */
 
 @Entity
-public class Sale extends Model{
+public class Sale extends Model {
     @Id
-    protected int saleID;
+    protected int id;
     protected String name;
     protected String location;
     protected double earnings;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    protected User user;
     @OneToMany(mappedBy = "sale")
     protected ArrayList<Transaction> transactions = new ArrayList<>();
     @OneToMany(mappedBy = "sale")
     protected ArrayList<Item> items = new ArrayList<>();
     @OneToMany(mappedBy = "sale")
     protected ArrayList<Receipt> receipts = new ArrayList<>();
+    @OneToMany(mappedBy = "sale")
+    protected ArrayList<Role> roles = new ArrayList<>();
 
     /**
      * creates Finder for Sale Entity.
@@ -43,12 +40,9 @@ public class Sale extends Model{
     public Sale() {
     }
 
-//    public Sale(String creator) {
-//        this();
-//    }
-
     /**
      * Creates Sale with given parameters
+     *
      * @param name
      * @param location
      */
@@ -59,12 +53,13 @@ public class Sale extends Model{
 
     /**
      * Creates an Sale instance from Sale Form Data.
+     *
      * @param saleFormData SaleFormData
      * @return Sale instance
      */
     public static Sale makeInstance(SaleFormData saleFormData) {
         Sale sale = new Sale();
-        sale.saleID = saleFormData.saleID;
+        sale.id = saleFormData.saleID;
         sale.name = saleFormData.name;
         sale.location = saleFormData.location;
         return sale;
@@ -72,14 +67,16 @@ public class Sale extends Model{
 
     /**
      * sale id getter method
+     *
      * @return sale id
      */
     public int getId() {
-        return this.saleID;
+        return this.id;
     }
 
     /**
      * sale name getter method
+     *
      * @return sale name
      */
     public String getName() {
@@ -88,30 +85,38 @@ public class Sale extends Model{
 
     /**
      * sale location getter method
+     *
      * @return sale location
      */
+
+    public double getEarnings() {
+        return this.earnings;
+    }
+
+    public void addEarnings(double increment) {
+        this.earnings += increment;
+    }
+
+    public void setEarnings(double earnings) {
+        this.earnings = earnings;
+    }
+
     public String getLocation() {
         return this.location;
     }
 
     /**
      * sale id setter method
-     * @param saleID sale id
+     *
+     * @param id sale id
      */
-    public void setSaleID(int saleID) {
-        this.saleID = saleID;
-    }
-
-    /**
-     * sale user setter method
-     * @param user sale user
-     */
-    public void setUser(User user) {
-        this.user = user;
+    public void setSaleID(int id) {
+        this.id = id;
     }
 
     /**
      * sale name setter method
+     *
      * @param name sale name
      */
     public void setName(String name) {
@@ -120,6 +125,7 @@ public class Sale extends Model{
 
     /**
      * sale location setter method
+     *
      * @param location sale location
      */
     public void setLocation(String location) {
@@ -128,21 +134,48 @@ public class Sale extends Model{
 
     /**
      * fetches Sale with sale id
+     *
      * @param id sale id
      * @return Sale corresponding to sale id
      */
-    public static Sale fetchSaleById(int id) {
+    public static Sale fetchById(int id) {
         Sale sale = find.byId(id);
         return sale;
     }
 
+    public static List<Sale> fetchBySaleIds(List<Integer> ids) {
+        List<Sale> sales = new LinkedList<>();
+        Sale sale;
+        for (Integer id : ids) {
+            sale = Sale.find.byId(id);
+            if (sale != null)
+                sales.add(sale);
+        }
+        return sales;
+    }
+
+    /**
+     * fetch all available sales
+     *
+     * @return all sales
+     */
+    public static List<Sale> fetchAllSales() {
+        List<Sale> sales = Sale.find.select("*").findList();
+        if (sales == null)
+            sales = new ArrayList<>();
+        return sales;
+    }
+
     /**
      * fetches Sale with user
+     *
      * @param user Sale user
      * @return list of all Sales user is involved in.
      */
-    public static List<Sale> fetchSalesByUser(User user) {
+    public static List<Sale> fetchByUser(User user) {
         List<Sale> sales = Sale.find.select("*").where().eq("user_id", user.getId()).findList();
+        if (sales == null)
+            sales = new ArrayList<>();
         return sales;
     }
 }

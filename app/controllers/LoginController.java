@@ -30,7 +30,6 @@ public class LoginController extends Controller {
      * @return home page if incorrect username or password, index page otherwise.
      */
     public Result loginAttempt() {
-        Logger.debug("Login attempt called");
         Form<LoginFormData> loginForm = formFactory.form(LoginFormData.class).bindFromRequest();
         String attemptUser = loginForm.get().username;
         String attemptPass = loginForm.get().password;
@@ -55,11 +54,9 @@ public class LoginController extends Controller {
      * @return login page.
      */
     public Result register() {
-        Logger.debug("Register called");
         Form<UserFormData> userForm = formFactory.form(UserFormData.class).bindFromRequest();
         User user = User.makeInstance(userForm.get());
         user.save();
-        Logger.debug("User created: " + user.getUserName());
         return ok(login.render());
     }
 }

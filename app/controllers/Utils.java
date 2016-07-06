@@ -15,7 +15,7 @@ public class Utils {
      */
     public static User getUserSession() {
         String username = session("connected");
-        User user = User.fetchUserByUsername(username);
+        User user = User.fetchByUsername(username);
         return user;
     }
 }

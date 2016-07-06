@@ -1,0 +1,26 @@
+.demo-card-wide.mdl-card {
+    width: 512px;
+}
+
+.mdl-layout {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+
+.mdl-layout__content {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  flex: none;
+}
+
+.receipts-table, .items-table {
+    width: 100%;
+}
+
+.total {
+    font-weight: bold;
+}
