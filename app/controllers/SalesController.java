@@ -88,41 +88,6 @@ public class SalesController extends Controller {
 
             // Note that role is added after sale is saved, so that id is first generated
             addRoleToDB(user, sale, Role.RoleEnum.saledmin);
-
-            // TODO: DELETE BELOW WHEN YOU SEE THIS
-//            sale = Sale.fetchAllSales().get(0);
-//            Role role = new Role(user, sale, Role.RoleEnum.seller);
-//
-//            Logger.debug("=====printing out role before saving======");
-//            Logger.debug("sale_id: " + sale.getId());
-//            Logger.debug(role.getId() + ", " + role.getSaleId() + ", " + role.getUserId() + ", " + role.getRole().toString());
-//
-//            Logger.debug("=====End of All Roles======");
-//            role.save();
-//            List<Role> roles = Role.fetchAllRoles();
-//            Logger.debug("=====PRINTING OUT ALL ROLES======");
-//            for (Role aRole : roles) {
-//                Logger.debug(aRole.getId() + ", " + aRole.getSaleId() + ", " + aRole.getUserId() + ", " + aRole.getRole().toString());
-//            }
-//            Logger.debug("=====End of All Roles======");
-
-//            List<Role> roles = Role.fetchRolesBySaleId(sale.getId());
-//            Logger.debug("=====printing out sellers when creating======");
-//            for (Role aRole : roles) {
-//                Logger.debug(aRole.);
-//            }
-//            Logger.debug("=====end of SELLERS======");
-            // TODO: DELETE UNTIL HERE
-            // TODO: DELETE BELOW WHEN YOU SEE THIS
-//            Logger.debug("=====printing out sellers AFTER creating======");
-//            sale = Sale.fetchSaleById(sale.getId());
-//            sellers = sale.getSellers();
-//            sellers = Sale.fetchSellersById(sale.getId());
-//            for (User seller : sellers) {
-//                Logger.debug(seller.getUserName());
-//            }
-//            Logger.debug("=====end of SELLERS======");
-            // TODO: DELETE UNTIL HERE
         }
         return redirect(routes.SalesController.getSales());
     }

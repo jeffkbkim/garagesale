@@ -47,24 +47,10 @@ public class CatalogController extends Controller {
         //TODO: handle invalid saleId
         User user = Utils.getUserSession();
         Sale sale = Sale.fetchById(saleId);
-        //TODO: DELETE BELOW WHEN YOU SEE THIS
-//        Set<User> sellers = Sale.fetchSellersById(saleId);
-//        Logger.debug("=====PRINTING OUT SELLERS======");
-//        for (User seller : sellers) {
-//            Logger.debug(seller.getUserName());
-//        }
-//        Logger.debug("=====end of SELLERS======");
-        //TODO: DELETE UNTIL HERE
 
         List<Item> items = Item.fetchItemsBySale(sale);
         List<Transaction> transactions = Transaction.fetchTransactionsBySale(sale);
         List<Receipt> receipts = Receipt.fetchReceiptsBySale(sale);
-        // scala.collection.immutable.List<Item> itemsImm
-        //         = JavaConverters.asScalaBufferConverter(items).asScala().toList();
-        // scala.collection.immutable.List<Transaction> transactionsImm
-        //         = JavaConverters.asScalaBufferConverter(transactions).asScala().toList();
-        // scala.collection.immutable.List<Receipt> receiptsImm
-        //         = JavaConverters.asScalaBufferConverter(receipts).asScala().toList();
         return ok(catalog.render(user, sale, items, transactions, receipts));
     }
 
