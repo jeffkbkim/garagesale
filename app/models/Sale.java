@@ -88,6 +88,19 @@ public class Sale extends Model {
      *
      * @return sale location
      */
+
+    public double getEarnings() {
+        return this.earnings;
+    }
+
+    public void addEarnings(double increment) {
+        this.earnings += increment;
+    }
+
+    public void setEarnings(double earnings) {
+        this.earnings = earnings;
+    }
+
     public String getLocation() {
         return this.location;
     }
