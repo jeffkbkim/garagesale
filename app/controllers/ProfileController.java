@@ -29,7 +29,6 @@ public class ProfileController extends Controller {
      * @return profile page.
      */
     public Result view() {
-        Logger.debug("ProfileController view called!");
         String user = session("connected");
         if (user != null) {
             List<User> listUsers = new Model.Finder(User.class).all();
@@ -38,6 +37,9 @@ public class ProfileController extends Controller {
                 return ok(profile.render(displayUser));
             }
         }
+        // TODO: DELETE BELOW IMMEDIATELY WHEN YOU SEE THIS
+
+        // TODO: DELETE UNTIL HERE
         return ok(login.render());
 
     }

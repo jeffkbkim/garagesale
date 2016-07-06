@@ -31,6 +31,12 @@ GET     /createsale                 controllers.SalesController.createSalePage
 
 POST    /createsale                 controllers.SalesController.createSale
 
+GET     /saleroles                  controllers.SalesController.renderSaleRolesPage(saleId: Int ?=0)
+
+GET     /adduserrole                controllers.SalesController.renderAddUserRolePage(saleId: Int ?=0)
+
+POST    /adduserrole                controllers.SalesController.addRole
+
 #Catalog Routes
 GET     /catalog                    controllers.CatalogController.renderCatalogPage(saleId: Int ?=0)
 

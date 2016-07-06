@@ -21,6 +21,15 @@ create table receipt (
   constraint pk_receipt primary key (id))
 ;
 
+create table role (
+  id                        integer not null,
+  user_id                   integer,
+  sale_id                   integer,
+  role                      integer,
+  constraint ck_role_role check (role in (0,1,2,3,4)),
+  constraint pk_role primary key (id))
+;
+
 create table sale (
   sale_id                   integer not null,
   name                      varchar(255),
@@ -49,14 +58,14 @@ create table user (
   phone_number              varchar(255),
   email                     varchar(255),
   password                  varchar(255),
-  level                     integer,
-  role                      integer,
   constraint pk_user primary key (id))
 ;
 
 create sequence item_seq;
 
 create sequence receipt_seq;
+
+create sequence role_seq;
 
 create sequence sale_seq;
 
@@ -87,6 +96,8 @@ drop table if exists item;
 
 drop table if exists receipt;
 
+drop table if exists role;
+
 drop table if exists sale;
 
 drop table if exists transaction;
@@ -98,6 +109,8 @@ SET REFERENTIAL_INTEGRITY TRUE;
 drop sequence if exists item_seq;
 
 drop sequence if exists receipt_seq;
+
+drop sequence if exists role_seq;
 
 drop sequence if exists sale_seq;
 

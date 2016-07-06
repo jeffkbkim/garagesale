@@ -10,6 +10,7 @@ import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
+import scala.collection.JavaConverters;
 import views.html.additem;
 import views.html.modifyitem;
 import views.html.sale;
@@ -23,6 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import play.Logger;
 
@@ -43,11 +45,25 @@ public class CatalogController extends Controller {
     public Result renderCatalogPage(int saleId) {
         //TODO: handle invalid saleId
         User user = Utils.getUserSession();
-        Sale sale = Sale.fetchSaleById(saleId);
+        Sale sale = Sale.fetchById(saleId);
+        //TODO: DELETE BELOW WHEN YOU SEE THIS
+//        Set<User> sellers = Sale.fetchSellersById(saleId);
+//        Logger.debug("=====PRINTING OUT SELLERS======");
+//        for (User seller : sellers) {
+//            Logger.debug(seller.getUserName());
+//        }
+//        Logger.debug("=====end of SELLERS======");
+        //TODO: DELETE UNTIL HERE
 
         List<Item> items = Item.fetchItemsBySale(sale);
         List<Transaction> transactions = Transaction.fetchTransactionsBySale(sale);
         List<Receipt> receipts = Receipt.fetchReceiptsBySale(sale);
+        // scala.collection.immutable.List<Item> itemsImm
+        //         = JavaConverters.asScalaBufferConverter(items).asScala().toList();
+        // scala.collection.immutable.List<Transaction> transactionsImm
+        //         = JavaConverters.asScalaBufferConverter(transactions).asScala().toList();
+        // scala.collection.immutable.List<Receipt> receiptsImm
+        //         = JavaConverters.asScalaBufferConverter(receipts).asScala().toList();
         return ok(catalog.render(user, sale, items, transactions, receipts));
     }
 
@@ -60,7 +76,7 @@ public class CatalogController extends Controller {
         // TODO: handle invalid saleId
         User user = Utils.getUserSession();
 
-        Sale sale = Sale.fetchSaleById(saleId);
+        Sale sale = Sale.fetchById(saleId);
         return ok(additem.render(user, sale));
     }
 
@@ -75,21 +91,23 @@ public class CatalogController extends Controller {
         User user = Utils.getUserSession();
 
         Item item = Item.fetchItemById(itemId);
-        Sale sale = Sale.fetchSaleById(saleId);
+        Sale sale = Sale.fetchById(saleId);
         return ok(modifyitem.render(user, sale, item));
     }
 
     public Result renderTag(int saleId, int itemId) {
         User user = Utils.getUserSession();
         Item item = Item.fetchItemById(itemId);
-        Sale sale = Sale.fetchSaleById(saleId);
+        Sale sale = Sale.fetchById(saleId);
         return ok(tag.render(user, sale, item));
     }
 
     public Result renderAllTags(int saleId) {
         User user = Utils.getUserSession();
-        Sale sale = Sale.fetchSaleById(saleId);
+        Sale sale = Sale.fetchById(saleId);
         List<Item> items = Item.fetchItemsBySale(sale);
+//        scala.collection.immutable.List<Item> itemsImm
+//                = JavaConverters.asScalaBufferConverter(items).asScala().toList();
         return ok(alltags.render(user, sale, items));
     }
 
@@ -97,6 +115,8 @@ public class CatalogController extends Controller {
         User user = Utils.getUserSession();
         Receipt r = Receipt.fetchReceiptById(receiptId);
         List<Transaction> transactions = Transaction.fetchTransactionByReceipt(r);
+//        scala.collection.immutable.List<Transaction> transactionsImm
+//                = JavaConverters.asScalaBufferConverter(transactions).asScala().toList();
         Sale sale = r.getSale();
         return ok(receipt.render(user, sale, r, transactions));
     }
@@ -113,7 +133,7 @@ public class CatalogController extends Controller {
 
         Item item = new Item(itemFormData.name, itemFormData.description,
                 itemFormData.quantity, itemFormData.price);
-        Sale sale = Sale.fetchSaleById(itemFormData.saleId);
+        Sale sale = Sale.fetchById(itemFormData.saleId);
         item.setSale(sale);
         item.save();
 
@@ -135,7 +155,7 @@ public class CatalogController extends Controller {
                             itemFormData.description,
                             itemFormData.quantity,
                             itemFormData.price);
-        Sale sale = Sale.fetchSaleById(itemFormData.saleId);
+        Sale sale = Sale.fetchById(itemFormData.saleId);
         item.setSale(sale);
         item.save();
 
@@ -147,7 +167,7 @@ public class CatalogController extends Controller {
         Iterator i = json.iterator();
         JsonNode firstItem = (JsonNode) i.next();
         int saleID = Integer.parseInt(String.valueOf(firstItem.findValue("saleId")));
-        Sale sale = Sale.fetchSaleById(saleID);
+        Sale sale = Sale.fetchById(saleID);
 
         Receipt receipt = new Receipt();
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
