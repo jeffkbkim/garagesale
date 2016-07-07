@@ -91,6 +91,12 @@ public class CatalogController extends Controller {
         return ok(modifyitem.render(user, sale, item));
     }
 
+    /**
+     * renders tag page
+     * @param saleId id of sale
+     * @param itemId id of item
+     * @return renders tag html with corresponding user, sale id, and item id
+     */
     public Result renderTag(int saleId, int itemId) {
         User user = Utils.getUserSession();
         Item item = Item.fetchItemById(itemId);
@@ -98,6 +104,11 @@ public class CatalogController extends Controller {
         return ok(tag.render(user, sale, item));
     }
 
+    /**
+     * fetches all items in sale and renders alltags page
+     * @param saleId id of sale
+     * @return renders alltags html
+     */
     public Result renderAllTags(int saleId) {
         User user = Utils.getUserSession();
         Sale sale = Sale.fetchById(saleId);
@@ -107,6 +118,11 @@ public class CatalogController extends Controller {
         return ok(alltags.render(user, sale, items));
     }
 
+    /**
+     * creates receipt and renders receipt page
+     * @param receiptId
+     * @return receipt page
+     */
     public Result renderReceipt(int receiptId) {
         User user = Utils.getUserSession();
         Receipt r = Receipt.fetchReceiptById(receiptId);
@@ -166,6 +182,11 @@ public class CatalogController extends Controller {
         return redirect(routes.CatalogController.renderCatalogPage(sale.getId()));
     }
 
+    /**
+     * makes a transaction.
+     *
+     * @return catalog page with updated transaction.
+     */
     public Result makeTransaction() {
         JsonNode json = request().body().asJson();
         Iterator i = json.iterator();

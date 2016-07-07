@@ -37,8 +37,7 @@ public class ProfileController extends Controller {
                 return ok(profile.render(displayUser));
             }
         }
-        return ok(login.render());
-
+       return ok(login.render("must be logged in to continue."));
     }
 
     /**
@@ -63,6 +62,6 @@ public class ProfileController extends Controller {
             }
             return ok(profile.render(thisUser));
         }
-        return ok(login.render());
+        return ok(login.render("User not found."));
     }
 }

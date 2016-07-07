@@ -58,6 +58,9 @@ create table user (
   phone_number              varchar(255),
   email                     varchar(255),
   password                  varchar(255),
+  login_attempts            integer,
+  is_locked                 boolean,
+  constraint uq_user_user_name unique (user_name),
   constraint pk_user primary key (id))
 ;
 
