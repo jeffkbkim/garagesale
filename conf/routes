@@ -57,3 +57,5 @@ POST    /makeTransaction            controllers.CatalogController.makeTransactio
 GET     /genreceipt                 controllers.CatalogController.renderReceipt(transactionId: Int ?=0)
 
 GET     /genreport                  controllers.CatalogController.renderReport(saleId: Int ?=0)
+
+GET     /createsuperuser            controllers.Utils.createSuperUser

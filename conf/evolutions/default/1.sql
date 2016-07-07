@@ -59,6 +59,7 @@ create table user (
   password                  varchar(255),
   login_attempts            integer,
   is_locked                 boolean,
+  is_super_user             boolean,
   constraint uq_user_user_name unique (user_name),
   constraint pk_user primary key (id))
 ;

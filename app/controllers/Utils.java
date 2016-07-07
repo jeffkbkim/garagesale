@@ -1,8 +1,12 @@
 package controllers;
 
 import models.User;
+import play.mvc.Result;
+import play.mvc.Controller;
+import views.html.login;
 
 import static play.mvc.Controller.session;
+import static play.mvc.Results.ok;
 
 /**
  * Created by yudawinata on 6/26/16.
@@ -17,5 +21,12 @@ public class Utils {
         String username = session("connected");
         User user = User.fetchByUsername(username);
         return user;
+    }
+
+    public Result createSuperUser() {
+        User user = new User("super", "super");
+        user.save();
+        user.setIsSuperUser(true);
+        return ok(login.render(""));
     }
 }

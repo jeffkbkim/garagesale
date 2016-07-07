@@ -23,6 +23,7 @@ public class User extends Model{
     protected String password;
     protected int loginAttempts;
     protected boolean isLocked;
+    protected boolean isSuperUser;
     @OneToMany(mappedBy = "user")
     public ArrayList<Sale> sales = new ArrayList<>();
     @OneToMany(mappedBy = "user")
@@ -55,6 +56,7 @@ public class User extends Model{
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
+        this.isSuperUser = false;
     }
 
     /**
@@ -152,6 +154,14 @@ public class User extends Model{
     }
 
     /**
+     * checks whether user is superuser or not.
+     * @return true if user is superuser, false otherwise.
+     */
+    public boolean getIsSuperUser() {
+        return isSuperUser;
+    }
+
+    /**
      * user first name setter method
      * @param firstName first name
      */
@@ -205,6 +215,14 @@ public class User extends Model{
      */
     public void setIsLocked(boolean isLocked) {
         this.isLocked = isLocked;
+    }
+
+    /**
+     * superuser setter method.
+     * @param isSuperUser is user superuser
+     */
+    public void setIsSuperUser(boolean isSuperUser) {
+        this.isSuperUser = isSuperUser;
     }
 
     /**

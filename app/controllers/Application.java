@@ -35,7 +35,6 @@ public class Application extends Controller {
     public Result logout() {
         session().remove("connected");
         session().clear();
-        flash("success", "You have successfully logged out.");
         return redirect (routes.Application.home());
     }
 
