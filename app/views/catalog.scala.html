@@ -1,33 +1,48 @@
-@(user: User)(sale: Sale)(items: List[Item])(transactions: List[Transaction])(receipts: List[Receipt])
+@(user: User)(sale: Sale)(role: Role.RoleEnum)(items: List[Item])(transactions: List[Transaction])(receipts: List[Receipt])
 @main(title = "Catalog of Sale \"" + sale.getName() + "\"") {
 
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/createsale.css")">
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/table.css")">
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/catalog.css")">
 
-
     @if(sale.isOpen) {
-        <a href="@routes.CatalogController.renderAddItemPage(sale.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
-            New Item
-        </a>
-        <a href="@routes.CatalogController.renderAllTags(sale.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
-            All Tags
-        </a>
-        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link" id="newtrans">
-            New Transaction
-        </a>
+        @if(role.equals(Role.RoleEnum.saledmin)
+                || role.equals(Role.RoleEnum.seller)) {
+            <a href="@routes.CatalogController.renderAddItemPage(sale.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
+                New Item
+            </a>
+        }
+        @if(role.equals(Role.RoleEnum.saledmin)
+                || role.equals(Role.RoleEnum.seller)
+                || role.equals(Role.RoleEnum.clerk)) {
+            <a href="@routes.CatalogController.renderAllTags(sale.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
+                All Tags
+            </a>
+        }
+        @if(role.equals(Role.RoleEnum.saledmin)
+                || role.equals(Role.RoleEnum.seller)
+                || role.equals(Role.RoleEnum.cashier)) {
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link" id="newtrans">
+                New Transaction
+            </a>
+        }
         <a href="@routes.SalesController.renderSaleRolesPage(sale.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
             Roles
         </a>
-        <a href="@routes.CatalogController.renderReport(sale.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
-            Report
-        </a>
+        @if(role.equals(Role.RoleEnum.saledmin)
+                || role.equals(Role.RoleEnum.seller)
+                || role.equals(Role.RoleEnum.clerk)
+                || role.equals(Role.RoleEnum.bookkeeper)) {
+            <a href="@routes.CatalogController.renderReport(sale.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
+                Report
+            </a>
+        }
         @*only show close sale when user is sale admin*@
         @if(SalesController.isUserSaleAdmin(user, sale)) {
             <a href="@routes.SalesController.closeSale(sale.getId)" class="mdl-button mdl-button--colored mdl-color-text--red mdl-js-button mdl-js-ripple-effect createsale-link">
                 Close Sale
             </a>
-
+        }
             <div class="demo-card-wide">
                 <div class="mdl-card--border">
                     <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp sales-table">
@@ -198,8 +213,7 @@
                         });
                     });
             </script>
-        }
     } else {
-    <h1 class="mdl-color-text--red">This sale has been CLOSED</h1>
+        <h1 class="mdl-color-text--red">This sale has been CLOSED</h1>
     }
 }

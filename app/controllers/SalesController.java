@@ -105,6 +105,7 @@ public class SalesController extends Controller {
         return Role.mapRolesToUserIds(roles).contains(user.getId());
     }
 
+
     /**
      * add user role into a sale
      * @return the sale role page

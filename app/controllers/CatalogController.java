@@ -15,10 +15,7 @@ import views.html.*;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import play.Logger;
 
@@ -44,7 +41,15 @@ public class CatalogController extends Controller {
         List<Item> items = Item.fetchItemsBySale(sale);
         List<Transaction> transactions = Transaction.fetchTransactionsBySale(sale);
         List<Receipt> receipts = Receipt.fetchReceiptsBySale(sale);
-        return ok(catalog.render(user, sale, items, transactions, receipts));
+        Role.RoleEnum role = userRoleForSale(user, sale);
+        return ok(catalog.render(user, sale, role, items, transactions, receipts));
+    }
+
+    public Role.RoleEnum userRoleForSale(User user, Sale sale) {
+        List<Role> roles = Role.fetchBySaleIdAndUserId(sale.getId(), user.getId());
+        if (roles.isEmpty())
+            throw new NoSuchElementException();
+        return roles.get(0).getRole();
     }
 
     /**
