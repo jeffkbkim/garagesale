@@ -1,5 +1,5 @@
 @(user: User)(sales: List[Sale])
-@main(title = "Current Sales of " + user.getFirstName()) {
+@main(title = "All sales that you do not own or manage") {
 
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/salepage.css")">
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/table.css")">
@@ -13,25 +13,27 @@
                     <tr>
                         <th class="mdl-data-table__cell--non-numeric">Sale Name</th>
                         <th>Location</th>
+                        <th>Owners</th>
                     </tr>
                 </thead>
                 <tbody>
                     @for(sale <- sales) {
                             <tr onclick="window.location = $(this).find('a').attr('href')">
                                 <td class="mdl-data-table__cell--non-numeric">
-                                    <a href="@routes.CatalogController.renderCatalogPage(sale.getId)">
+                                    <a href="@routes.CatalogController.renderCatalogReadOnlyPage(sale.getId)">
                                         @sale.getName()
                                     </a>
                                 </td>
                                 <td>@sale.getLocation()</td>
+                                <td>@{
+                                    CatalogController.printOwners(sale);
+                                    }
+                                </td>
                             </tr>
                     }
                 </tbody>
             </table>
         </div>
     </div>
-    <a href="@routes.SalesController.createSalePage" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
-        Create
-    </a>
 
 }

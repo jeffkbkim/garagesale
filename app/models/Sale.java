@@ -19,6 +19,7 @@ public class Sale extends Model {
     protected String name;
     protected String location;
     protected double earnings;
+    protected boolean isOpen;
     @OneToMany(mappedBy = "sale")
     protected ArrayList<Transaction> transactions = new ArrayList<>();
     @OneToMany(mappedBy = "sale")
@@ -49,6 +50,7 @@ public class Sale extends Model {
     public Sale(String name, String location) {
         this.name = name;
         this.location = location;
+        this.isOpen = true;
     }
 
     /**
@@ -103,6 +105,20 @@ public class Sale extends Model {
 
     public String getLocation() {
         return this.location;
+    }
+
+    public boolean isOpen() {
+        return this.isOpen;
+    }
+
+    public String getStatus() {
+        if (isOpen)
+            return "Open";
+        return "Close";
+    }
+
+    public void setIsOpen(boolean isOpen) {
+        this.isOpen = isOpen;
     }
 
     /**

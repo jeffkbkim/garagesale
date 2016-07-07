@@ -21,8 +21,6 @@ public class User extends Model{
     protected String email;
     protected String password;
     @OneToMany(mappedBy = "user")
-    public ArrayList<Sale> sales = new ArrayList<>();
-    @OneToMany(mappedBy = "user")
     protected ArrayList<Role> roles = new ArrayList<>();
 
 
@@ -116,23 +114,6 @@ public class User extends Model{
             = new Finder<>(User.class);
 
     /**
-     * user sales getter method
-     * @return list of sales user is involved in.
-     */
-    public List<Sale> getSales() {
-        return sales;
-    }
-
-    /**
-     * adds sale to user's list of sales.
-     * @param sale new sale
-     */
-    public void addSale(Sale sale) {
-        Sale.find.select("*").where().eq("user", sale).findUnique();
-        this.sales.add(sale);
-    }
-
-    /**
      * user first name setter method
      * @param firstName first name
      */
@@ -165,12 +146,6 @@ public class User extends Model{
     {
         this.email = email;
     }
-
-    /**
-     * user sale list setter method
-     * @param sales list of sales
-     */
-    public void setSaleList(ArrayList<Sale> sales) { this.sales = sales; }
 
     /**
      * user password getter method

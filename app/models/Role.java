@@ -21,11 +21,26 @@ public class Role extends Model {
     @ManyToOne
     protected Sale sale;
     public enum RoleEnum {
-        saledmin,
-        seller,
-        cashier,
-        clerk,
-        bookkeeper
+        saledmin("Sale Administrator"),
+        seller("Seller"),
+        cashier("Cashier"),
+        clerk("Clerk"),
+        bookkeeper("Bookkeeper");
+
+        private String value;
+
+        RoleEnum(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return this.value;
+        }
+
+        @Override
+        public String toString() {
+            return this.getValue();
+        }
     };
     protected RoleEnum role;
 
@@ -99,6 +114,13 @@ public class Role extends Model {
         return roles;
     }
 
+    public static List<Role> fetchBySaleIdAndUserId(int saleId, int userId) {
+        List<Role> roles = fetchBySaleId(saleId);
+        List<Role> rolesFilteredByUser
+                = roles.stream().filter(role -> role.getUserId() == userId).collect(Collectors.toList());
+        return rolesFilteredByUser;
+    }
+
     public static List<Role> fetchByUserIdForARole(int userId, RoleEnum roleEnum) {
         List<Role> roles = fetchByUserId(userId);
 
@@ -109,17 +131,6 @@ public class Role extends Model {
         List<Role> roles = fetchBySaleId(saleId);
 
         return filterRoles(roles, roleEnum);
-    }
-
-    public static List<User> fetchUsersBySaleIdForARole(int saleId, RoleEnum roleEnum) {
-        List<Role> roles = Role.find.select("*").where().eq("sale_id", saleId).findList();
-        List<User> users = new LinkedList<>();
-
-        for (Role role : roles) {
-            if (role.getRole() == roleEnum)
-                users.add(User.fetchById(role.getUserId()));
-        }
-        return users;
     }
 
     public static List<Role> filterRoles(List<Role> roles, RoleEnum roleEnum) {

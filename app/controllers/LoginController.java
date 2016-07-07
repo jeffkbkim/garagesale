@@ -39,7 +39,7 @@ public class LoginController extends Controller {
         if (userIndex > -1) {
             if (userList.get(userIndex).checkPassword(attemptPass)) {
                 session("connected", userList.get(userIndex).getUserName());
-                return ok(index.render());
+                return redirect(routes.SalesController.allSales());
             }
         }
         if (attemptUser.equals("user") && attemptPass.equals("pass")) {

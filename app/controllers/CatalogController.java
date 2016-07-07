@@ -11,14 +11,7 @@ import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
 import scala.collection.JavaConverters;
-import views.html.additem;
-import views.html.modifyitem;
-import views.html.sale;
-import views.html.catalog;
-import views.html.tag;
-import views.html.alltags;
-import views.html.receipt;
-import views.html.report;
+import views.html.*;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -53,6 +46,22 @@ public class CatalogController extends Controller {
         List<Receipt> receipts = Receipt.fetchReceiptsBySale(sale);
         return ok(catalog.render(user, sale, items, transactions, receipts));
     }
+
+    /**
+     * renders catalog page.
+     * @param saleId id of sale
+     * @return catalog page
+     */
+    public Result renderCatalogReadOnlyPage(int saleId) {
+        //TODO: handle invalid saleId
+        User user = Utils.getUserSession();
+        Sale sale = Sale.fetchById(saleId);
+
+        List<Item> items = Item.fetchItemsBySale(sale);
+        List<Transaction> transactions = Transaction.fetchTransactionsBySale(sale);
+        return ok(catalogreadonly.render(user, sale, items));
+    }
+
 
     /**
      * renders add item page.
@@ -197,6 +206,20 @@ public class CatalogController extends Controller {
         return (redirect(routes.CatalogController.renderCatalogPage(saleID)));
     }
 
+    public static String printOwners(Sale sale) {
+        List<Role> roles = Role.fetchBySaleIdForARole(sale.getId(), Role.RoleEnum.saledmin);
 
+        List<User> owners = User.fetchByIds(Role.mapRolesToUserIds(roles));
+
+        StringBuilder output = new StringBuilder();
+
+        for (User owner : owners) {
+            output.append(owner.getUserName());
+            output.append(", ");
+        }
+
+        return output.substring(0, output.length() - 2);
+
+    }
 
 }

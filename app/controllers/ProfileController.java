@@ -37,9 +37,6 @@ public class ProfileController extends Controller {
                 return ok(profile.render(displayUser));
             }
         }
-        // TODO: DELETE BELOW IMMEDIATELY WHEN YOU SEE THIS
-
-        // TODO: DELETE UNTIL HERE
         return ok(login.render());
 
     }
