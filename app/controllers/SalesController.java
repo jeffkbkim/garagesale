@@ -15,10 +15,7 @@ import views.html.login;
 import views.html.profile;
 import views.html.sale;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static play.libs.Json.toJson;
@@ -91,6 +88,23 @@ public class SalesController extends Controller {
         }
         return redirect(routes.SalesController.getSales());
     }
+
+    public Result closeSale(int saleId) {
+        Sale sale = Sale.fetchById(saleId);
+        User user = Utils.getUserSession();
+
+        if (!isUserSaleAdmin(user, sale))
+            return redirect(routes.SalesController.getSales());
+        sale.setIsOpen(false);
+        sale.save();
+        return redirect(routes.SalesController.getSales());
+    }
+
+    public static boolean isUserSaleAdmin(User user, Sale sale) {
+        List<Role> roles = Role.fetchBySaleIdForARole(sale.getId(), Role.RoleEnum.saledmin);
+        return Role.mapRolesToUserIds(roles).contains(user.getId());
+    }
+
 
     /**
      * add user role into a sale
@@ -181,6 +195,13 @@ public class SalesController extends Controller {
     public Result allSales() {
         User user = Utils.getUserSession();
         List<Sale> allSales = Sale.fetchAllSales();
-        return ok(views.html.sale.render(user, allSales));
+        List<Role> roles = Role.fetchByUserId(user.getId());
+        Set<Integer> saleIds = new HashSet<>(Role.mapRolesToSaleIds(roles));
+        List<Sale> salesNotManagedAndOpen
+                = allSales.stream()
+                .filter(sale -> sale.isOpen() && !saleIds.contains(sale.getId()))
+                .collect(Collectors.toList());
+        return ok(views.html.allsales.render(user, salesNotManagedAndOpen));
     }
+
 }

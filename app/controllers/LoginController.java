@@ -41,7 +41,7 @@ public class LoginController extends Controller {
                 attemptedUser.setIsLocked(false);
                 attemptedUser.setLoginAttempts(0);
                 attemptedUser.update();
-                return ok(index.render());
+                return redirect(routes.SalesController.allSales());
             } else if (attemptedUser.getIsLocked()) {
                 return unauthorized(login.render("User is locked!"));
             } else {
@@ -56,7 +56,7 @@ public class LoginController extends Controller {
             return unauthorized(login.render("incorect password."));
         }
         if (attemptUsername.equals("user") && attemptPass.equals("pass")) {
-            return ok(index.render());
+            return redirect(routes.SalesController.allSales());
         } else {
             return unauthorized(login.render("incorect password."));
         }

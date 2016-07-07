@@ -37,11 +37,7 @@ public class ProfileController extends Controller {
                 return ok(profile.render(displayUser));
             }
         }
-        // TODO: DELETE BELOW IMMEDIATELY WHEN YOU SEE THIS
-
-        // TODO: DELETE UNTIL HERE
-        return ok(login.render("must be logged in to continue."));
-
+       return ok(login.render("must be logged in to continue."));
     }
 
     /**

@@ -1,5 +1,5 @@
 @(user: User)(sales: List[Sale])
-@main(title = "Current Sales of " + user.getFirstName()) {
+@main(title = "Sales you own or manage") {
 
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/salepage.css")">
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/table.css")">
@@ -13,6 +13,8 @@
                     <tr>
                         <th class="mdl-data-table__cell--non-numeric">Sale Name</th>
                         <th>Location</th>
+                        <th>Your Role</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,6 +26,12 @@
                                     </a>
                                 </td>
                                 <td>@sale.getLocation()</td>
+                                <td>
+                                    @{ Role.fetchBySaleIdAndUserId(sale.getId, user.getId).get(0).getRole().toString }
+                                </td>
+                                <td>
+                                    @sale.getStatus
+                                </td>
                             </tr>
                     }
                 </tbody>

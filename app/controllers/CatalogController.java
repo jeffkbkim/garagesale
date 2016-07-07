@@ -11,21 +11,11 @@ import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
 import scala.collection.JavaConverters;
-import views.html.additem;
-import views.html.modifyitem;
-import views.html.sale;
-import views.html.catalog;
-import views.html.tag;
-import views.html.alltags;
-import views.html.receipt;
-import views.html.report;
+import views.html.*;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import play.Logger;
 
@@ -51,8 +41,32 @@ public class CatalogController extends Controller {
         List<Item> items = Item.fetchItemsBySale(sale);
         List<Transaction> transactions = Transaction.fetchTransactionsBySale(sale);
         List<Receipt> receipts = Receipt.fetchReceiptsBySale(sale);
-        return ok(catalog.render(user, sale, items, transactions, receipts));
+        Role.RoleEnum role = userRoleForSale(user, sale);
+        return ok(catalog.render(user, sale, role, items, transactions, receipts));
     }
+
+    public Role.RoleEnum userRoleForSale(User user, Sale sale) {
+        List<Role> roles = Role.fetchBySaleIdAndUserId(sale.getId(), user.getId());
+        if (roles.isEmpty())
+            throw new NoSuchElementException();
+        return roles.get(0).getRole();
+    }
+
+    /**
+     * renders catalog page.
+     * @param saleId id of sale
+     * @return catalog page
+     */
+    public Result renderCatalogReadOnlyPage(int saleId) {
+        //TODO: handle invalid saleId
+        User user = Utils.getUserSession();
+        Sale sale = Sale.fetchById(saleId);
+
+        List<Item> items = Item.fetchItemsBySale(sale);
+        List<Transaction> transactions = Transaction.fetchTransactionsBySale(sale);
+        return ok(catalogreadonly.render(user, sale, items));
+    }
+
 
     /**
      * renders add item page.
@@ -218,6 +232,20 @@ public class CatalogController extends Controller {
         return (redirect(routes.CatalogController.renderCatalogPage(saleID)));
     }
 
+    public static String printOwners(Sale sale) {
+        List<Role> roles = Role.fetchBySaleIdForARole(sale.getId(), Role.RoleEnum.saledmin);
 
+        List<User> owners = User.fetchByIds(Role.mapRolesToUserIds(roles));
+
+        StringBuilder output = new StringBuilder();
+
+        for (User owner : owners) {
+            output.append(owner.getUserName());
+            output.append(", ");
+        }
+
+        return output.substring(0, output.length() - 2);
+
+    }
 
 }

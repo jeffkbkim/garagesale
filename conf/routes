@@ -27,6 +27,8 @@ POST    /updateprofile              controllers.ProfileController.updateProfile
 #Sale Route
 GET     /sale                       controllers.SalesController.getSales
 
+GET     /allsales                   controllers.SalesController.allSales
+
 GET     /createsale                 controllers.SalesController.createSalePage
 
 POST    /createsale                 controllers.SalesController.createSale
@@ -37,8 +39,12 @@ GET     /adduserrole                controllers.SalesController.renderAddUserRol
 
 POST    /adduserrole                controllers.SalesController.addRole
 
+GET     /closesale                  controllers.SalesController.closeSale(saleId: Int ?=0)
+
 #Catalog Routes
 GET     /catalog                    controllers.CatalogController.renderCatalogPage(saleId: Int ?=0)
+
+GET     /viewcatalog                controllers.CatalogController.renderCatalogReadOnlyPage(saleId: Int ?=0)
 
 GET     /additem                    controllers.CatalogController.renderAddItemPage(saleId: Int ?=0)
 

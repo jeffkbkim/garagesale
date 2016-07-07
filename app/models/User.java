@@ -25,8 +25,6 @@ public class User extends Model{
     protected boolean isLocked;
     protected boolean isSuperUser;
     @OneToMany(mappedBy = "user")
-    public ArrayList<Sale> sales = new ArrayList<>();
-    @OneToMany(mappedBy = "user")
     protected ArrayList<Role> roles = new ArrayList<>();
 
 
@@ -121,23 +119,6 @@ public class User extends Model{
             = new Finder<>(User.class);
 
     /**
-     * user sales getter method
-     * @return list of sales user is involved in.
-     */
-    public List<Sale> getSales() {
-        return sales;
-    }
-
-    /**
-     * adds sale to user's list of sales.
-     * @param sale new sale
-     */
-    public void addSale(Sale sale) {
-        Sale.find.select("*").where().eq("user", sale).findUnique();
-        this.sales.add(sale);
-    }
-
-    /**
      * returns the number of current user's login attempts
      * @return user login attempts
      */
@@ -194,12 +175,6 @@ public class User extends Model{
     {
         this.email = email;
     }
-
-    /**
-     * user sale list setter method
-     * @param sales list of sales
-     */
-    public void setSaleList(ArrayList<Sale> sales) { this.sales = sales; }
 
     /**
      * sets user's number of login attempts
