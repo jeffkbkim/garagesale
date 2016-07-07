@@ -23,8 +23,12 @@ public class Utils {
         return user;
     }
 
+    /**
+     * creates a superuser
+     * @return login page with superuser
+     */
     public Result createSuperUser() {
-        User user = new User("super", "super");
+        User user = new User("ffff00", "superuser");
         user.save();
         user.setIsSuperUser(true);
         return ok(login.render(""));
