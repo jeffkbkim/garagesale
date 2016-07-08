@@ -65,3 +65,6 @@ GET     /genreceipt                 controllers.CatalogController.renderReceipt(
 GET     /genreport                  controllers.CatalogController.renderReport(saleId: Int ?=0)
 
 GET     /createsuperuser            controllers.Utils.createSuperUser
+
+#Administration Routes
+GET     /administration            controllers.AdministrationController.administration
