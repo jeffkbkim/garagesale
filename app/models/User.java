@@ -113,6 +113,23 @@ public class User extends Model{
     }
 
     /**
+     * this method finds the role of a user
+     *
+     * @return administration list
+     */
+    public String getRole() {
+        if (Role.fetchByUserId(id).size() > 0) {
+            String roles = "";
+            for (int i = 0; i < Role.fetchByUserId(id).size(); i++) {
+                roles += Role.fetchByUserId(id).get(i).getRole().toString() + " ";
+            }
+            return roles;
+        } else {
+            return "No Roles Assigned";
+        }
+    }
+
+    /**
      * creates Finder for User Entity
      */
     public static Finder<Integer, User> find

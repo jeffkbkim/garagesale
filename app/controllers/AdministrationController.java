@@ -12,16 +12,16 @@ import views.html.administration;
 import java.util.List;
 
 /**
- * This controller contains an action to handle HTTP (home and logout) requests
+ * This controller contains an action to handle administration requests
  * to the application.
  */
 public class AdministrationController extends Controller {
 
 
     /**
-     * this method renders login scala template.
+     * this method renders administration list
      *
-     * @return login page.
+     * @return administration list
      */
     public Result administration() {
         List<User> allUsers = User.fetchAllUsers();

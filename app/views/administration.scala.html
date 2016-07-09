@@ -21,17 +21,7 @@
             <td class="mdl-data-table__cell--non-numeric">@users.get(index).getFirstName @users.get(index).getLastName</td>
             <td>@users.get(index).getPhone</td>
             <td class="mdl-data-table__cell--non-numeric">@users.get(index).getEmail</td>
-            <td><div class="mdl-textfield mdl-js-textfield mdl-select">
-                <select id="privilege" class="mdl-textfield__input">
-                    <option value="0">Super User</option>
-                    <option value="1">Sale Admin</option>
-                    <option value="2">Seller</option>
-                    <option value="3">Clerk</option>
-                    <option value="4">Cashier</option>
-                    <option value="5">Bookkeeper</option>
-                    <option value="6">Guest</option>
-                </select>
-            </div></td>
+            <td>@users.get(index).getRole</td>
             <td><label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for=@index>
                 <input type="checkbox" id=@index class="mdl-switch__input" unchecked>
                 <span class="mdl-switch__label"></span>
