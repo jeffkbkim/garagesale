@@ -212,12 +212,13 @@ public class CatalogController extends Controller {
             int itemID = Integer.parseInt(String.valueOf(transaction.findValue("id")));
             int quantity = Integer.parseInt(String.valueOf(transaction.findValue("quantity")));
             String buyer = transaction.findValue("buyer").toString();
+            String method = transaction.findValue("payment").toString();
             buyer = buyer.substring(1, buyer.length() - 1);
             Logger.debug(itemID + " " + quantity + " " + buyer);
             Item item = Item.fetchItemById(itemID);
             double profit = item.getPrice() * quantity;
             totalProfit += profit;
-            Transaction t = new Transaction(quantity, profit, buyer);
+            Transaction t = new Transaction(quantity, profit, buyer, method);
             t.setSale(sale);
             t.setItem(item);
             t.setReceipt(receipt);
