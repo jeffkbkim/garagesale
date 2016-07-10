@@ -128,10 +128,18 @@
                                         <input class="mdl-textfield__input" type="text" name="buyer" id="buyer"/>
                                         <label class="mdl-textfield__label" for="buyer">Buyer</label>
                                     </div>
+                                </td>
+                                <td class="mdl-data-table__cell">
+                                    <select name="paymentSelection" id="paymentSelection">
+                                        <option value="NA">N/A</option>
+                                        <option value="Credit">Credit</option>
+                                        <option value="Debit">Debit</option>
+                                        <option value="Cash">Cash</option>
+                                    </select>
+                                </td>
                             <td class="mdl-data-table__cell">
                                 <a class="mdl-button mdl-js-button mdl-button--accent add">Add</a>
                             </td>
-                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -153,13 +161,15 @@
                         var itemName = $('#itemSelection option:selected').text();
                         var quantity = parseInt($('#quantity').val());
                         var buyer = $('#buyer').val();
+                        var payment = $('#paymentSelection option:selected').text();
                         var conglomerate = '<li>Selling Item ' + itemID + ': ' + itemName + ' (' + quantity + ') to ' + buyer + ' </li>';
                         if (quantity > 0 && buyer.length > 0) {
                             $('.transactions').append(conglomerate);
                             transArray.push({
                                 "id": itemID,
                                 "quantity": quantity,
-                                "buyer": buyer
+                                "buyer": buyer,
+                                "payment": payment
                             });
                         } else {
                             alert('Please fill out the quantity and buyer name.');

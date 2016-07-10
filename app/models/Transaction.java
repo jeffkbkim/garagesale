@@ -19,6 +19,7 @@ public class Transaction extends Model{
     protected int id;
     protected int quantity;
     protected double profit;
+    protected String method;
     protected String buyer;
     @ManyToOne
     @JoinColumn(name = "sale_id")
@@ -46,11 +47,13 @@ public class Transaction extends Model{
      * @param quantity quantity of item
      * @param profit total profit from item
      * @param buyer name of buyer
+     * @param method method of payment
      */
-    public Transaction( int quantity, double profit, String buyer) {
+    public Transaction( int quantity, double profit, String buyer, String method) {
         this.quantity = quantity;
         this.profit = profit;
         this.buyer = buyer;
+        this.method = method;
     }
 
     /**
@@ -96,6 +99,12 @@ public class Transaction extends Model{
     public Sale getSale() { return this.sale; }
 
     /**
+     * Get payment method
+     * @return The payment method
+     */
+    public String getMethod() { return method; }
+
+    /**
      * Transaction id setter method
      * @param id id of Transaction
      */
@@ -119,6 +128,13 @@ public class Transaction extends Model{
      */
     public void setProfit(double profit) { this.profit = profit; }
 
+
+    /**
+     * Set payment method
+     * @param method New method
+     */
+    public void setMethod(String method) { this.method = method; }
+
     /**
      * Sale setter method
      * @param sale Sale corresponding to transaction
@@ -137,17 +153,22 @@ public class Transaction extends Model{
      */
     public void setReceipt(Receipt receipt) { this.receipt = receipt; }
 
+
+
+
     /**
      * sets quantity, profit, buyer in transaction
      * @param quantity quantity of item
      * @param profit profit from item
      * @param buyer name of buyer
      */
-    public void setAllFields( int quantity, double profit, String buyer) {
+    public void setAllFields( int quantity, double profit, String buyer, String method) {
         this.quantity = quantity;
         this.profit = profit;
         this.buyer = buyer;
+        this.method = method;
     }
+
 
     /**
      * fetches transactions of sale
