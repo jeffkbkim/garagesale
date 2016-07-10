@@ -56,50 +56,77 @@ public class Role extends Model {
     public static Finder<Integer, Role> find
             = new Finder<>(Role.class);
 
+    /**
+     * get role id
+     * @return role id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * get user of the role
+     * @return user
+     */
     public User getUser() {
         return this.user;
     }
 
+    /**
+     * get sale of the role
+     * @return sale
+     */
     public Sale getSale() {
         return this.sale;
     }
 
+    /**
+     * get user id for the role
+     * @return user id
+     */
     public int getUserId() {
         return this.user.getId();
     }
 
+    /**
+     * get sale id for the role
+     * @return sale id
+     */
     public int getSaleId() {
         return this.sale.getId();
     }
 
+    /**
+     * get role type of the role
+     * @return role type
+     */
     public RoleEnum getRole() {
         return role;
     }
 
-//    public void setUserId(int userId) {
-//        this.userId = userId;
-//    }
-//
-//    public void setSaleId(int saleId) {
-//        this.saleId = saleId;
-//    }
-
-//    public void setRole(RoleEnum role) {
-//        this.role = role;
-//    }
-
+    /**
+     * map a list of roles to a list of sale id
+     * @param roles list of roles to be mapped
+     * @return list of sale id
+     */
     public static List<Integer> mapRolesToSaleIds(List<Role> roles) {
         return roles.stream().map(role -> role.getSaleId()).collect(Collectors.toList());
     }
 
+    /**
+     * map a list of roles to a list of use id
+     * @param roles list of roles to be mapped
+     * @return list of user id
+     */
     public static List<Integer> mapRolesToUserIds(List<Role> roles) {
         return roles.stream().map(role -> role.getUserId()).collect(Collectors.toList());
     }
 
+    /**
+     * database call to select a list of roles for a user id
+     * @param userId relevant user id
+     * @return list of roles
+     */
     public static List<Role> fetchByUserId(int userId) {
         List<Role> roles = Role.find.select("*").where().eq("user_id", userId).findList();
         if (roles == null)
@@ -107,6 +134,11 @@ public class Role extends Model {
         return roles;
     }
 
+    /**
+     * database call to select a list of roles for a sale id
+     * @param saleId relevant sale id
+     * @return list of roles
+     */
     public static List<Role> fetchBySaleId(int saleId) {
         List<Role> roles = Role.find.select("*").where().eq("sale_id", saleId).findList();
         if (roles == null)
@@ -114,6 +146,12 @@ public class Role extends Model {
         return roles;
     }
 
+    /**
+     * database call to select a list of roles for a sale id and user id
+     * @param saleId relevant sale id
+     * @param userId relevant user id
+     * @return list of roles
+     */
     public static List<Role> fetchBySaleIdAndUserId(int saleId, int userId) {
         List<Role> roles = fetchBySaleId(saleId);
         List<Role> rolesFilteredByUser
@@ -121,18 +159,36 @@ public class Role extends Model {
         return rolesFilteredByUser;
     }
 
+    /**
+     * database call to select roles for a specific user, with a specific role type
+     * @param userId relevant user id
+     * @param roleEnum role type
+     * @return list of roles
+     */
     public static List<Role> fetchByUserIdForARole(int userId, RoleEnum roleEnum) {
         List<Role> roles = fetchByUserId(userId);
 
         return filterRoles(roles, roleEnum);
     }
 
+    /**
+     * database call to select roles for a specific user, with a specific role type
+     * @param saleId relevant sale id
+     * @param roleEnum role type
+     * @return list of roles
+     */
     public static List<Role> fetchBySaleIdForARole(int saleId, RoleEnum roleEnum) {
         List<Role> roles = fetchBySaleId(saleId);
 
         return filterRoles(roles, roleEnum);
     }
 
+    /**
+     * filters a list of roles to match a specific role type
+     * @param roles list of roles to be filtered
+     * @param roleEnum role type
+     * @return filtered list of roles
+     */
     public static List<Role> filterRoles(List<Role> roles, RoleEnum roleEnum) {
         List<Role> rolesFiltered;
 
@@ -140,6 +196,10 @@ public class Role extends Model {
         return rolesFiltered;
     }
 
+    /**
+     * get all roles
+     * @return list of roles
+     */
     public static List<Role> fetchAllRoles() {
         List<Role> roles = Role.find.select("*").findList();
         if (roles == null)

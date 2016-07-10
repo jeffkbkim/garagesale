@@ -258,6 +258,11 @@ public class User extends Model{
         return false;
     }
 
+    /**
+     * database call to select a user by its id
+     * @param id user id
+     * @return user
+     */
     public static User fetchById(int id) {
         User user = User.find.byId(id);
         return user;
@@ -273,6 +278,11 @@ public class User extends Model{
         return user;
     }
 
+    /**
+     * database call to select users by their ids
+     * @param ids user ids
+     * @return a list of users
+     */
     public static List<User> fetchByIds(List<Integer> ids) {
         List<User> users = new LinkedList<>();
         User user;
@@ -284,6 +294,10 @@ public class User extends Model{
         return users;
     }
 
+    /**
+     * database call to select all users
+     * @return list of all users
+     */
     public static List<User> fetchAllUsers() {
         List<User> allUsers = find.select("*").findList();
         if (allUsers == null)

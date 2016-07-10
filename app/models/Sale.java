@@ -87,26 +87,40 @@ public class Sale extends Model {
 
     /**
      * sale location getter method
-     *
      * @return sale location
      */
-
     public double getEarnings() {
         return this.earnings;
     }
 
+    /**
+     * add earning
+     * @param increment amount of earning to be added
+     */
     public void addEarnings(double increment) {
         this.earnings += increment;
     }
 
+    /**
+     * setter for searning
+     * @param earnings earning value
+     */
     public void setEarnings(double earnings) {
         this.earnings = earnings;
     }
 
+    /**
+     * getter for location
+     * @return location
+     */
     public String getLocation() {
         return this.location;
     }
 
+    /**
+     * check if sale is open
+     * @return true if sale is open, false otherwise
+     */
     public boolean isOpen() {
         return this.isOpen;
     }
@@ -159,6 +173,11 @@ public class Sale extends Model {
         return sale;
     }
 
+    /**
+     * database call to select a list of sales by a list of sale id
+     * @param ids list of sale ids
+     * @return list of sales
+     */
     public static List<Sale> fetchBySaleIds(List<Integer> ids) {
         List<Sale> sales = new LinkedList<>();
         Sale sale;
