@@ -28,6 +28,11 @@ public class SalesController extends Controller {
     @Inject
     FormFactory formFactory;
 
+    /**
+     * render sale role page
+     * @param saleId sale id
+     * @return sale page
+     */
     public Result renderSaleRolesPage(int saleId) {
         User user = Utils.getUserSession();
         Sale sale = Sale.fetchById(saleId);
@@ -60,6 +65,11 @@ public class SalesController extends Controller {
         return ok(views.html.saleroles.render(user, sale, saleadmins, sellers, cashiers, clerks, bookkeepers));
     }
 
+    /**
+     * render add user role page
+     * @param saleId sale id
+     * @return user role page
+     */
     public Result renderAddUserRolePage(int saleId) {
         User user = Utils.getUserSession();
         Sale sale = Sale.fetchById(saleId);
@@ -89,6 +99,11 @@ public class SalesController extends Controller {
         return redirect(routes.SalesController.getSales());
     }
 
+    /**
+     * close sale by sale id, user has to be a sale admin
+     * @param saleId sale id
+     * @return page redirect to list of sales
+     */
     public Result closeSale(int saleId) {
         Sale sale = Sale.fetchById(saleId);
         User user = Utils.getUserSession();
@@ -100,6 +115,12 @@ public class SalesController extends Controller {
         return redirect(routes.SalesController.getSales());
     }
 
+    /**
+     * check if user is a sale admin for a specific sale
+     * @param user
+     * @param sale
+     * @return
+     */
     public static boolean isUserSaleAdmin(User user, Sale sale) {
         List<Role> roles = Role.fetchBySaleIdForARole(sale.getId(), Role.RoleEnum.saledmin);
         return Role.mapRolesToUserIds(roles).contains(user.getId());
@@ -125,18 +146,39 @@ public class SalesController extends Controller {
         return redirect(routes.SalesController.renderSaleRolesPage(sale.getId()));
     }
 
+    /**
+     * check if a user has a role in a specific sale
+     * @param user relevant user
+     * @param sale relevant sale
+     * @return true if user has a role for the sale, false otherwise
+     */
     private boolean isRoleInDB(User user, Sale sale) {
         List<Role> roles = Role.fetchBySaleId(sale.getId());
-        roles = roles.stream().filter(role -> role.getUserId() == user.getId()).collect(Collectors.toList());
+        roles = roles.stream()
+                .filter(role -> role.getUserId() == user.getId())
+                .collect(Collectors.toList());
         return roles.size() > 0;
     }
 
+    /**
+     * add a role to the database, will not add a duplicate
+     * @param user relevant user
+     * @param sale relevant sale
+     * @param role role type
+     */
     private void addRoleToDB(User user, Sale sale, Role.RoleEnum role) {
         Role newRole = new Role(user, sale, role);
         if (!isRoleInDB(user, sale))
             newRole.save();
     }
 
+    /**
+     * helper method to add role to a user for a sale
+     * @param user relevant user
+     * @param sale relevant sale
+     * @param role role type in string
+     * @return true if role type is valid, false otherwise
+     */
     private boolean addRoleToDB(User user, Sale sale, String role) {
         Role newRole = new Role();
         Role.RoleEnum roleEnum;

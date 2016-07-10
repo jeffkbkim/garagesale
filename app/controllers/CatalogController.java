@@ -232,6 +232,11 @@ public class CatalogController extends Controller {
         return (redirect(routes.CatalogController.renderCatalogPage(saleID)));
     }
 
+    /**
+     * print owners of the sale, separated by commas
+     * @param sale relevant sale
+     * @return a string that shows a list of users, separated by commas
+     */
     public static String printOwners(Sale sale) {
         List<Role> roles = Role.fetchBySaleIdForARole(sale.getId(), Role.RoleEnum.saledmin);
 
