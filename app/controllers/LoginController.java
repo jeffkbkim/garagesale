@@ -53,7 +53,7 @@ public class LoginController extends Controller {
                     attemptedUser.update();
                 }
             }
-            return unauthorized(login.render("incorect password."));
+            return unauthorized(login.render("incorrect password."));
         }
         if (attemptUsername.equals("user") && attemptPass.equals("pass")) {
             return redirect(routes.SalesController.allSales());

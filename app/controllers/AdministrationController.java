@@ -24,8 +24,34 @@ public class AdministrationController extends Controller {
      * @return administration list
      */
     public Result administration() {
+        Logger.debug("administration called!");
+        User user = Utils.getUserSession();
         List<User> allUsers = User.fetchAllUsers();
-        return ok(administration.render(allUsers));
+        return ok(administration.render(allUsers, user));
+    }
+
+    public Result update(int userId, boolean isLocked) {
+        Logger.debug("update called!");
+        User user = User.fetchById(userId);
+        user.setIsLocked(isLocked);
+        user.save();
+        return administration();
+    }
+
+    public Result lock(int userId) {
+        Logger.debug("lock called!");
+        User user = User.fetchById(userId);
+        user.setIsLocked(true);
+        user.save();
+        return administration();
+    }
+
+    public Result unlock(int userId) {
+        Logger.debug("unlock called!");
+        User user = User.fetchById(userId);
+        user.setIsLocked(false);
+        user.save();
+        return administration();
     }
 
 }

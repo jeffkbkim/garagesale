@@ -28,9 +28,9 @@ public class Utils {
      * @return login page with superuser
      */
     public Result createSuperUser() {
-        User user = new User("ffff00", "superuser");
-        user.save();
+        User user = new User("cs2340", "superuser");
         user.setIsSuperUser(true);
+        user.save();
         return ok(login.render(""));
     }
 }

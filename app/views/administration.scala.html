@@ -1,4 +1,4 @@
-@(users: List[User])
+@(users: List[User], currUser: User)
 @main(title = "Administration") {
 <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/administration.css")">
 
@@ -23,8 +23,26 @@
             <td class="mdl-data-table__cell--non-numeric">@users.get(index).getEmail</td>
             <td>@users.get(index).getRole</td>
             <td><label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for=@index>
-                <input type="checkbox" id=@index class="mdl-switch__input" unchecked>
-                <span class="mdl-switch__label"></span>
+                @if(users.get(index).getIsLocked == false) {
+
+                    <input type="checkbox" id=@index class="mdl-switch__input" unchecked>
+                    @if(currUser.getIsSuperUser && !users.get(index).getIsSuperUser) {
+                        <a href="@routes.AdministrationController.lock(users.get(index).getId)">
+                            <button id="confirm-control" class="mdl-button mdl-js-button mdl-color-text--blue-300">
+                                Change
+                            </button>
+                        </a>
+                    }
+                } else {
+                    <input type="checkbox" id=@index class="mdl-switch__input" checked>
+                    @if(currUser.getIsSuperUser && !users.get(index).getIsSuperUser) {
+                        <a href="@routes.AdministrationController.unlock(users.get(index).getId)">
+                            <button id="confirm-control" class="mdl-button mdl-js-button mdl-color-text--blue-300">
+                                Change
+                            </button>
+                        </a>
+                    }
+            }
             </label></td>
         </tr>
     }
@@ -32,12 +50,28 @@
     </tbody>
 </table>
 
-<div class="administration-control">
-    <button id="confirm-control" class="mdl-button mdl-js-button mdl-color-text--blue-300">
-        Confirm
-    </button>
-    <button id="delete-control" class="mdl-button mdl-js-button mdl-color-text--blue-300">
-        Delete
-    </button>
-</div>
+@*//    @if(currUser.getIsSuperUser) {*@
+        @*<div class="administration-control">*@
+            @*<a href="@routes.AdministrationController.administration">*@
+                @*<button id="confirm-control" class="mdl-button mdl-js-button mdl-color-text--blue-300">*@
+                    @*Confirm*@
+                @*</button>*@
+            @*</a>*@
+            @*<button id="delete-control" class="mdl-button mdl-js-button mdl-color-text--blue-300">*@
+                @*Delete*@
+            @*</button>*@
+        @*</div>*@
+    @*}*@
+
+@*<script>*@
+    @*function lock(saleId) {*@
+        @*var a = saleId;*@
+        @*alert("working");*@
+        @*var index = @index;*@
+        @*var isLocked = document.getElementById("@index").addEventListener("click");*@
+        @*isLocked.checked = true;*@
+        @*$.post@routes.AdministrationController.update(3, true);*@
+    @*}*@
+@*</script>*@
+
 }
