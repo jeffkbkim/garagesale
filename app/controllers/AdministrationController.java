@@ -36,7 +36,6 @@ public class AdministrationController extends Controller {
      * @return administration page with locked user updated
      */
     public Result lock(int userId) {
-        Logger.debug("lock called!");
         User user = User.fetchById(userId);
         user.setIsLocked(true);
         user.save();
@@ -49,7 +48,6 @@ public class AdministrationController extends Controller {
      * @return administration page with unlocked user updated
      */
     public Result unlock(int userId) {
-        Logger.debug("unlock called!");
         User user = User.fetchById(userId);
         user.setIsLocked(false);
         user.save();
