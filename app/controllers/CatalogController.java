@@ -45,6 +45,12 @@ public class CatalogController extends Controller {
         return ok(catalog.render(user, sale, role, items, transactions, receipts));
     }
 
+    /**
+     * gets roles for a sale
+     * @param user user
+     * @param sale sale
+     * @return role
+     */
     public Role.RoleEnum userRoleForSale(User user, Sale sale) {
         List<Role> roles = Role.fetchBySaleIdAndUserId(sale.getId(), user.getId());
         if (roles.isEmpty())

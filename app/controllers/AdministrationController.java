@@ -30,14 +30,11 @@ public class AdministrationController extends Controller {
         return ok(administration.render(allUsers, user));
     }
 
-    public Result update(int userId, boolean isLocked) {
-        Logger.debug("update called!");
-        User user = User.fetchById(userId);
-        user.setIsLocked(isLocked);
-        user.save();
-        return administration();
-    }
-
+    /**
+     * locks user
+     * @param userId id of the user
+     * @return administration page with locked user updated
+     */
     public Result lock(int userId) {
         Logger.debug("lock called!");
         User user = User.fetchById(userId);
@@ -46,6 +43,11 @@ public class AdministrationController extends Controller {
         return administration();
     }
 
+    /**
+     * unlocks user
+     * @param userId id of the user
+     * @return administration page with unlocked user updated
+     */
     public Result unlock(int userId) {
         Logger.debug("unlock called!");
         User user = User.fetchById(userId);
