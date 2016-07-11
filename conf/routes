@@ -69,8 +69,6 @@ GET     /createsuperuser            controllers.Utils.createSuperUser
 #Administration Routes
 GET     /administration            controllers.AdministrationController.administration
 
-POST    /administration            controllers.AdministrationController.update(userId: Int?=0, x: Boolean)
-
 GET    /lock                      controllers.AdministrationController.lock(userId: Int?=0)
 
 GET    /unlock                    controllers.AdministrationController.unlock(userId: Int?=0)
