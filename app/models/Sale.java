@@ -1,8 +1,6 @@
 package models;
 
 import com.avaje.ebean.Model;
-import play.data.format.Formats;
-import play.data.format.Formats.DateTime;
 
 import javax.persistence.*;
 import java.util.*;
@@ -13,26 +11,27 @@ import java.util.*;
  */
 
 @Entity
-public class Sale extends Model {
+public final class Sale extends Model {
     @Id
-    protected int id;
-    protected String name;
-    protected String location;
-    protected double earnings;
-    protected boolean isOpen;
-    @OneToMany(mappedBy = "sale")
-    protected ArrayList<Transaction> transactions = new ArrayList<>();
-    @OneToMany(mappedBy = "sale")
-    protected ArrayList<Item> items = new ArrayList<>();
-    @OneToMany(mappedBy = "sale")
-    protected ArrayList<Receipt> receipts = new ArrayList<>();
-    @OneToMany(mappedBy = "sale")
-    protected ArrayList<Role> roles = new ArrayList<>();
+    private int id;
+    private String name;
+    private String location;
+    private double earnings;
+    private boolean isOpen;
+    private static final String SALE = "sale";
+    @OneToMany(mappedBy = SALE)
+    private List<Transaction> transactions = new ArrayList<>();
+    @OneToMany(mappedBy = SALE)
+    private List<Item> items = new ArrayList<>();
+    @OneToMany(mappedBy = SALE)
+    private List<Receipt> receipts = new ArrayList<>();
+    @OneToMany(mappedBy = SALE)
+    private List<Role> roles = new ArrayList<>();
 
     /**
      * creates Finder for Sale Entity.
      */
-    public static Finder<Integer, Sale> find
+    private static Finder<Integer, Sale> find
             = new Finder<>(Sale.class);
 
     /**
@@ -61,9 +60,9 @@ public class Sale extends Model {
      */
     public static Sale makeInstance(SaleFormData saleFormData) {
         Sale sale = new Sale();
-        sale.id = saleFormData.saleID;
-        sale.name = saleFormData.name;
-        sale.location = saleFormData.location;
+        sale.id = saleFormData.getSaleID();
+        sale.name = saleFormData.getName();
+        sale.location = saleFormData.getLocation();
         return sale;
     }
 
@@ -126,8 +125,9 @@ public class Sale extends Model {
     }
 
     public String getStatus() {
-        if (isOpen)
+        if (isOpen) {
             return "Open";
+        }
         return "Close";
     }
 
@@ -169,8 +169,7 @@ public class Sale extends Model {
      * @return Sale corresponding to sale id
      */
     public static Sale fetchById(int id) {
-        Sale sale = find.byId(id);
-        return sale;
+        return find.byId(id);
     }
 
     /**
@@ -183,8 +182,10 @@ public class Sale extends Model {
         Sale sale;
         for (Integer id : ids) {
             sale = Sale.find.byId(id);
-            if (sale != null)
+            if (sale != null) {
                 sales.add(sale);
+            }
+
         }
         return sales;
     }
@@ -196,8 +197,9 @@ public class Sale extends Model {
      */
     public static List<Sale> fetchAllSales() {
         List<Sale> sales = Sale.find.select("*").findList();
-        if (sales == null)
+        if (sales == null) {
             sales = new ArrayList<>();
+        }
         return sales;
     }
 
@@ -209,8 +211,49 @@ public class Sale extends Model {
      */
     public static List<Sale> fetchByUser(User user) {
         List<Sale> sales = Sale.find.select("*").where().eq("user_id", user.getId()).findList();
-        if (sales == null)
+        if (sales == null) {
             sales = new ArrayList<>();
+        }
         return sales;
+    }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public List<Receipt> getReceipts() {
+        return receipts;
+    }
+
+    public void setReceipts(List<Receipt> receipts) {
+        this.receipts = receipts;
+    }
+
+    public static Finder<Integer, Sale> getFind() {
+        return find;
+    }
+
+    public static void setFind(Finder<Integer, Sale> find) {
+        Sale.find = find;
     }
 }

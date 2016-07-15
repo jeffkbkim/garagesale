@@ -1,0 +1,94 @@
+@(user: User)
+@main(title = "Hi " + user.getFirstName + "! Here's your profile.") {
+
+<link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/profile.css")">
+
+<dialog class="mdl-dialog">
+    <h4 class="mdl-dialog-title">Please enter your password.</h4>
+    <div class="mdl-dialog__content">
+            <input class="mdl-textfield__input" type="password" id="pword" name="password"/>
+    </div>
+    <div class="mdl-dialog__actions--full-width">
+        <button type="button" class="mdl-button enter">Enter</button>
+    </div>
+</dialog>
+
+<div class="mdl-grid">
+    <div id="welcome-card" class="mdl-cell mdl-cell--3-col">
+        <div class="mdl-card mdl-shadow--2dp">
+            <!--            <div class="mdl-card__title profile-header">
+                            <h2 class="mdl-card__title-text">Hi, @user.getFirstName! Here's your profile.</h2>
+                        </div>-->
+            <div class="mdl-card__media" style='height:300;background:url(@routes.Assets.versioned("images/user.png"));background-size:cover;'>
+            </div>
+
+        <div class="mdl-card__supporting-text">
+            <form action="@routes.ProfileController.updateProfile" class="update-form" method="post">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label firstname">
+                    <input class="mdl-textfield__input" value="@user.getFirstName" type="text" id="fname"
+                           name="firstname"/>
+                    <label class="mdl-textfield__label" for="fname">First Name</label>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label lastname">
+                    <input class="mdl-textfield__input" value="@user.getLastName" type="text" id="lname"
+                           name="lastname"/>
+                    <label class="mdl-textfield__label" for="lname">Last Name</label>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label emailaddress">
+                    <input class="mdl-textfield__input" value="@user.getEmail" type="text" id="emailid" name="email"/>
+                    <label class="mdl-textfield__label" for="email">Email</label>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label phonenumber">
+                    <input class="mdl-textfield__input" value="@user.getPhone" type="text" pattern="[0-9]*" id="phoneid"
+                           name="phone"/>
+                    <label class="mdl-textfield__label" for="phone">Phone</label>
+                </div>
+            </form>
+        </div>
+        <div class="mdl-card__actions mdl-card--border save">
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+                </div>
+                <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+                        <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect saveButton">
+                            Save Changes
+                        </button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div id="detail-card" class="mdl-cell mdl-cell--6-col">
+        <div class="mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title mdl-color--primary mdl-color-text--white detail-card-header">
+                <h3 class="mdl-card__title-text">Profile</h3>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    var dialog = document.querySelector('dialog');
+    var saveButton = document.querySelector('.saveButton');
+    if (! dialog.showModal) {
+        dialogPolyfill.registerDialog(dialog);
+    }
+    saveButton.addEventListener('click', function() {
+        dialog.showModal();
+    });
+    dialog.querySelector('.enter').addEventListener('click', function() {
+        var enteredPassword = $('#pword').val();
+        $.post('@routes.ProfileController.updateProfile',
+        {
+            firstName: $('#fname').val(),
+            lastName: $('#lname').val(),
+            email: $('#emailid').val(),
+            phone: $('#phoneid').val(),
+            verifypassword: enteredPassword
+        });
+        dialog.close();
+    });
+</script>
+
+}

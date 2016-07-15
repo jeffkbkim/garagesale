@@ -2,7 +2,6 @@ package controllers;
 
 import models.User;
 import play.mvc.Result;
-import play.mvc.Controller;
 import views.html.login;
 
 import static play.mvc.Controller.session;
@@ -19,8 +18,7 @@ public class Utils {
      */
     public static User getUserSession() {
         String username = session("connected");
-        User user = User.fetchByUsername(username);
-        return user;
+        return User.fetchByUsername(username);
     }
 
     /**

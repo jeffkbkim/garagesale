@@ -3,8 +3,6 @@ package controllers;
 import play.mvc.*;
 import play.api.*;
 import play.api.data.*;
-import play.Logger;
-
 import views.html.*;
 
 /**

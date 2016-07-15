@@ -22,7 +22,7 @@ import play.Logger;
 public class ProfileController extends Controller {
 
     @Inject
-    FormFactory formFactory;
+    private FormFactory formFactory;
 
     /**
      * renders profile page.
@@ -53,11 +53,11 @@ public class ProfileController extends Controller {
         if (user!= null) {
             List<User> listUsers = new Model.Finder(User.class).all();
             thisUser = listUsers.get(listUsers.indexOf(new User(user, null)));
-            if (updatedUser.verifypassword.equals(thisUser.getPassword())) {
-                thisUser.setFirstName(updatedUser.firstName);
-                thisUser.setLastName(updatedUser.lastName);
-                thisUser.setEmail(updatedUser.email);
-                thisUser.setPhone(updatedUser.phone);
+            if (updatedUser.getVerifypassword().equals(thisUser.getPassword())) {
+                thisUser.setFirstName(updatedUser.getFirstName());
+                thisUser.setLastName(updatedUser.getLastName());
+                thisUser.setEmail(updatedUser.getEmail());
+                thisUser.setPhone(updatedUser.getPhone());
                 thisUser.update();
             }
             return ok(profile.render(thisUser));

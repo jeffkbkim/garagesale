@@ -14,27 +14,27 @@ import java.util.List;
  */
 
 @Entity
-public class Transaction extends Model{
+public final class Transaction extends Model{
     @Id
-    protected int id;
-    protected int quantity;
-    protected double profit;
-    protected String method;
-    protected String buyer;
+    private int id;
+    private int quantity;
+    private double profit;
+    private String method;
+    private String buyer;
     @ManyToOne
     @JoinColumn(name = "sale_id")
-    protected Sale sale;
+    private Sale sale;
     @ManyToOne
     @JoinColumn(name = "item_id")
-    protected Item item;
+    private Item item;
     @ManyToOne
     @JoinColumn(name = "receipt_id")
-    protected Receipt receipt;
+    private Receipt receipt;
 
     /**
      * creates Finder for Transaction Entity
      */
-    public static Finder<Integer, Transaction> find
+    private static Finder<Integer, Transaction> find
             = new Finder<>(Transaction.class);
 
     /**
@@ -176,8 +176,7 @@ public class Transaction extends Model{
      * @return list of transaction
      */
     public static List<Transaction> fetchTransactionsBySale(Sale sale) {
-        List<Transaction> trans = Transaction.find.select("*").where().eq("sale_id", sale.getId()).findList();
-        return trans;
+        return Transaction.find.select("*").where().eq("sale_id", sale.getId()).findList();
     }
 
     /**
@@ -186,8 +185,7 @@ public class Transaction extends Model{
      * @return list of transactions
      */
     public static List<Transaction> fetchTransactionsByItem(Item i) {
-        List<Transaction> trans = Transaction.find.select("*").where().eq("item_id", i.getId()).findList();
-        return trans;
+        return Transaction.find.select("*").where().eq("item_id", i.getId()).findList();
     }
 
     /**
@@ -196,8 +194,7 @@ public class Transaction extends Model{
      * @return list of transactions
      */
     public static List<Transaction> fetchTransactionByReceipt(Receipt receipt) {
-        List<Transaction> trans = Transaction.find.select("*").where().eq("receipt_id", receipt.getId()).findList();
-        return trans;
+        return Transaction.find.select("*").where().eq("receipt_id", receipt.getId()).findList();
     }
 
     /**
@@ -206,7 +203,14 @@ public class Transaction extends Model{
      * @return Transaction
      */
     public static Transaction fetchTransactionById(int id) {
-        Transaction trans = find.byId(id);
-        return trans;
+        return find.byId(id);
+    }
+
+    public static Finder<Integer, Transaction> getFind() {
+        return find;
+    }
+
+    public static void setFind(Finder<Integer, Transaction> find) {
+        Transaction.find = find;
     }
 }

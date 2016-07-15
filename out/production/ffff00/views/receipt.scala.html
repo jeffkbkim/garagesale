@@ -1,0 +1,38 @@
+@(user: User)(sale: Sale)(receipt: Receipt)(transactions: List[Transaction])
+<link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/receipt.css")">
+<h3>Receipt for : @receipt.getSale().getName()</h3>
+<h3>Date : @receipt.getDate()</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>#</th>
+            <th>Buyer</th>
+            <th>Charge</th>
+            <th>Payment Method</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(transaction <- transactions) {
+        <tr>
+            <td>
+                @transaction.getItem().getName()
+            </td>
+            <td>
+                @transaction.getQuantity()
+            </td>
+            <td>
+                @transaction.getBuyer()
+            </td>
+            <td>
+                @transaction.getProfit()
+            </td>
+            <td>
+                @transaction.getMethod()
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+<h3>Total Profit : $@receipt.getProfit()</h3>

@@ -1,21 +1,17 @@
 package models;
 
-import play.data.format.Formats.DateTime;
-
-import java.util.ArrayList;
-
 /**
  * Created by Yuda on 6/17/16.
  * Item Form Data.
  */
 public class ItemFormData {
-    public int id;
-    public String name;
-    public String description;
-    public double price;
-    public int quantity;
-    public int saleId;
-    public int itemId;
+    private int id;
+    private String name;
+    private String description;
+    private double price;
+    private int quantity;
+    private int saleId;
+    private int itemId;
 
     /**
      * ItemFormData no arg constructor
@@ -37,5 +33,61 @@ public class ItemFormData {
         this.description = description;
         this.price = price;
         this.quantity = quantity;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getSaleId() {
+        return saleId;
+    }
+
+    public void setSaleId(int saleId) {
+        this.saleId = saleId;
+    }
+
+    public int getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
     }
 }

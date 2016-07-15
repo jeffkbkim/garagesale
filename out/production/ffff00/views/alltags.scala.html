@@ -1,0 +1,4 @@
+@(user: User)(sale: Sale)(items: List[Item])
+@for(item <- items) {
+    @tag(user = user)(sale= sale)(item = item)
+}

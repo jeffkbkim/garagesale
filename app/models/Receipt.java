@@ -11,21 +11,21 @@ import java.util.List;
  * Receipt Entity
  */
 @Entity
-public class Receipt extends Model{
+public final class Receipt extends Model{
     @Id
-    protected int id;
-    protected String date;
-    protected double totalprofit;
+    private int id;
+    private String date;
+    private double totalprofit;
     @ManyToOne
     @JoinColumn(name = "sale_id")
-    protected Sale sale;
+    private Sale sale;
     @OneToMany(mappedBy = "receipt")
-    protected ArrayList<Transaction> transactions = new ArrayList<>();
+    private List<Transaction> transactions = new ArrayList<>();
 
     /**
      * creates Finder for Receipt Entity.
      */
-    public static Finder<Integer, Receipt> find
+    private static Finder<Integer, Receipt> find
             = new Finder<>(Receipt.class);
 
     /**
@@ -104,8 +104,7 @@ public class Receipt extends Model{
      * @return list of receipts of sale
      */
     public static List<Receipt> fetchReceiptsBySale(Sale sale) {
-        List<Receipt> receipts = Receipt.find.select("*").where().eq("sale_id", sale.getId()).findList();
-        return receipts;
+        return Receipt.find.select("*").where().eq("sale_id", sale.getId()).findList();
     }
 
     /**
@@ -114,7 +113,22 @@ public class Receipt extends Model{
      * @return receipt
      */
     public static Receipt fetchReceiptById(int id) {
-        Receipt receipt = find.byId(id);
-        return receipt;
+        return find.byId(id);
+    }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
+    public static Finder<Integer, Receipt> getFind() {
+        return find;
+    }
+
+    public static void setFind(Finder<Integer, Receipt> find) {
+        Receipt.find = find;
     }
 }

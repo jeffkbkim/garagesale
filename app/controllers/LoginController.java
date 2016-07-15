@@ -1,6 +1,5 @@
 package controllers;
 
-import com.avaje.ebean.Model;
 import com.google.inject.Inject;
 import models.LoginFormData;
 import models.User;
@@ -9,11 +8,9 @@ import play.data.Form;
 import play.data.FormFactory;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.index;
 import views.html.*;
 import play.Logger;
 
-import java.util.List;
 
 /**
  * Created by Douglas on 6/10/16.
@@ -23,7 +20,7 @@ import java.util.List;
 public class LoginController extends Controller {
 
     @Inject
-    FormFactory formFactory;
+    private FormFactory formFactory;
 
     /**
      * validates login attempt.
@@ -31,9 +28,8 @@ public class LoginController extends Controller {
      */
     public Result loginAttempt() {
         Form<LoginFormData> loginForm = formFactory.form(LoginFormData.class).bindFromRequest();
-        String attemptUsername = loginForm.get().username;
-        String attemptPass = loginForm.get().password;
-        User testUser = new User(attemptUsername, attemptPass);
+        String attemptUsername = loginForm.get().getUsername();
+        String attemptPass = loginForm.get().getPassword();
         User attemptedUser = User.fetchByUsername(attemptUsername);
         if (attemptedUser != null) {
             if (attemptedUser.checkPassword(attemptPass) && !attemptedUser.getIsLocked()) {

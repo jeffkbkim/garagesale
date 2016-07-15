@@ -43,6 +43,7 @@ create table transaction (
   id                        integer not null,
   quantity                  integer,
   profit                    double,
+  method                    varchar(255),
   buyer                     varchar(255),
   sale_id                   integer,
   item_id                   integer,

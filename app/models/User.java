@@ -1,7 +1,6 @@
 package models;
 
 import com.avaje.ebean.Model;
-import play.Logger;
 
 import javax.persistence.*;
 import java.util.*;
@@ -11,21 +10,21 @@ import java.util.*;
  * User Entity
  */
 @Entity
-public class User extends Model{
+public final class User extends Model{
     @Id
-    protected int id;
+    private int id;
     @Column(unique = true)
-    protected String userName;
-    protected String firstName;
-    protected String lastName;
-    protected String phoneNumber;
-    protected String email;
-    protected String password;
-    protected int loginAttempts;
-    protected boolean isLocked;
-    protected boolean isSuperUser;
+    private String userName;
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
+    private String email;
+    private String password;
+    private int loginAttempts;
+    private boolean isLocked;
+    private boolean isSuperUser;
     @OneToMany(mappedBy = "user")
-    protected ArrayList<Role> roles = new ArrayList<>();
+    private List<Role> roles = new ArrayList<>();
 
 
     /**
@@ -119,11 +118,12 @@ public class User extends Model{
      */
     public String getRole() {
         if (Role.fetchByUserId(id).size() > 0) {
-            String roles = "";
+            StringBuilder roles = new StringBuilder();
             for (int i = 0; i < Role.fetchByUserId(id).size(); i++) {
-                roles += Role.fetchByUserId(id).get(i).getRole().toString() + " ";
+                roles.append(Role.fetchByUserId(id).get(i).getRole().toString());
+                roles.append(" ");
             }
-            return roles;
+            return roles.toString();
         } else {
             return "No Roles Assigned";
         }
@@ -132,7 +132,7 @@ public class User extends Model{
     /**
      * creates Finder for User Entity
      */
-    public static Finder<Integer, User> find
+    private static Finder<Integer, User> find
             = new Finder<>(User.class);
 
     /**
@@ -238,12 +238,12 @@ public class User extends Model{
      * @return User corresponding to the data
      */
     public static User makeInstance(UserFormData formData) {
-        User user = new User(formData.username,
-                formData.firstname,
-                formData.lastname,
-                formData.phone,
-                formData.email,
-                formData.password);
+        User user = new User(formData.getUsername(),
+                formData.getFirstname(),
+                formData.getLastname(),
+                formData.getPhone(),
+                formData.getEmail(),
+                formData.getPassword());
         return user;
     }
 
@@ -258,14 +258,29 @@ public class User extends Model{
         return false;
     }
 
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (userName != null ? userName.hashCode() : 0);
+        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + loginAttempts;
+        result = 31 * result + (isLocked ? 1 : 0);
+        result = 31 * result + (isSuperUser ? 1 : 0);
+        result = 31 * result + (roles != null ? roles.hashCode() : 0);
+        return result;
+    }
+
     /**
      * database call to select a user by its id
      * @param id user id
      * @return user
      */
     public static User fetchById(int id) {
-        User user = User.find.byId(id);
-        return user;
+        return User.find.byId(id);
     }
 
     /**
@@ -274,8 +289,7 @@ public class User extends Model{
      * @return user corresponding to username
      */
     public static User fetchByUsername(String username) {
-        User user = User.find.select("*").where().eq("userName", username).findUnique();
-        return user;
+        return User.find.select("*").where().eq("userName", username).findUnique();
     }
 
     /**
@@ -288,8 +302,9 @@ public class User extends Model{
         User user;
         for (Integer id : ids) {
             user = User.find.byId(id);
-            if (user != null)
+            if (user != null) {
                 users.add(user);
+            }
         }
         return users;
     }
@@ -300,8 +315,25 @@ public class User extends Model{
      */
     public static List<User> fetchAllUsers() {
         List<User> allUsers = find.select("*").findList();
-        if (allUsers == null)
+        if (allUsers == null) {
             allUsers = new ArrayList<>();
+        }
         return allUsers;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public static Finder<Integer, User> getFind() {
+        return find;
+    }
+
+    public static void setFind(Finder<Integer, User> find) {
+        User.find = find;
     }
 }

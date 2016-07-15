@@ -1,11 +1,7 @@
 package models;
 
-import play.data.format.Formats;
 import play.data.format.Formats.DateTime;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -13,12 +9,12 @@ import java.util.List;
  * Sale Form Data
  */
 public class SaleFormData {
-    public int saleID;
-    public String name;
-    public String location;
-    public DateTime dateTime;
-    public double earnings;
-    public ArrayList<User> users;
+    private int saleID;
+    private String name;
+    private String location;
+    private DateTime dateTime;
+    private double earnings;
+    private List<User> users;
 
     /**
      * Sale Form Data no-arg constructor
@@ -34,11 +30,59 @@ public class SaleFormData {
      * @param users users involved in sale
      */
     public SaleFormData(int saleID, String name, String location,
-                        DateTime dateTime, ArrayList<User> users) {
+                        DateTime dateTime, List<User> users) {
         this.saleID = saleID;
         this.name = name;
         this.location = location;
         this.dateTime = dateTime;
+        this.users = users;
+    }
+
+    public int getSaleID() {
+        return saleID;
+    }
+
+    public void setSaleID(int saleID) {
+        this.saleID = saleID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public DateTime getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(DateTime dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    public double getEarnings() {
+        return earnings;
+    }
+
+    public void setEarnings(double earnings) {
+        this.earnings = earnings;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 }

@@ -1,0 +1,92 @@
+@(title: String)(content: Html)
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="CS2340 Project">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>FFFF00</title>
+
+    <link rel="shortcut icon" href="@routes.Assets.versioned("images/favicon.png")">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.cyan-light_blue.min.css">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="@routes.Assets.versioned("javascripts/cards.js")"></script>
+    <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+  </head>
+  <body>
+    <div class="layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
+      <div class="header">
+        <div class="mdl-layout--fixed-header-transparent">
+          <div class="mdl-layout__header-row mdl-color-text--grey-600">
+            <span class="mdl-layout-title">@title</span>
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+              <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
+                <i class="material-icons">search</i>
+              </label>
+              <div class="mdl-textfield__expandable-holder">
+                <input class="mdl-textfield__input" type="text" id="search">
+                <label class="mdl-textfield__label" for="search">Enter your query...</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="drawer mdl-layout__drawer mdl-color-text--blue-grey-50">
+        <header class="drawer-header">
+          <img src="@routes.Assets.versioned("images/user.png")" class="user">
+          <div class="user-dropdown">
+            <span class="user-text">#ffff00</span>
+            <div class="mdl-layout-spacer"></div>
+            <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon user-text">
+              <i class="material-icons" role="presentation">arrow_drop_down</i>
+              <span class="visuallyhidden">Accounts</span>
+            </button>
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+              <li class="mdl-menu__item"><i class="material-icons">settings</i><a href="@routes.ProfileController.view()">Profile</a></li>
+              <li class="mdl-menu__item"><i class="material-icons">person</i><a href="@routes.Application.logout()">Logout</a></li>
+            </ul>
+          </div>
+        </header>
+
+        <nav class="navigation mdl-navigation mdl-color--white">
+          <a class="mdl-navigation__link" href="@routes.SalesController.allSales()"><i class="material-icons" role="presentation">home</i>Home</a>
+          <a class="mdl-navigation__link" href=""><i class="material-icons" role="presentation">inbox</i>Inventory</a>
+          <a class="mdl-navigation__link" href="@routes.SalesController.getSales()"><i class="material-icons" role="presentation">shopping_cart</i>Sale</a>
+          <a class="mdl-navigation__link" href=""><i class="material-icons" role="presentation">local_offer</i>Print Tags</a>
+          <a class="mdl-navigation__link" href=""><i class="material-icons" role="presentation">account_balance</i>Statement</a>
+          <a class="mdl-navigation__link" href=""><i class="material-icons" role="presentation">monetization_on</i>Reports</a>
+          <a class="mdl-navigation__link" href="@routes.AdministrationController.administration()"><i class="material-icons" role="presentation">people</i>Administration</a>
+        </nav>
+      </div>
+
+      <main class="mdl-layout__content mdl-color--grey-50">
+        <div class="content">
+          @content
+        </div>
+
+        <div class="mdl-layout-spacer"></div>
+
+        <footer class="mdl-mini-footer">
+          <div class="mdl-mini-footer__left-section">
+            <ul class="mdl-mini-footer__link-list">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="#">Privacy</a></li>
+            </ul>
+          </div>
+          <div class="mdl-mini-footer__right-section">
+            <div class="mdl-logo">Build - version 1.0.0</div>
+          </div>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>

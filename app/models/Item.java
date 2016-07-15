@@ -12,23 +12,23 @@ import java.util.List;
  */
 
 @Entity
-public class Item extends Model{
+public final class Item extends Model{
     @Id
-    protected int id;
-    protected String name;
-    protected String description;
-    protected int quantity;
-    protected double price;
+    private int id;
+    private String name;
+    private String description;
+    private int quantity;
+    private double price;
     @ManyToOne
     @JoinColumn(name = "sale_id")
-    protected Sale sale;
+    private Sale sale;
     @OneToMany(mappedBy = "item")
-    protected ArrayList<Transaction> transactions = new ArrayList<>();
+    private List<Transaction> transactions = new ArrayList<>();
 
     /**
      * creates Finder for Item Entity.
      */
-    public static Finder<Integer, Item> find
+    private static Finder<Integer, Item> find
             = new Finder<>(Item.class);
 
 
@@ -161,8 +161,7 @@ public class Item extends Model{
      */
     public static List<Item> fetchItemsBySale(Sale sale) {
         //TODO: need to handle empty list/null
-        List<Item> items = Item.find.select("*").where().eq("sale_id", sale.getId()).findList();
-        return items;
+        return Item.find.select("*").where().eq("sale_id", sale.getId()).findList();
     }
 
     /**
@@ -172,7 +171,22 @@ public class Item extends Model{
      */
     public static Item fetchItemById(int id) {
         //TODO: need to handle empty list/null
-        Item item = find.byId(id);
-        return item;
+        return find.byId(id);
+    }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
+    public static Finder<Integer, Item> getFind() {
+        return find;
+    }
+
+    public static void setFind(Finder<Integer, Item> find) {
+        Item.find = find;
     }
 }

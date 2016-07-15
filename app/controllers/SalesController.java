@@ -89,7 +89,7 @@ public class SalesController extends Controller {
         if (saleForm != null) {
             SaleFormData newSale = saleForm.get();
             User user = Utils.getUserSession();
-            Sale sale = new Sale(newSale.name, newSale.location);
+            Sale sale = new Sale(newSale.getName(), newSale.getLocation());
 
             sale.save();
 
@@ -133,15 +133,14 @@ public class SalesController extends Controller {
      */
     public Result addRole() {
         Form<SaleRoleFormData> saleRoleForm = formFactory.form(SaleRoleFormData.class).bindFromRequest();
-        User user = Utils.getUserSession();
         Sale sale;
         User userAssign;
 
         SaleRoleFormData saleRoleFormData = saleRoleForm.get();
-        userAssign = User.fetchByUsername(saleRoleFormData.username);
-        sale = Sale.fetchById(saleRoleFormData.saleId);
+        userAssign = User.fetchByUsername(saleRoleFormData.getUsername());
+        sale = Sale.fetchById(saleRoleFormData.getSaleId());
 
-        addRoleToDB(userAssign, sale, saleRoleFormData.role);
+        addRoleToDB(userAssign, sale, saleRoleFormData.getRole());
 
         return redirect(routes.SalesController.renderSaleRolesPage(sale.getId()));
     }
@@ -180,7 +179,6 @@ public class SalesController extends Controller {
      * @return true if role type is valid, false otherwise
      */
     private boolean addRoleToDB(User user, Sale sale, String role) {
-        Role newRole = new Role();
         Role.RoleEnum roleEnum;
         switch(role) {
             case "saleadmin":

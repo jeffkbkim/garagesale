@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
  * Created by yudawinata on 7/6/16.
  */
 @Entity
-public class Role extends Model {
+public final class Role extends Model {
     @Id
     protected int id;
     @ManyToOne
@@ -53,7 +53,7 @@ public class Role extends Model {
         this.role = role;
     }
 
-    public static Finder<Integer, Role> find
+    public static final Finder<Integer, Role> find
             = new Finder<>(Role.class);
 
     /**

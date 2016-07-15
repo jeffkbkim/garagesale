@@ -3,14 +3,10 @@ package controllers;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.inject.Inject;
 import models.*;
-import play.data.DynamicForm;
 import play.data.Form;
 import play.data.FormFactory;
-import play.libs.Json;
 import play.mvc.Controller;
-import play.mvc.Http;
 import play.mvc.Result;
-import scala.collection.JavaConverters;
 import views.html.*;
 
 import java.text.DateFormat;
@@ -26,7 +22,7 @@ import play.Logger;
 public class CatalogController extends Controller {
     // TODO: check validity of parameters for security
     @Inject
-    FormFactory formFactory;
+    private FormFactory formFactory;
 
     /**
      * renders catalog page.
@@ -53,8 +49,9 @@ public class CatalogController extends Controller {
      */
     public Role.RoleEnum userRoleForSale(User user, Sale sale) {
         List<Role> roles = Role.fetchBySaleIdAndUserId(sale.getId(), user.getId());
-        if (roles.isEmpty())
+        if (roles.isEmpty()) {
             throw new NoSuchElementException();
+        }
         return roles.get(0).getRole();
     }
 
@@ -67,10 +64,7 @@ public class CatalogController extends Controller {
         //TODO: handle invalid saleId
         User user = Utils.getUserSession();
         Sale sale = Sale.fetchById(saleId);
-
-        List<Item> items = Item.fetchItemsBySale(sale);
-        List<Transaction> transactions = Transaction.fetchTransactionsBySale(sale);
-        return ok(catalogreadonly.render(user, sale, items));
+        return ok(catalogreadonly.render(user, sale, Item.fetchItemsBySale(sale)));
     }
 
 
@@ -162,9 +156,9 @@ public class CatalogController extends Controller {
         Form<ItemFormData> itemForm = formFactory.form(ItemFormData.class).bindFromRequest();
         ItemFormData itemFormData = itemForm.get();
 
-        Item item = new Item(itemFormData.name, itemFormData.description,
-                itemFormData.quantity, itemFormData.price);
-        Sale sale = Sale.fetchById(itemFormData.saleId);
+        Item item = new Item(itemFormData.getName(), itemFormData.getDescription(),
+                itemFormData.getQuantity(), itemFormData.getPrice());
+        Sale sale = Sale.fetchById(itemFormData.getSaleId());
         item.setSale(sale);
         item.save();
 
@@ -180,13 +174,13 @@ public class CatalogController extends Controller {
         Form<ItemFormData> itemForm = formFactory.form(ItemFormData.class).bindFromRequest();
         ItemFormData itemFormData = itemForm.get();
 
-        int itemId = itemFormData.itemId;
+        int itemId = itemFormData.getItemId();
         Item item = Item.fetchItemById(itemId);
-        item.setAllFields(itemFormData.name,
-                            itemFormData.description,
-                            itemFormData.quantity,
-                            itemFormData.price);
-        Sale sale = Sale.fetchById(itemFormData.saleId);
+        item.setAllFields(itemFormData.getName(),
+                            itemFormData.getDescription(),
+                            itemFormData.getQuantity(),
+                            itemFormData.getPrice());
+        Sale sale = Sale.fetchById(itemFormData.getSaleId());
         item.setSale(sale);
         item.save();
 

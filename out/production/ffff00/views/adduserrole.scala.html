@@ -1,0 +1,35 @@
+@(user: User)(sale: Sale)(allUsers: List[User])
+@main(title = "Add User Role to sale '" + sale.getName + "'") {
+
+  <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/createsale.css")">
+
+  <div class="demo-card-wide">
+      <div class="mdl-card mdl-card--border mdl-shadow--2dp mdl-card__supporting-text">
+        <form action="@routes.SalesController.addRole()" class="update-form" method="post">
+          <ul style="list-style: none;">
+            <li>
+            <select name="username" id="username">
+                  @for(allUser <- allUsers) {
+                      <option value="@allUser.getUserName">@allUser.getUserName()</option>
+                  }
+            </select>
+            </li>
+            <li>
+            <select name="role" id="role">
+                <option value="saleadmin">Sale Administrator</option>
+                <option value="seller">Seller</option>
+                <option value="cashier">Cashier</option>
+                <option value="clerk">Clerk</option>
+                <option value="bookkeeper">Bookkeeper</option>
+            </select>
+            </li>
+          </ul>
+            <input type="hidden" name="saleId" value="@sale.getId"></input>
+            <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="submit">
+                Add
+            </button>
+        </form>
+    </div>
+</div>
+
+}

@@ -1,0 +1,93 @@
+@(user: User)(sale: Sale)(receipts: List[Receipt])(items: List[Item])
+<html>
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.cyan-light_blue.min.css">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/report.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/table.css")">
+
+</head>
+<body>
+<div class="mdl-layout mdl-js-layout">
+    <main class="mdl-layout_content">
+        <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title">
+                <h3 class="mdl-card__title-text">Financial Report for @sale.getName()</h3>
+            </div>
+            <div class="mdl-card--border">
+                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp receipts-table">
+                    <thead>
+                    <tr>
+                        <th class="mdl-data-table__cell tiny">Receipt ID</th>
+                        <th class="mdl-data-table__cell medium">Date</th>
+                        <th class="mdl-data-table__cell tiny">Profit</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @for(receipt <- receipts) {
+                    <tr>
+                        <td class="mdl-data-table__cell">
+                            @receipt.getId()
+                        </td>
+                        <td class="mdl-data-table__cell">
+                            @receipt.getDate()
+                        </td>
+                        <td class="mdl-data-table__cell">
+                            $@receipt.getProfit()
+                        </td>
+                    </tr>
+                    }
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td></td>
+                        <td>Total Profit</td>
+                        <td class="mdl-data-table__cell total">
+                            $@sale.getEarnings()
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title">
+                <h3 class="mdl-card__title-text">Unsold Inventory</h3>
+            </div>
+            <div class="mdl-card--border">
+                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp items-table">
+                    <thead>
+                    <tr>
+                        <th class="mdl-data-table__cell tiny">Item ID</th>
+                        <th class="mdl-data-table__cell medium">Item Name</th>
+                        <th class="mdl-data-table__cell tiny">Quantity</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @for(item <- items) {
+                    <tr>
+                        <td class="mdl-data-table__cell">
+                            @item.getId()
+                        </td>
+                        <td class="mdl-data-table__cell">
+                            @item.getName()
+                        </td>
+                        <td class="mdl-data-table__cell">
+                            @item.getQuantity()
+                        </td>
+                    </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+</div>
+</body>
+</html>
+
+
+
+
+
