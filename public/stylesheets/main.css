@@ -127,6 +127,7 @@ html, body {
 
 .content {
   padding: 50px;
+  padding-top: 0px;
 }
 
 .mdl-mini-footer {

@@ -239,7 +239,7 @@ public class CatalogController extends Controller {
      * @return a string that shows a list of users, separated by commas
      */
     public static String printOwners(Sale sale) {
-        List<Role> roles = Role.fetchBySaleIdForARole(sale.getId(), Role.RoleEnum.saledmin);
+        List<Role> roles = Role.fetchBySaleIdForARole(sale.getId(), Role.RoleEnum.saleAdmin);
 
         List<User> owners = User.fetchByIds(Role.mapRolesToUserIds(roles));
 

@@ -6,20 +6,20 @@
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/catalog.css")">
 
     @if(sale.isOpen) {
-        @if(role.equals(Role.RoleEnum.saledmin)
+        @if(role.equals(Role.RoleEnum.saleAdmin)
                 || role.equals(Role.RoleEnum.seller)) {
             <a href="@routes.CatalogController.renderAddItemPage(sale.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
                 New Item
             </a>
         }
-        @if(role.equals(Role.RoleEnum.saledmin)
+        @if(role.equals(Role.RoleEnum.saleAdmin)
                 || role.equals(Role.RoleEnum.seller)
                 || role.equals(Role.RoleEnum.clerk)) {
             <a href="@routes.CatalogController.renderAllTags(sale.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
                 All Tags
             </a>
         }
-        @if(role.equals(Role.RoleEnum.saledmin)
+        @if(role.equals(Role.RoleEnum.saleAdmin)
                 || role.equals(Role.RoleEnum.seller)
                 || role.equals(Role.RoleEnum.cashier)) {
             <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link" id="newtrans">
@@ -29,7 +29,7 @@
         <a href="@routes.SalesController.renderSaleRolesPage(sale.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
             Roles
         </a>
-        @if(role.equals(Role.RoleEnum.saledmin)
+        @if(role.equals(Role.RoleEnum.saleAdmin)
                 || role.equals(Role.RoleEnum.seller)
                 || role.equals(Role.RoleEnum.clerk)
                 || role.equals(Role.RoleEnum.bookkeeper)) {

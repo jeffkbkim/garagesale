@@ -1,6 +1,6 @@
 $(".register").click(function() {
-        $(".registration").slideDown("fast");
-        $(".login-elements").slideUp("fast");
+    $(".registration").slideDown("fast");
+    $(".login-elements").slideUp("fast");
 });
 
 $(".cancel-button").click(function() {

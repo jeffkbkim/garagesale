@@ -39,7 +39,7 @@ public class SalesController extends Controller {
 
         List<Role> rolesForThisSale = Role.fetchBySaleId(sale.getId());
 
-        List<Role> rolesForSaleadmins = Role.filterRoles(rolesForThisSale, Role.RoleEnum.saledmin);
+        List<Role> rolesForSaleadmins = Role.filterRoles(rolesForThisSale, Role.RoleEnum.saleAdmin);
         List<Role> rolesForSellers = Role.filterRoles(rolesForThisSale, Role.RoleEnum.seller);
         List<Role> rolesForCashiers = Role.filterRoles(rolesForThisSale, Role.RoleEnum.cashier);
         List<Role> rolesForClerks = Role.filterRoles(rolesForThisSale, Role.RoleEnum.clerk);
@@ -94,7 +94,7 @@ public class SalesController extends Controller {
             sale.save();
 
             // Note that role is added after sale is saved, so that id is first generated
-            addRoleToDB(user, sale, Role.RoleEnum.saledmin);
+            addRoleToDB(user, sale, Role.RoleEnum.saleAdmin);
         }
         return redirect(routes.SalesController.getSales());
     }
@@ -122,7 +122,7 @@ public class SalesController extends Controller {
      * @return
      */
     public static boolean isUserSaleAdmin(User user, Sale sale) {
-        List<Role> roles = Role.fetchBySaleIdForARole(sale.getId(), Role.RoleEnum.saledmin);
+        List<Role> roles = Role.fetchBySaleIdForARole(sale.getId(), Role.RoleEnum.saleAdmin);
         return Role.mapRolesToUserIds(roles).contains(user.getId());
     }
 
@@ -182,7 +182,7 @@ public class SalesController extends Controller {
         Role.RoleEnum roleEnum;
         switch(role) {
             case "saleadmin":
-                roleEnum = Role.RoleEnum.saledmin;
+                roleEnum = Role.RoleEnum.saleAdmin;
                 break;
             case "seller":
                 roleEnum = Role.RoleEnum.seller;

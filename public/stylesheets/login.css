@@ -28,7 +28,6 @@ html {
   text-align: center;
 }
 
-
 .mdl-layout__content {
   display: -webkit-flex;
   display: flex;
@@ -61,7 +60,6 @@ html {
   color: #fff;
 }
 
-
 .register {
   margin-top: 10px;
   font-family: 'Roboto', 'Helvetica', sans-serif;
@@ -76,7 +74,6 @@ html {
 .register a:hover {
   color: #B3E5FC;
 }
-
 
 .mdl-logo {
   margin-top: 200px;
@@ -112,7 +109,14 @@ html {
 
 .registration {
   display:none;
-  margin-left: 32px;
+}
+
+.register-form {
+  margin-top: -20px;
+}
+
+.mdl-card__title h4 {
+  font-size: 18px;
 }
 
 footer, .mdl-mini-footer {

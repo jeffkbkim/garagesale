@@ -34,6 +34,7 @@ create table sale (
   id                        integer not null,
   name                      varchar(255),
   location                  varchar(255),
+  date                      varchar(255),
   earnings                  double,
   is_open                   boolean,
   constraint pk_sale primary key (id))

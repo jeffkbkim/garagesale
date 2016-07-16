@@ -1,6 +1,5 @@
 .demo-card-wide {
     margin-top: 30px;
-
     background-color: image(saddlebrown);
 }
 
@@ -20,8 +19,9 @@
     margin-right: auto;
 }
 
+
 .mdl-card {
-    width: 50%;
+    width: 100%;
 }
 
 .createsale-link {
@@ -29,6 +29,31 @@
     margin-top: 20px;
     margin-left: -32px;
     left: 50%;
+}
+
+.mdl-card__actions {
+    margin: 0;
+    margin-left: 5px;
+    line-height: 0px;
+}
+
+.mdl-card__actions p {
+    margin: 0px;
+    opacity: 0.5;
+    font-size: 12px;
+    line-height: 20px;
+}
+
+.mdl-card__actions h4 {
+    margin: 0px;
+    opacity: 0.7;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.create-page {
+    height: 274px;
+    background: url("/assets/images/add.jpg") center / cover;
 }
 
 .createsale-button {

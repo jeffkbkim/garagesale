@@ -16,6 +16,7 @@ public final class Sale extends Model {
     private int id;
     private String name;
     private String location;
+    private String date;
     private double earnings;
     private boolean isOpen;
     private static final String SALE = "sale";
@@ -117,6 +118,14 @@ public final class Sale extends Model {
     }
 
     /**
+     * getter for location
+     * @return location
+     */
+    public String getDate() {
+        return this.date;
+    }
+
+    /**
      * check if sale is open
      * @return true if sale is open, false otherwise
      */
@@ -128,7 +137,7 @@ public final class Sale extends Model {
         if (isOpen) {
             return "Open";
         }
-        return "Close";
+        return "Closed";
     }
 
     public void setIsOpen(boolean isOpen) {

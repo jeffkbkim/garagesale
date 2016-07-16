@@ -21,7 +21,7 @@ public final class Role extends Model {
     @ManyToOne
     protected Sale sale;
     public enum RoleEnum {
-        saledmin("Sale Administrator"),
+        saleAdmin("Sale Administrator"),
         seller("Seller"),
         cashier("Cashier"),
         clerk("Clerk"),
