@@ -11,7 +11,12 @@
         <div class="mdl-grid">
             @for(item <- items) {
                 <div class="mdl-cell mdl-cell--6-col">
-                    <a href="@routes.CatalogController.renderModifyItemPage(sale.getId, item.getId)">
+                    @if(role.equals(Role.RoleEnum.saleAdmin)
+                    || role.equals(Role.RoleEnum.seller)) {
+                        <a href="@routes.CatalogController.renderModifyItemPage(sale.getId, item.getId)">
+                    } else {
+                        <a href="">
+                    }
                         <div class="mdl-shadow--2dp">
                             <div class="mdl-grid">
                                 <div class="mdl-cell--6-col mdl-card__left">
@@ -47,20 +52,33 @@
                             <th>Description</th>
                             <th>Price</th>
                             <th>Quantity</th>
-                            <th>Item Tag</th>
+                            @if(role.equals(Role.RoleEnum.saleAdmin)
+                            || role.equals(Role.RoleEnum.seller)
+                            || role.equals(Role.RoleEnum.clerk)) {
+                                <th>Item Tag</th>
+                            }
                         </tr>
                     </thead>
                     <tbody>
                     @for(item <- items) {
                         <tr class="item-row" >
                             <td class="mdl-data-table__cell--non-numeric">
-                                <a href="@routes.CatalogController.renderModifyItemPage(sale.getId, item.getId)">@item.getName()</a>
+                                @if(role.equals(Role.RoleEnum.saleAdmin)
+                                || role.equals(Role.RoleEnum.seller)) {
+                                    <a href="@routes.CatalogController.renderModifyItemPage(sale.getId, item.getId)">@item.getName()</a>
+                                } else {
+                                    <a href="">@item.getName()</a>
+                                }
                             </td>
                             <td class="mdl-data-table__cell" onClick="window.location = $(this).parent().find('a').attr('href');">@item.getDescription()</td>
                             <td class="mdl-data-table__cell" onClick="window.location = $(this).parent().find('a').attr('href');">@item.getPrice()</td>
                             <td class="mdl-data-table__cell" onClick="window.location = $(this)
                             parent().find('a').attr('href');">@item.getQuantity()</td>
-                            <td class="mdl-data-table__cell"><a href="@routes.CatalogController.renderTag(sale.getId, item.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">TAG</a></td>
+                            @if(role.equals(Role.RoleEnum.saleAdmin)
+                            || role.equals(Role.RoleEnum.seller)
+                            || role.equals(Role.RoleEnum.clerk)) {
+                                <td class="mdl-data-table__cell"><a href="@routes.CatalogController.renderTag(sale.getId, item.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">TAG</a></td>
+                            }
                         </tr>
                     }
                     </tbody>

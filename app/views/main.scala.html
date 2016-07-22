@@ -54,18 +54,41 @@
               <li class="mdl-menu__item"><i class="material-icons">person</i><a href="@routes.Application.logout()">Logout</a></li>
             </ul>
           </div>
-          <p class="current-sale">@Utils.getSaleName()</p>
+          @if(Utils.getSaleId != -1) {
+            <p class="current-sale">@Utils.getSaleName - @{ Role.fetchBySaleIdAndUserId(Utils.getSaleId(), Utils.getUserSession.getId).get(0).getRole().toString }</p>
+          }
         </header>
 
         <nav class="navigation mdl-navigation mdl-color--white">
           <a class="mdl-navigation__link" href="@routes.Application.index()"><i class="material-icons" role="presentation">home</i>Home</a>
           @if(Utils.getSaleId != -1) {
             <a class="mdl-navigation__link" href="@routes.CatalogController.renderCatalogPage(Utils.getSaleId)"><i class="material-icons" role="presentation">inbox</i>Catalog</a>
-            <a class="mdl-navigation__link" href="@routes.TransactionController.renderTransactionPage(Utils.getSaleId)"><i class="material-icons" role="presentation">shopping_cart</i>Transaction</a>
-            <a class="mdl-navigation__link" href="@routes.CatalogController.renderAllTags(Utils.getSaleId)"><i class="material-icons" role="presentation">local_offer</i>Print Tags</a>
-            <a class="mdl-navigation__link" href="@routes.CatalogController.renderReport(Utils.getSaleId)"><i class="material-icons" role="presentation">account_balance</i>Reports</a>
-            <a class="mdl-navigation__link" href="@routes.CatalogController.allReceipts(Utils.getSaleId)"><i class="material-icons" role="presentation">monetization_on</i>Receipts</a>
-            <a class="mdl-navigation__link" href="@routes.AdministrationController.saleAdministration(Utils.getSaleId)"><i class="material-icons" role="presentation">people</i>Administration</a>
+            @if(Role.fetchBySaleIdAndUserId(Utils.getSaleId(), Utils.getUserSession.getId).get(0).getRole().equals(Role.RoleEnum.saleAdmin)) {
+              <a class="mdl-navigation__link" href="@routes.TransactionController.renderTransactionPage(Utils.getSaleId)"><i class="material-icons" role="presentation">shopping_cart</i>Transaction</a>
+              <a class="mdl-navigation__link" href="@routes.CatalogController.renderAllTags(Utils.getSaleId)"><i class="material-icons" role="presentation">local_offer</i>Print Tags</a>
+              <a class="mdl-navigation__link" href="@routes.CatalogController.renderReport(Utils.getSaleId)"><i class="material-icons" role="presentation">account_balance</i>Reports</a>
+              <a class="mdl-navigation__link" href="@routes.CatalogController.allReceipts(Utils.getSaleId)"><i class="material-icons" role="presentation">monetization_on</i>Receipts</a>
+              <a class="mdl-navigation__link" href="@routes.AdministrationController.saleAdministration(Utils.getSaleId)"><i class="material-icons" role="presentation">people</i>Administration</a>
+            }
+            @if(Role.fetchBySaleIdAndUserId(Utils.getSaleId(), Utils.getUserSession.getId).get(0).getRole().equals(Role.RoleEnum.seller)) {
+              <a class="mdl-navigation__link" href="@routes.TransactionController.renderTransactionPage(Utils.getSaleId)"><i class="material-icons" role="presentation">shopping_cart</i>Transaction</a>
+              <a class="mdl-navigation__link" href="@routes.CatalogController.renderAllTags(Utils.getSaleId)"><i class="material-icons" role="presentation">local_offer</i>Print Tags</a>
+              <a class="mdl-navigation__link" href="@routes.CatalogController.renderReport(Utils.getSaleId)"><i class="material-icons" role="presentation">account_balance</i>Reports</a>
+              <a class="mdl-navigation__link" href="@routes.CatalogController.allReceipts(Utils.getSaleId)"><i class="material-icons" role="presentation">monetization_on</i>Receipts</a>
+            }
+            @if(Role.fetchBySaleIdAndUserId(Utils.getSaleId(), Utils.getUserSession.getId).get(0).getRole().equals(Role.RoleEnum.clerk)) {
+              <a class="mdl-navigation__link" href="@routes.TransactionController.renderTransactionPage(Utils.getSaleId)"><i class="material-icons" role="presentation">shopping_cart</i>Transaction</a>
+              <a class="mdl-navigation__link" href="@routes.CatalogController.renderAllTags(Utils.getSaleId)"><i class="material-icons" role="presentation">local_offer</i>Print Tags</a>
+              <a class="mdl-navigation__link" href="@routes.CatalogController.renderReport(Utils.getSaleId)"><i class="material-icons" role="presentation">account_balance</i>Reports</a>
+              <a class="mdl-navigation__link" href="@routes.CatalogController.allReceipts(Utils.getSaleId)"><i class="material-icons" role="presentation">monetization_on</i>Receipts</a>
+            }
+            @if(Role.fetchBySaleIdAndUserId(Utils.getSaleId(), Utils.getUserSession.getId).get(0).getRole().equals(Role.RoleEnum.cashier)) {
+              <a class="mdl-navigation__link" href="@routes.TransactionController.renderTransactionPage(Utils.getSaleId)"><i class="material-icons" role="presentation">shopping_cart</i>Transaction</a>
+              <a class="mdl-navigation__link" href="@routes.CatalogController.allReceipts(Utils.getSaleId)"><i class="material-icons" role="presentation">monetization_on</i>Receipts</a>
+            }
+            @if(Role.fetchBySaleIdAndUserId(Utils.getSaleId(), Utils.getUserSession.getId).get(0).getRole().equals(Role.RoleEnum.bookkeeper)) {
+              <a class="mdl-navigation__link" href="@routes.CatalogController.renderReport(Utils.getSaleId)"><i class="material-icons" role="presentation">account_balance</i>Reports</a>
+            }
           }
 
 

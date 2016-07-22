@@ -30,8 +30,6 @@
     <tr>
         <th class="mdl-data-table__cell--non-numeric">Username</th>
         <th class="mdl-data-table__cell--non-numeric">Name</th>
-        <th>Phone Number</th>
-        <th class="mdl-data-table__cell--non-numeric">Email Address</th>
         <th class="mdl-data-table__cell--non-numeric">Account Type</th>
     </tr>
     </thead>
@@ -40,8 +38,6 @@
         <tr>
             <td class="mdl-data-table__cell--non-numeric">@users.get(index).getUserName</td>
             <td class="mdl-data-table__cell--non-numeric">@users.get(index).getFirstName @users.get(index).getLastName</td>
-            <td>@users.get(index).getPhone</td>
-            <td class="mdl-data-table__cell--non-numeric">@users.get(index).getEmail</td>
             <td>@Role.fetchBySaleIdAndUserId(sale.getId, users.get(index).getId).get(0).getRole</td>
             </label></td>
         </tr>
