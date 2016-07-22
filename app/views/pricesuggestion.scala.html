@@ -1,0 +1,38 @@
+@(user: User)(sales: List[Sale])
+@main(title = "All sales that you do not own or manage") {
+
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/salepage.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/table.css")">
+    <script src="@routes.Assets.versioned("javascripts/table.js")"></script>
+
+    <div class="demo-card-wide">
+        <div class="mdl-card--border">
+            <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp sales-table">
+                <thead>
+                    <tr>
+                        <th class="mdl-data-table__cell--non-numeric">Sale Name</th>
+                        <th>Location</th>
+                        <th>Owners</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for(sale <- sales) {
+                            <tr onclick="window.location = $(this).find('a').attr('href')">
+                                <td class="mdl-data-table__cell--non-numeric">
+                                    <a href="@routes.CatalogController.renderCatalogReadOnlyPage(sale.getId)">
+                                        @sale.getName()
+                                    </a>
+                                </td>
+                                <td>@sale.getLocation()</td>
+                                <td>@{
+                                    CatalogController.printOwners(sale);
+                                    }
+                                </td>
+                            </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+}
