@@ -1,0 +1,52 @@
+@(users: List[User], currUser: User, sale: Sale)
+@main(title = "Administration") {
+<link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/administration.css")">
+
+<h4 class="mdl-color-text--grey-600">Manage Sale</h4>
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--4-col">
+        <div class="manage">
+            <i class="material-icons">create</i> <br />
+            <a href="">Update Sale</a>
+        </div>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col">
+        <div class="manage">
+            <i class="material-icons">group</i> <br />
+            <a href="@routes.SalesController.renderAddUserRolePage(Utils.getSaleId)">Add Role</a>
+        </div>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col">
+        <div class="manage">
+            <i class="material-icons">delete</i> <br />
+            <a href="@routes.SalesController.closeSale(Utils.getSaleId)">Close Sale</a>
+        </div>
+    </div>
+</div>
+
+<h4 class="mdl-color-text--grey-600">View Roles</h4>
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp user-table">
+    <thead>
+    <tr>
+        <th class="mdl-data-table__cell--non-numeric">Username</th>
+        <th class="mdl-data-table__cell--non-numeric">Name</th>
+        <th>Phone Number</th>
+        <th class="mdl-data-table__cell--non-numeric">Email Address</th>
+        <th class="mdl-data-table__cell--non-numeric">Account Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    @for(index <- 0 until users.size) {
+        <tr>
+            <td class="mdl-data-table__cell--non-numeric">@users.get(index).getUserName</td>
+            <td class="mdl-data-table__cell--non-numeric">@users.get(index).getFirstName @users.get(index).getLastName</td>
+            <td>@users.get(index).getPhone</td>
+            <td class="mdl-data-table__cell--non-numeric">@users.get(index).getEmail</td>
+            <td>@Role.fetchBySaleIdAndUserId(sale.getId, users.get(index).getId).get(0).getRole</td>
+            </label></td>
+        </tr>
+    }
+
+    </tbody>
+</table>
+}

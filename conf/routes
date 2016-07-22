@@ -64,11 +64,17 @@ GET     /genreceipt                 controllers.CatalogController.renderReceipt(
 
 GET     /genreport                  controllers.CatalogController.renderReport(saleId: Int ?=0)
 
-GET     /createsuperuser            controllers.Utils.createSuperUser
+GET     /allreceipts                controllers.CatalogController.allReceipts(saleId: Int ?=0)
+
+GET     /transaction                controllers.TransactionController.renderTransactionPage(saleId: Int ?=0)
 
 #Administration Routes
-GET     /administration            controllers.AdministrationController.administration
+GET     /administration             controllers.AdministrationController.administration()
 
-GET    /lock                      controllers.AdministrationController.lock(userId: Int?=0)
+GET     /saleAdministration         controllers.AdministrationController.saleAdministration(saleId: Int?=0)
 
-GET    /unlock                    controllers.AdministrationController.unlock(userId: Int?=0)
+GET    /lock                        controllers.AdministrationController.lock(userId: Int?=0)
+
+GET    /unlock                      controllers.AdministrationController.unlock(userId: Int?=0)
+
+GET     /createsuperuser            controllers.Utils.createSuperUser

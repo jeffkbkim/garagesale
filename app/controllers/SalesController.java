@@ -142,7 +142,7 @@ public class SalesController extends Controller {
 
         addRoleToDB(userAssign, sale, saleRoleFormData.getRole());
 
-        return redirect(routes.SalesController.renderSaleRolesPage(sale.getId()));
+        return redirect(routes.AdministrationController.saleAdministration(sale.getId()));
     }
 
     /**
@@ -242,6 +242,13 @@ public class SalesController extends Controller {
                 .filter(sale -> sale.isOpen() && !saleIds.contains(sale.getId()))
                 .collect(Collectors.toList());
         return ok(views.html.allsales.render(user, salesNotManagedAndOpen));
+    }
+
+    public static List<Sale> getUserSales() {
+        User user = Utils.getUserSession();
+        List<Role> saleRoles = Role.fetchByUserId(user.getId());
+        List<Sale> sales = Sale.fetchBySaleIds(Role.mapRolesToSaleIds(saleRoles));
+        return sales;
     }
 
 }

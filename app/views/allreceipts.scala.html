@@ -1,0 +1,36 @@
+@(user: User)(receipts: List[Receipt])
+@main(title = "Receipts") {
+
+<div class="demo-card-wide">
+    <div class="mdl-card--border">
+        <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp transactions-table">
+            <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Receipt</th>
+                <th>Date</th>
+                <th>Profit</th>
+            </tr>
+            </thead>
+            <tbody>
+            @for(receipt <- receipts) {
+            <tr class="transaction-row" >
+                <td class="mdl-data-table__cell--non-numeric">
+                    @receipt.getId()
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    @receipt.getDate()
+                </td>
+                <td class="mdl-data-table__cell">
+                    $@receipt.getProfit()
+                </td>
+                <td class="mdl-data-table__cell">
+                    <a href="@routes.CatalogController.renderReceipt(receipt.getId)" class="mdl-button mdl-js-button mdl-button--accent">View</a>
+                </td>
+            </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+}

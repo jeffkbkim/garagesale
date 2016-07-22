@@ -36,10 +36,9 @@ public class CatalogController extends Controller {
         Sale sale = Sale.fetchById(saleId);
 
         List<Item> items = Item.fetchItemsBySale(sale);
-        List<Transaction> transactions = Transaction.fetchTransactionsBySale(sale);
-        List<Receipt> receipts = Receipt.fetchReceiptsBySale(sale);
+
         Role.RoleEnum role = userRoleForSale(user, sale);
-        return ok(catalog.render(user, sale, role, items, transactions, receipts));
+        return ok(catalog.render(user, sale, role, items));
     }
 
     /**
@@ -77,7 +76,6 @@ public class CatalogController extends Controller {
     public Result renderAddItemPage(int saleId) {
         // TODO: handle invalid saleId
         User user = Utils.getUserSession();
-
         Sale sale = Sale.fetchById(saleId);
         return ok(additem.render(user, sale));
     }
@@ -253,6 +251,17 @@ public class CatalogController extends Controller {
 
         return output.substring(0, output.length() - 2);
 
+    }
+
+    /**
+     * Controller for all sales page
+     * @return all sales page
+     */
+    public Result allReceipts(int saleId) {
+        User user = Utils.getUserSession();
+        Sale sale = Sale.fetchById(saleId);
+        List<Receipt> receipts = Receipt.fetchReceiptsBySale(sale);
+        return ok(views.html.allreceipts.render(user,receipts));
     }
 
 }

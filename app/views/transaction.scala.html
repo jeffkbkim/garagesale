@@ -1,0 +1,126 @@
+@(user: User)(sale: Sale)(transactions: List[Transaction])(items: List[Item])
+@main(title = "Transaction") {
+<div class="mdl-card demo-card-wide transaction-window mdl-shadow--2dp">
+
+
+    <div class="mdl-card__supporting-text">
+        <h3>Transaction Details</h3>
+    </div>
+    <div class="mdl-card__supporting-text">
+        <table class="mdl-data-table mdl-js-data-table mdl-data-table">
+            <tbody class="trans-table-body">
+            <tr class="trans-row">
+                <td class="mdl-data-table__cell">
+                    <select name="itemSelection" id="itemSelection">
+                        @for(item <- items) {
+                        <option value="@item.getId()">@item.getName()</option>
+                        }
+                    </select>
+                </td>
+                <td class="mdl-data-table__cell--numeric">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label quantity tiny">
+                        <input class="mdl-textfield__input" type="number" name="quantity" id="quantity"/>
+                        <label class="mdl-textfield__label" for="quantity">Quantity</label>
+                    </div>
+                </td>
+                <td class="mdl-data-table__cell">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label buyer medium">
+                        <input class="mdl-textfield__input" type="text" name="buyer" id="buyer"/>
+                        <label class="mdl-textfield__label" for="buyer">Buyer</label>
+                    </div>
+                </td>
+                <td class="mdl-data-table__cell">
+                    <select name="paymentSelection" id="paymentSelection">
+                        <option value="NA">N/A</option>
+                        <option value="Credit">Credit</option>
+                        <option value="Debit">Debit</option>
+                        <option value="Cash">Cash</option>
+                    </select>
+                </td>
+                <td class="mdl-data-table__cell">
+                    <a class="mdl-button mdl-js-button mdl-button--accent add">Add</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <ul class="transactions">
+
+    </ul>
+    <div class="mdl-card__supporting-text">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect confirm-button">
+            Confirm</a>
+    </div>
+</div>
+
+<script>
+    var transArray = [];
+    $('.add').click(function () {
+        var itemID = parseInt($('#itemSelection').val());
+        var itemName = $('#itemSelection option:selected').text();
+        var quantity = parseInt($('#quantity').val());
+        var buyer = $('#buyer').val();
+        var payment = $('#paymentSelection option:selected').text();
+        var conglomerate = '<li>Selling Item ' + itemID + ': ' + itemName + ' (' + quantity + ') to ' + buyer + ' </li>';
+        if (quantity > 0 && buyer.length > 0) {
+            $('.transactions').append(conglomerate);
+            transArray.push({
+                "id": itemID,
+                "quantity": quantity,
+                "buyer": buyer,
+                "payment": payment
+            });
+        } else {
+            alert('Please fill out the quantity and buyer name.');
+        }
+    });
+
+    $('#newtrans').click(function () {
+        console.log('new trans clicked');
+        $('.transaction-window').fadeIn();
+    });
+
+    $('.cancel-button').click(function () {
+        closeTransactionWindow();
+    });
+
+    function closeTransactionWindow() {
+        $('.transactions').empty();
+        transArray = [];
+        $('.transaction-window').fadeOut();
+    }
+
+    $('.confirm-button').click(function () {
+        if (transArray.length == 0) {
+            alert('No transactions were added.');
+        } else {
+            transArray.unshift({"saleId": @sale.getId});
+            $.ajax({
+                url: '@routes.CatalogController.makeTransaction()',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(transArray),
+                success: function () {
+                }
+            });
+        }
+        closeTransactionWindow();
+    });
+
+
+    $("#search").on("keyup", function () {
+        var query = $(this).val().toLowerCase().trim();
+
+        $(".item-row").each(function () {
+            var text = $(this).children().text().toLowerCase().trim();
+
+            if (text.indexOf(query) != -1) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
+</script>
+
+}

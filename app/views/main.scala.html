@@ -58,18 +58,17 @@
         </header>
 
         <nav class="navigation mdl-navigation mdl-color--white">
-          <a class="mdl-navigation__link" href="@routes.SalesController.allSales()"><i class="material-icons" role="presentation">home</i>Home</a>
-          <a class="mdl-navigation__link" href="@routes.SalesController.getSales()"><i class="material-icons" role="presentation">shopping_cart</i>Transaction</a>
+          <a class="mdl-navigation__link" href="@routes.Application.index()"><i class="material-icons" role="presentation">home</i>Home</a>
           @if(Utils.getSaleId != -1) {
-            <a class="mdl-navigation__link" href=""><i class="material-icons" role="presentation">inbox</i>Catalog</a>
+            <a class="mdl-navigation__link" href="@routes.CatalogController.renderCatalogPage(Utils.getSaleId)"><i class="material-icons" role="presentation">inbox</i>Catalog</a>
+            <a class="mdl-navigation__link" href="@routes.TransactionController.renderTransactionPage(Utils.getSaleId)"><i class="material-icons" role="presentation">shopping_cart</i>Transaction</a>
             <a class="mdl-navigation__link" href="@routes.CatalogController.renderAllTags(Utils.getSaleId)"><i class="material-icons" role="presentation">local_offer</i>Print Tags</a>
             <a class="mdl-navigation__link" href="@routes.CatalogController.renderReport(Utils.getSaleId)"><i class="material-icons" role="presentation">account_balance</i>Reports</a>
-            <a class="mdl-navigation__link" href=""><i class="material-icons" role="presentation">monetization_on</i>Receipts</a>
-          } else {
-            <a class="mdl-navigation__link" href="@routes.CatalogController.renderReport(Utils.getSaleId)"><i class="material-icons" role="presentation">account_balance</i>Reports</a>
+            <a class="mdl-navigation__link" href="@routes.CatalogController.allReceipts(Utils.getSaleId)"><i class="material-icons" role="presentation">monetization_on</i>Receipts</a>
+            <a class="mdl-navigation__link" href="@routes.AdministrationController.saleAdministration(Utils.getSaleId)"><i class="material-icons" role="presentation">people</i>Administration</a>
           }
 
-          <a class="mdl-navigation__link" href="@routes.AdministrationController.administration()"><i class="material-icons" role="presentation">people</i>Administration</a>
+
         </nav>
       </div>
 

@@ -1,4 +1,4 @@
-@(user: User)(sale: Sale)(role: Role.RoleEnum)(items: List[Item])(transactions: List[Transaction])(receipts: List[Receipt])
+@(user: User)(sale: Sale)(role: Role.RoleEnum)(items: List[Item])
 @main(title = "Catalog of Sale \"" + sale.getName() + "\"") {
 
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/createsale.css")">
@@ -6,249 +6,67 @@
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/catalog.css")">
 
     @if(sale.isOpen) {
-        @if(role.equals(Role.RoleEnum.saleAdmin)
-                || role.equals(Role.RoleEnum.seller)
-                || role.equals(Role.RoleEnum.clerk)) {
-            <a href="@routes.CatalogController.renderAllTags(sale.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
-                All Tags
-            </a>
-        }
-        @if(role.equals(Role.RoleEnum.saleAdmin)
-                || role.equals(Role.RoleEnum.seller)
-                || role.equals(Role.RoleEnum.cashier)) {
-            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link" id="newtrans">
-                New Transaction
-            </a>
-        }
-        <a href="@routes.SalesController.renderSaleRolesPage(sale.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
-            Roles
-        </a>
-        @if(role.equals(Role.RoleEnum.saleAdmin)
-                || role.equals(Role.RoleEnum.seller)
-                || role.equals(Role.RoleEnum.clerk)
-                || role.equals(Role.RoleEnum.bookkeeper)) {
-            <a href="@routes.CatalogController.renderReport(sale.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
-                Report
-            </a>
-        }
-        @*only show close sale when user is sale admin*@
-        @if(SalesController.isUserSaleAdmin(user, sale)) {
-            <a href="@routes.SalesController.closeSale(sale.getId)" class="mdl-button mdl-button--colored mdl-color-text--red mdl-js-button mdl-js-ripple-effect createsale-link">
-                Close Sale
-            </a>
-        }
-            <h4 class="mdl-color-text--grey-600">Catalog</h4>
+        <h4 class="mdl-color-text--grey-600">Catalog</h4>
 
-            <div class="mdl-grid">
-                @for(item <- items) {
-                    <div class="mdl-cell mdl-cell--6-col">
-                        <a href="@routes.CatalogController.renderModifyItemPage(sale.getId, item.getId)">
-                            <div class="mdl-shadow--2dp">
-                                <div class="mdl-grid">
-                                    <div class="mdl-cell--6-col mdl-card__left">
-                                        <h2 class="mdl-card__title-text">@item.getName()</h2>
-                                    </div>
-                                    <div class="mdl-cell--6-col mdl-card__right">
-                                        <h4>Price</h4>
-                                        <p>$@item.getPrice()</p>
-                                        <h4>Description</h4>
-                                        <p>@item.getDescription()</p>
-                                    </div>
+        <div class="mdl-grid">
+            @for(item <- items) {
+                <div class="mdl-cell mdl-cell--6-col">
+                    <a href="@routes.CatalogController.renderModifyItemPage(sale.getId, item.getId)">
+                        <div class="mdl-shadow--2dp">
+                            <div class="mdl-grid">
+                                <div class="mdl-cell--6-col mdl-card__left">
+                                    <h2 class="mdl-card__title-text">@item.getName()</h2>
+                                </div>
+                                <div class="mdl-cell--6-col mdl-card__right">
+                                    <h4>Price</h4>
+                                    <p>$@item.getPrice()</p>
+                                    <h4>Description</h4>
+                                    <p>@item.getDescription()</p>
                                 </div>
                             </div>
-                        </a>
-                    </div>
-                }
-            </div>
-            @if(role.equals(Role.RoleEnum.saleAdmin)
-            || role.equals(Role.RoleEnum.seller)) {
-            <a href="@routes.CatalogController.renderAddItemPage(sale.getId)" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color-text--white add-item">
-                <i class="material-icons">add</i>
-            </a>
+                        </div>
+                    </a>
+                </div>
             }
+        </div>
+        @if(role.equals(Role.RoleEnum.saleAdmin)
+        || role.equals(Role.RoleEnum.seller)) {
+        <a href="@routes.CatalogController.renderAddItemPage(sale.getId)" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color-text--white add-item">
+            <i class="material-icons">add</i>
+        </a>
+        }
 
-            <h4 class="mdl-color-text--grey-600">Inventory</h4>
+        <h4 class="mdl-color-text--grey-600">Inventory</h4>
 
-            <div class="demo-card-wide">
-                <div class="mdl-card--border">
-                    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp sales-table">
-                        <thead>
-                            <tr>
-                                <th class="mdl-data-table__cell--non-numeric">Item Name</th>
-                                <th>Description</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        @for(item <- items) {
-                            <tr class="item-row" >
-                                <td class="mdl-data-table__cell--non-numeric">
-                                    <a href="@routes.CatalogController.renderModifyItemPage(sale.getId, item.getId)">@item.getName()</a>
-                                </td>
-                                <td class="mdl-data-table__cell" onClick="window.location = $(this).parent().find('a').attr('href');">@item.getDescription()</td>
-                                <td class="mdl-data-table__cell" onClick="window.location = $(this).parent().find('a').attr('href');">@item.getPrice()</td>
-                                <td class="mdl-data-table__cell" onClick="window.location = $(this)
-                                parent().find('a').attr('href');">@item.getQuantity()</td>
-                                <td class="mdl-data-table__cell"><a href="@routes.CatalogController.renderTag(sale.getId, item.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">TAG</a></td>
-                            </tr>
-                        }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="demo-card-wide">
-                <div class="mdl-card--border">
-                    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp transactions-table">
-                        <thead>
-                            <tr>
-                                <th class="mdl-data-table__cell--non-numeric">Receipt</th>
-                                <th>Date</th>
-                                <th>Profit</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        @for(receipt <- receipts) {
-                            <tr class="transaction-row" >
-                                <td class="mdl-data-table__cell--non-numeric">
-                                @receipt.getId()
-                                </td>
-                                <td class="mdl-data-table__cell--non-numeric">
-                                @receipt.getDate()
-                                </td>
-                                <td class="mdl-data-table__cell">
-                        $@receipt.getProfit()
-                    </td>
-                                <td class="mdl-data-table__cell">
-                                    <a href="@routes.CatalogController.renderReceipt(receipt.getId)" class="mdl-button mdl-js-button mdl-button--accent">View</a>
-                                </td>
-                            </tr>
-                        }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="mdl-card demo-card-wide transaction-window mdl-shadow--2dp">
-                <div class="mdl-card__supporting-text">
-                    <h3>Transaction Details</h3>
-                </div>
-                <div class="mdl-card__supporting-text">
-                    <table class="mdl-data-table mdl-js-data-table mdl-data-table">
-                        <tbody class="trans-table-body">
-                            <tr class="trans-row">
-                                <td class="mdl-data-table__cell">
-                                    <select name="itemSelection" id="itemSelection">
-                                    @for(item <- items) {
-                                        <option value="@item.getId()">@item.getName()</option>
-                                    }
-                                    </select>
-                                </td>
-                                <td class="mdl-data-table__cell--numeric">
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label quantity tiny">
-                                        <input class="mdl-textfield__input" type="number" name="quantity" id="quantity"/>
-                                        <label class="mdl-textfield__label" for="quantity">Quantity</label>
-                                    </div>
-                                </td>
-                                <td class="mdl-data-table__cell">
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label buyer medium">
-                                        <input class="mdl-textfield__input" type="text" name="buyer" id="buyer"/>
-                                        <label class="mdl-textfield__label" for="buyer">Buyer</label>
-                                    </div>
-                                </td>
-                                <td class="mdl-data-table__cell">
-                                    <select name="paymentSelection" id="paymentSelection">
-                                        <option value="NA">N/A</option>
-                                        <option value="Credit">Credit</option>
-                                        <option value="Debit">Debit</option>
-                                        <option value="Cash">Cash</option>
-                                    </select>
-                                </td>
-                            <td class="mdl-data-table__cell">
-                                <a class="mdl-button mdl-js-button mdl-button--accent add">Add</a>
+        <div class="demo-card-wide">
+            <div class="mdl-card--border">
+                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp sales-table">
+                    <thead>
+                        <tr>
+                            <th class="mdl-data-table__cell--non-numeric">Item Name</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Item Tag</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @for(item <- items) {
+                        <tr class="item-row" >
+                            <td class="mdl-data-table__cell--non-numeric">
+                                <a href="@routes.CatalogController.renderModifyItemPage(sale.getId, item.getId)">@item.getName()</a>
                             </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <ul class="transactions">
-
-                </ul>
-                <div class="mdl-card__supporting-text">
-                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect cancel-button">Cancel</a>
-                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect confirm-button">
-                        Confirm</a>
-                </div>
-            </div>
-
-            <script>
-                    var transArray = [];
-                    $('.add').click(function () {
-                        var itemID = parseInt($('#itemSelection').val());
-                        var itemName = $('#itemSelection option:selected').text();
-                        var quantity = parseInt($('#quantity').val());
-                        var buyer = $('#buyer').val();
-                        var payment = $('#paymentSelection option:selected').text();
-                        var conglomerate = '<li>Selling Item ' + itemID + ': ' + itemName + ' (' + quantity + ') to ' + buyer + ' </li>';
-                        if (quantity > 0 && buyer.length > 0) {
-                            $('.transactions').append(conglomerate);
-                            transArray.push({
-                                "id": itemID,
-                                "quantity": quantity,
-                                "buyer": buyer,
-                                "payment": payment
-                            });
-                        } else {
-                            alert('Please fill out the quantity and buyer name.');
-                        }
-                    });
-
-                    $('#newtrans').click(function () {
-                        console.log('new trans clicked');
-                        $('.transaction-window').fadeIn();
-                    });
-
-                    $('.cancel-button').click(function () {
-                        closeTransactionWindow();
-                    });
-
-                    function closeTransactionWindow() {
-                        $('.transactions').empty();
-                        transArray = [];
-                        $('.transaction-window').fadeOut();
+                            <td class="mdl-data-table__cell" onClick="window.location = $(this).parent().find('a').attr('href');">@item.getDescription()</td>
+                            <td class="mdl-data-table__cell" onClick="window.location = $(this).parent().find('a').attr('href');">@item.getPrice()</td>
+                            <td class="mdl-data-table__cell" onClick="window.location = $(this)
+                            parent().find('a').attr('href');">@item.getQuantity()</td>
+                            <td class="mdl-data-table__cell"><a href="@routes.CatalogController.renderTag(sale.getId, item.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">TAG</a></td>
+                        </tr>
                     }
-
-                    $('.confirm-button').click(function () {
-                        if (transArray.length == 0) {
-                            alert('No transactions were added.');
-                        } else {
-                            transArray.unshift({"saleId": @sale.getId});
-                            $.ajax({
-                                url: '@routes.CatalogController.makeTransaction()',
-                                type: 'POST',
-                                contentType: 'application/json',
-                                data: JSON.stringify(transArray),
-                                success: function () {
-                                }
-                            });
-                        }
-                        closeTransactionWindow();
-                    });
-
-
-                    $("#search").on("keyup", function () {
-                        var query = $(this).val().toLowerCase().trim();
-
-                        $(".item-row").each(function () {
-                            var text = $(this).children().text().toLowerCase().trim();
-
-                            if (text.indexOf(query) != -1) {
-                                $(this).show();
-                            } else {
-                                $(this).hide();
-                            }
-                        });
-                    });
-            </script>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     } else {
         <h1 class="mdl-color-text--red">This sale has been CLOSED</h1>
     }
