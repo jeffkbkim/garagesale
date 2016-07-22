@@ -14,7 +14,7 @@ import java.util.List;
  */
 
 @Entity
-public final class Transaction extends Model{
+public class Transaction extends Model{
     @Id
     private int id;
     private int quantity;

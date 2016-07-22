@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Sale;
 import models.User;
 import play.mvc.Result;
 import views.html.login;
@@ -19,6 +20,47 @@ public class Utils {
     public static User getUserSession() {
         String username = session("connected");
         return User.fetchByUsername(username);
+    }
+
+    /**
+     * Get username
+     *
+     * @return username
+     */
+    public static String getUsername() {
+        String username = session("connected");
+        return username;
+    }
+
+
+    /**
+     * Get sale id
+     *
+     * @return sale id
+     */
+    public static int getSaleId() {
+        String currentSale = session("currentSale");
+        if (currentSale == null) {
+            currentSale = "-1";
+        }
+        return Integer.parseInt(currentSale);
+    }
+
+    /**
+     * Get sale name
+     *
+     * @return sale name
+     */
+    public static String getSaleName() {
+        String currentSale = session("currentSale");
+        String saleName;
+        if (currentSale == null) {
+            saleName = "No Selected Sale";
+        } else {
+            Sale sale = Sale.fetchById(Integer.parseInt(currentSale));
+            saleName = sale.getName();
+        }
+        return saleName;
     }
 
     /**

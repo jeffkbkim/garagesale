@@ -31,6 +31,7 @@ public class CatalogController extends Controller {
      */
     public Result renderCatalogPage(int saleId) {
         //TODO: handle invalid saleId
+        session("currentSale", Integer.toString(saleId));
         User user = Utils.getUserSession();
         Sale sale = Sale.fetchById(saleId);
 

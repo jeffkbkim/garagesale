@@ -11,7 +11,7 @@ import java.util.List;
  * Receipt Entity
  */
 @Entity
-public final class Receipt extends Model{
+public class Receipt extends Model{
     @Id
     private int id;
     private String date;

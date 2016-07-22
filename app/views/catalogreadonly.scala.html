@@ -5,74 +5,23 @@
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/table.css")">
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/catalog.css")">
 
-
-   <div class="demo-card-wide">
-        <div class="mdl-card--border">
-            <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp sales-table">
-                <thead>
-                    <tr>
-                        <th class="mdl-data-table__cell--non-numeric">Item Name</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for(item <- items) {
-                        <tr class="item-row">
-                            <td class="mdl-data-table__cell--non-numeric">
-                                @item.getName()
-                            </td>
-                            <td class="mdl-data-table__cell">@item.getDescription()</td>
-                            <td class="mdl-data-table__cell">@item.getPrice()</td>
-                            <td class="mdl-data-table__cell">@item.getQuantity()</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+    <div class="mdl-grid">
+        @for(item <- items) {
+        <div class="mdl-cell mdl-cell--6-col">
+            <div class="mdl-shadow--2dp">
+                <div class="mdl-grid">
+                    <div class="mdl-cell--6-col mdl-card__left">
+                        <h2 class="mdl-card__title-text">@item.getName()</h2>
+                    </div>
+                    <div class="mdl-cell--6-col mdl-card__right">
+                        <h4>Price</h4>
+                        <p>$@item.getPrice()</p>
+                        <h4>Description</h4>
+                        <p>@item.getDescription()</p>
+                    </div>
+                </div>
+            </div>
         </div>
+        }
     </div>
-        <div class="mdl-card demo-card-wide transaction-window mdl-shadow--2dp">
-            <div class="mdl-card__supporting-text">
-                <h3>Transaction Details</h3>
-            </div>
-            <div class="mdl-card__supporting-text">
-                <table class="mdl-data-table mdl-js-data-table mdl-data-table">
-                    <tbody class="trans-table-body">
-                    <tr class="trans-row">
-                        <td class="mdl-data-table__cell">
-                            <select name="itemSelection" id="itemSelection">
-                                @for(item <- items) {
-                                <option value="@item.getId()">@item.getName()</option>
-                                }
-                            </select>
-                        </td>
-                        <td class="mdl-data-table__cell--numeric">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label quantity tiny">
-                                <input class="mdl-textfield__input"  type="number" name="quantity" id="quantity"/>
-                                <label class="mdl-textfield__label" for="quantity">Quantity</label>
-                            </div>
-                        </td>
-                        <td class="mdl-data-table__cell">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label buyer medium">
-                            <input class="mdl-textfield__input" type="text" name="buyer" id="buyer"/>
-                            <label class="mdl-textfield__label" for="buyer">Buyer</label>
-                        </div>
-                        <td class="mdl-data-table__cell">
-                            <a  class="mdl-button mdl-js-button mdl-button--accent add">Add</a>
-                        </td>
-                    </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <ul class="transactions">
-
-            </ul>
-            <div class="mdl-card__supporting-text">
-                <a  class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect cancel-button">Cancel</a>
-                <a  class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect confirm-button">Confirm</a>
-            </div>
-        </div>
-
 }

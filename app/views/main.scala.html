@@ -42,7 +42,7 @@
         <header class="drawer-header">
           <img src="@routes.Assets.versioned("images/user.png")" class="user">
           <div class="user-dropdown">
-            <span class="user-text">#ffff00</span>
+            <p class="user-text">Welcome @Utils.getUsername!</p>
             <div class="mdl-layout-spacer"></div>
             <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon user-text">
               <i class="material-icons" role="presentation">arrow_drop_down</i>
@@ -50,18 +50,25 @@
             </button>
             <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
               <li class="mdl-menu__item"><i class="material-icons">settings</i><a href="@routes.ProfileController.view()">Profile</a></li>
+              <li class="mdl-menu__item"><i class="material-icons">cached</i><a href="@routes.SalesController.getSales()">Switch Sale</a></li>
               <li class="mdl-menu__item"><i class="material-icons">person</i><a href="@routes.Application.logout()">Logout</a></li>
             </ul>
           </div>
+          <p class="current-sale">@Utils.getSaleName()</p>
         </header>
 
         <nav class="navigation mdl-navigation mdl-color--white">
           <a class="mdl-navigation__link" href="@routes.SalesController.allSales()"><i class="material-icons" role="presentation">home</i>Home</a>
-          <a class="mdl-navigation__link" href=""><i class="material-icons" role="presentation">inbox</i>Inventory</a>
-          <a class="mdl-navigation__link" href="@routes.SalesController.getSales()"><i class="material-icons" role="presentation">shopping_cart</i>Sale</a>
-          <a class="mdl-navigation__link" href=""><i class="material-icons" role="presentation">local_offer</i>Print Tags</a>
-          <a class="mdl-navigation__link" href=""><i class="material-icons" role="presentation">account_balance</i>Statement</a>
-          <a class="mdl-navigation__link" href=""><i class="material-icons" role="presentation">monetization_on</i>Reports</a>
+          <a class="mdl-navigation__link" href="@routes.SalesController.getSales()"><i class="material-icons" role="presentation">shopping_cart</i>Transaction</a>
+          @if(Utils.getSaleId != -1) {
+            <a class="mdl-navigation__link" href=""><i class="material-icons" role="presentation">inbox</i>Catalog</a>
+            <a class="mdl-navigation__link" href="@routes.CatalogController.renderAllTags(Utils.getSaleId)"><i class="material-icons" role="presentation">local_offer</i>Print Tags</a>
+            <a class="mdl-navigation__link" href="@routes.CatalogController.renderReport(Utils.getSaleId)"><i class="material-icons" role="presentation">account_balance</i>Reports</a>
+            <a class="mdl-navigation__link" href=""><i class="material-icons" role="presentation">monetization_on</i>Receipts</a>
+          } else {
+            <a class="mdl-navigation__link" href="@routes.CatalogController.renderReport(Utils.getSaleId)"><i class="material-icons" role="presentation">account_balance</i>Reports</a>
+          }
+
           <a class="mdl-navigation__link" href="@routes.AdministrationController.administration()"><i class="material-icons" role="presentation">people</i>Administration</a>
         </nav>
       </div>

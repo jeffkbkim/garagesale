@@ -12,7 +12,7 @@ import java.util.List;
  */
 
 @Entity
-public final class Item extends Model{
+public class Item extends Model{
     @Id
     private int id;
     private String name;

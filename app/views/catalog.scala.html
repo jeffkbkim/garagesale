@@ -7,12 +7,6 @@
 
     @if(sale.isOpen) {
         @if(role.equals(Role.RoleEnum.saleAdmin)
-                || role.equals(Role.RoleEnum.seller)) {
-            <a href="@routes.CatalogController.renderAddItemPage(sale.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
-                New Item
-            </a>
-        }
-        @if(role.equals(Role.RoleEnum.saleAdmin)
                 || role.equals(Role.RoleEnum.seller)
                 || role.equals(Role.RoleEnum.clerk)) {
             <a href="@routes.CatalogController.renderAllTags(sale.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createsale-link">
@@ -43,6 +37,38 @@
                 Close Sale
             </a>
         }
+            <h4 class="mdl-color-text--grey-600">Catalog</h4>
+
+            <div class="mdl-grid">
+                @for(item <- items) {
+                    <div class="mdl-cell mdl-cell--6-col">
+                        <a href="@routes.CatalogController.renderModifyItemPage(sale.getId, item.getId)">
+                            <div class="mdl-shadow--2dp">
+                                <div class="mdl-grid">
+                                    <div class="mdl-cell--6-col mdl-card__left">
+                                        <h2 class="mdl-card__title-text">@item.getName()</h2>
+                                    </div>
+                                    <div class="mdl-cell--6-col mdl-card__right">
+                                        <h4>Price</h4>
+                                        <p>$@item.getPrice()</p>
+                                        <h4>Description</h4>
+                                        <p>@item.getDescription()</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+            @if(role.equals(Role.RoleEnum.saleAdmin)
+            || role.equals(Role.RoleEnum.seller)) {
+            <a href="@routes.CatalogController.renderAddItemPage(sale.getId)" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color-text--white add-item">
+                <i class="material-icons">add</i>
+            </a>
+            }
+
+            <h4 class="mdl-color-text--grey-600">Inventory</h4>
+
             <div class="demo-card-wide">
                 <div class="mdl-card--border">
                     <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp sales-table">
