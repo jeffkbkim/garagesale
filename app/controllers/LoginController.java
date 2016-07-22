@@ -27,6 +27,7 @@ public class LoginController extends Controller {
      * @return home page if incorrect username or password, index page otherwise.
      */
     public Result loginAttempt() {
+        session().remove("currentSale");
         Form<LoginFormData> loginForm = formFactory.form(LoginFormData.class).bindFromRequest();
         String attemptUsername = loginForm.get().getUsername();
         String attemptPass = loginForm.get().getPassword();
