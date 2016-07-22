@@ -61,6 +61,7 @@
 .confirm-button {
     position: absolute;
     bottom: 36px;
+    width: 292px;
     margin-left: -15px;
 }
 
