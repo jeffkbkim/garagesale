@@ -5,34 +5,6 @@
 <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--8-col register">
         <h2>Register</h2>
-    </div>
-
-    <div class="mdl-cell mdl-cell--4-col cart mdl-shadow--2dp">
-        <h2>Cart</h2>
-        <div class="mdl-grid">
-            <div class="mdl-cell mdl-cell--8-col">
-                <ul class="transactions">
-
-                </ul>
-            </div>
-            <div class="mdl-cell mdl-cell--4-col">
-                <ul class="price">
-
-                </ul>
-            </div>
-        </div>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-color-text--white confirm-button">
-            Confirm
-        </button>
-    </div>
-</div>
-
-
-<div class="mdl-card demo-card-wide transaction-window mdl-shadow--2dp">
-    <div class="mdl-card__supporting-text">
-        <h3>Transaction Details</h3>
-    </div>
-    <div class="mdl-card__supporting-text">
         <table class="mdl-data-table mdl-js-data-table mdl-data-table">
             <tbody class="trans-table-body">
             <tr class="trans-row">
@@ -70,12 +42,24 @@
             </tbody>
         </table>
     </div>
-    <ul class="transactions">
 
-    </ul>
-    <div class="mdl-card__supporting-text">
-        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect confirm-button">
-            Confirm</a>
+    <div class="mdl-cell mdl-cell--4-col cart mdl-shadow--2dp">
+        <h2>Cart</h2>
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--8-col">
+                <ul class="transactions">
+
+                </ul>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col">
+                <ul class="price">
+
+                </ul>
+            </div>
+        </div>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-color-text--white confirm-button">
+            Confirm
+        </button>
     </div>
 </div>
 
@@ -88,7 +72,7 @@
         var buyer = $('#buyer').val();
         var payment = $('#paymentSelection option:selected').text();
         var conglomerate = '<li><h4>' + quantity + 'x '+ itemName + '</h4><br /><p>' + itemName + ' (' + quantity + ') to ' + buyer + '</p></li>';
-        var itemPrice = "$6.99";
+        var itemPrice = "$@Item.fetchItemById(1).getPrice";
         if (quantity > 0 && buyer.length > 0) {
             $('.transactions').append(conglomerate);
             $('.price').append('<li><h5>' + itemPrice + '</h5></li>');

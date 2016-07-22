@@ -15,6 +15,7 @@
     background-color: #fff;
     padding-left: 15px;
     height: 500px;
+    width: 292px;
 }
 
 .cart h2 {
@@ -66,5 +67,5 @@
 }
 
 .mdl-textfield {
-    width: 75px;
+    width: 60px;
 }
