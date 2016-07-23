@@ -14,7 +14,6 @@
 .cart {
     background-color: #fff;
     padding-left: 15px;
-    height: 500px;
     width: 292px;
 }
 
@@ -82,7 +81,8 @@
 }
 
 .mdl-textfield {
-    width: 60px;
+    width: 225px;
+    margin-bottom: -25px;
 }
 
 .mdl-card {
@@ -95,4 +95,18 @@
     background: url('/assets/images/items/ipad.jpg') center / cover;
     height: 100px;
     display: block;
+}
+
+.mdl-dialog__title {
+    margin-top: -15px;
+    font-size: 24px;
+}
+
+.mdl-dialog__content {
+    padding-top: 5px;
+}
+
+.mdl-radio {
+    margin-left: 5px;
+    margin-right: 5px;
 }
