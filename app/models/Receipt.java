@@ -4,6 +4,7 @@ import com.avaje.ebean.Model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -16,6 +17,9 @@ public class Receipt extends Model{
     private int id;
     private String date;
     private double totalprofit;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
     @ManyToOne
     @JoinColumn(name = "sale_id")
     private Sale sale;
@@ -75,6 +79,14 @@ public class Receipt extends Model{
     }
 
     /**
+     * receipt user getter method
+     * @return user
+     */
+    public User getUser() {
+        return this.user;
+    }
+
+    /**
      * receipt id setter method
      * @param id receipt id
      */
@@ -99,12 +111,33 @@ public class Receipt extends Model{
     }
 
     /**
+     * user setter
+     * @param user user
+     */
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    /**
      * fetches receipts by sale
      * @param sale sale corresponding to sale
      * @return list of receipts of sale
      */
     public static List<Receipt> fetchReceiptsBySale(Sale sale) {
         return Receipt.find.select("*").where().eq("sale_id", sale.getId()).findList();
+    }
+
+    /**
+     * fetches receipts by user
+     * @param user user
+     * @return list of receipts
+     */
+    public static List<Receipt> fetchReceiptsByUser(User user) {
+        List<Receipt> receipts = Receipt.find.select("*").where().eq("user_id", user.getId()).findList();
+        if (receipts == null) {
+            receipts = new LinkedList<>();
+        }
+        return receipts;
     }
 
     /**
@@ -116,8 +149,22 @@ public class Receipt extends Model{
         return find.byId(id);
     }
 
+    /**
+     * getter for transactions
+     * @return list of transactions
+     */
     public List<Transaction> getTransactions() {
         return transactions;
+    }
+
+    public static double getTotalProfit(List<Receipt> receipts) {
+        double total = 0;
+
+        for (Receipt receipt : receipts) {
+            total += receipt.getProfit();
+        }
+
+        return total;
     }
 
     public void setTransactions(List<Transaction> transactions) {
