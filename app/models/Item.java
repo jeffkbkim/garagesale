@@ -5,6 +5,7 @@ import com.avaje.ebean.Model;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Douglas on 6/16/2016.
@@ -191,6 +192,15 @@ public class Item extends Model{
     public static Item fetchItemById(int id) {
         //TODO: need to handle empty list/null
         return find.byId(id);
+    }
+
+    /**
+     * Get only available items
+     * @param items list of items
+     * @return list of available items
+     */
+    public static List<Item> filterAvailableItems(List<Item> items) {
+        return items.stream().filter((item) -> item.getQuantity() > 0).collect(Collectors.toList());
     }
 
     public List<Transaction> getTransactions() {
