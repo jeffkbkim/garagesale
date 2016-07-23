@@ -33,8 +33,32 @@
                         Cancel
                     </button>
                 </a>
+                @*<a href="/catalog?saleId=@sale.getId">*@
+                    <button id="suggest-price-button" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="button">
+                        Suggest Price
+                    </button>
+                @*</a>*@
             </form>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $("#suggest-price-button").hide();
+
+            $("#item-name").keyup(function() {
+                if ($("#item-name").val() != '') {
+                    $('#suggest-price-button').show();
+                } else {
+                    $('#suggest-price-button').hide();
+                }
+            });
+
+            $("#suggest-price-button").click(function() {
+                var keyword = $("#item-name").val();
+                window.location.href = "/suggestprice?keyword=" + encodeURIComponent(keyword) + "&saleId=@sale.getId";
+            });
+        });
+    </script>
 
 }

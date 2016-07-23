@@ -1,0 +1,81 @@
+@(user: User)(items: List[Map[String, String]])(sale: Sale)(suggestedPrice: String)(keyword: String)
+@main(title = "Suggested Pricing") {
+
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/salepage.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/table.css")">
+    <script src="@routes.Assets.versioned("javascripts/table.js")"></script>
+
+    <h4 class="mdl-color-text--grey-600">Suggested Price: <strong>$@suggestedPrice</strong></h4>
+
+    @*<div class="mdl-grid">*@
+
+
+        @*<div class="mdl-cell mdl-cell--3-col">*@
+            @*<a href="@routes.SalesController.createSalePage">*@
+                @*<div class="mdl-card mdl-shadow--2dp create-page">*@
+
+                @*</div>*@
+            @*</a>*@
+        @*</div>*@
+    @*</div>*@
+
+    <h4 class="mdl-color-text--grey-600">Similar Items on eBay for item: "@keyword"</h4>
+    <img src="@routes.Assets.versioned("images/ebay.png")">
+    <a href="@routes.CatalogController.renderAddItemPage(sale.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Back to Add Item</a></td>
+
+    <div class="demo-card-wide">
+        <div class="mdl-card--border">
+            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp sales-table">
+                <thead>
+                    <tr>
+                        <th class="mdl-data-table__cell--non-numeric">Item Name</th>
+                        <th class="mdl-data-table__cell--non-numeric">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for(item <- items) {
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">
+                                @item.get("title")
+                            </td>
+                            <td class="mdl-data-table__cell--non-numeric">
+                                @item.get("price")
+                            </td>
+                        </tr>
+                          @*<tr onclick="window.location = $(this).find('a').attr('href')">*@
+                                @*<td class="mdl-data-table__cell--non-numeric">*@
+                                    @*<a href="@routes.CatalogController.renderCatalogPage(sale.getId)">*@
+                                        @*sale.getName()*@
+                                    @*</a>*@
+                                @*</td>*@
+                                @*<td>@sale.getLocation()</td>*@
+                                @*<td>*@
+                                    @*{ Role.fetchBySaleIdAndUserId(sale.getId, user.getId).get(0).getRole().toString }*@
+                                @*</td>*@
+                                @*<td>*@
+                                    @*sale.getStatus*@
+                                @*</td>*@
+                            @*</tr>*@
+                    }
+                    @*for(sale <- sales) {*@
+                            @*<tr onclick="window.location = $(this).find('a').attr('href')">*@
+                                @*<td class="mdl-data-table__cell--non-numeric">*@
+                                    @*<a href="@routes.catalogcontroller.rendercatalogpage(sale.getid)">*@
+                                        @*sale.getname()*@
+                                    @*</a>*@
+                                @*</td>*@
+                                @*<td>@sale.getlocation()</td>*@
+                                @*<td>*@
+                                    @*{ role.fetchbysaleidanduserid(sale.getid, user.getid).get(0).getrole().tostring }*@
+                                @*</td>*@
+                                @*<td>*@
+                                    @*sale.getstatus*@
+                                @*</td>*@
+                            @*</tr>*@
+                    @*}*@
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+}
