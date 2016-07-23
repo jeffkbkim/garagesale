@@ -1,27 +1,37 @@
 var transArray = [];
+var dialog = document.querySelector('dialog');
+if (! dialog.showModal) {
+  dialogPolyfill.registerDialog(dialog);
+}
 
 function bindAddItem(selector) {
     $('#' + selector).click(function() {
-        var itemID = selector;
-        var itemName = document.getElementById('name' + selector).innerHTML;
-        var quantity = 1;
-        var conglomerate = '<li><h4>' + quantity + 'x '+ itemName + '</h4><br /><p>' + itemName + ' (' + quantity + ')</p></li>';
-        var itemPrice = document.getElementById('price' + selector).innerHTML;
-        var buyer = "test";
-        var payment = "test2";
-        if (quantity > 0) {
-            $('.transactions').append(conglomerate);
-            $('.price').append('<li><h5>' + itemPrice + '</h5></li>');
-            document.getElementById("totalCost").innerHTML = itemPrice;
-            transArray.push({
-                "id": itemID,
-                "quantity": quantity,
-                "buyer": buyer,
-                "payment": payment
-            });
-        } else {
-            alert('Please fill out the quantity and buyer name.');
-        }
+        dialog.showModal();
+        $('.submit').click(function() {
+            var itemID = parseInt(selector);
+            var itemName = document.getElementById('name' + selector).innerHTML;
+            var quantity = parseInt($('#quantity').val());
+            var itemPrice = document.getElementById('price' + selector).innerHTML;
+            var buyer = $('#buyerName').val();
+            var payment = $('input[name=payment]:checked').val();
+            var conglomerate = '<li><h4>' + quantity + 'x '+ itemName + '</h4><br /><p>' + buyer + ' (' + payment + ')</p></li>';
+            if (quantity > 0) {
+                $('.transactions').append(conglomerate);
+                $('.price').append('<li><h5>' + itemPrice + '</h5></li>');
+                document.getElementById("totalCost").innerHTML = itemPrice;
+                transArray.push({
+                    "id": itemID,
+                    "quantity": quantity,
+                    "buyer": buyer,
+                    "payment": payment
+                });
+            } else {
+                alert('Please fill out the quantity and buyer name.');
+            }
+            dialog.close();
+            $(".submit").unbind();
+        });
+
     });
 }
 
