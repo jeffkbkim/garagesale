@@ -1,5 +1,5 @@
 html {
-  background: url(/assets/images/login-background-alt.jpg) no-repeat center center fixed;
+  background: url(/assets/images/login-background.jpg) no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -66,8 +66,7 @@ html {
 }
 
 .register a {
-  font-weight: bold;
-  color: #000;
+  color: #fff;
   text-decoration: none;
 }
 

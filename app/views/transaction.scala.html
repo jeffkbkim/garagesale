@@ -5,42 +5,20 @@
 <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--8-col register">
         <h2>Register</h2>
-        <table class="mdl-data-table mdl-js-data-table mdl-data-table">
-            <tbody class="trans-table-body">
-            <tr class="trans-row">
-                <td class="mdl-data-table__cell">
-                    <select name="itemSelection" id="itemSelection">
-                        @for(item <- items) {
-                        <option value="@item.getId()">@item.getName()</option>
-                        }
-                    </select>
-                </td>
-                <td class="mdl-data-table__cell--numeric">
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label quantity tiny">
-                        <input class="mdl-textfield__input" type="number" name="quantity" id="quantity"/>
-                        <label class="mdl-textfield__label" for="quantity">Quantity</label>
+        <div class="mdl-grid">
+            @for(item <- items) {
+            <div class="mdl-cell mdl-cell--3-col">
+                <a id="@item.getId">
+                    <div class="mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <p id="name@item.getId">@item.getName</p>
+                            <p id="price@item.getId">$@item.getPrice</p>
+                        </div>
                     </div>
-                </td>
-                <td class="mdl-data-table__cell">
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label buyer medium">
-                        <input class="mdl-textfield__input" type="text" name="buyer" id="buyer"/>
-                        <label class="mdl-textfield__label" for="buyer">Buyer</label>
-                    </div>
-                </td>
-                <td class="mdl-data-table__cell">
-                    <select name="paymentSelection" id="paymentSelection">
-                        <option value="NA">N/A</option>
-                        <option value="Credit">Credit</option>
-                        <option value="Debit">Debit</option>
-                        <option value="Cash">Cash</option>
-                    </select>
-                </td>
-                <td class="mdl-data-table__cell">
-                    <a class="mdl-button mdl-js-button mdl-button--accent add">Add</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                </a>
+            </div>
+            }
+        </div>
     </div>
 
     <div class="mdl-cell mdl-cell--4-col cart mdl-shadow--2dp">
@@ -57,67 +35,39 @@
                 </ul>
             </div>
         </div>
+        <div class="mdl-grid total">
+            <h4>Total:</h4>
+            <h4 id="totalCost" class="value">$0.00</h4>
+        </div>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-color-text--white confirm-button">
             Confirm
         </button>
     </div>
 </div>
 
+<script src="@routes.Assets.versioned("javascripts/transaction.js")"></script>
+    @for(item <- items) {
+        <script>
+            bindAddItem(@item.getId);
+        </script>
+    }
 <script>
-    var transArray = [];
-    $('.add').click(function () {
-        var itemID = parseInt($('#itemSelection').val());
-        var itemName = $('#itemSelection option:selected').text();
-        var quantity = parseInt($('#quantity').val());
-        var buyer = $('#buyer').val();
-        var payment = $('#paymentSelection option:selected').text();
-        var conglomerate = '<li><h4>' + quantity + 'x '+ itemName + '</h4><br /><p>' + itemName + ' (' + quantity + ') to ' + buyer + '</p></li>';
-        var itemPrice = "$@Item.fetchItemById(1).getPrice";
-        if (quantity > 0 && buyer.length > 0) {
-            $('.transactions').append(conglomerate);
-            $('.price').append('<li><h5>' + itemPrice + '</h5></li>');
-            transArray.push({
-                "id": itemID,
-                "quantity": quantity,
-                "buyer": buyer,
-                "payment": payment
-            });
-        } else {
-            alert('Please fill out the quantity and buyer name.');
-        }
-    });
-
     $('.confirm-button').click(function () {
-        if (transArray.length == 0) {
-            alert('No transactions were added.');
-        } else {
-            transArray.unshift({"saleId": @sale.getId});
-            $.ajax({
-                url: '@routes.CatalogController.makeTransaction()',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(transArray),
-                success: function () {
-                }
-            });
-        }
-        closeTransactionWindow();
-    });
-
-
-    $("#search").on("keyup", function () {
-        var query = $(this).val().toLowerCase().trim();
-
-        $(".item-row").each(function () {
-            var text = $(this).children().text().toLowerCase().trim();
-
-            if (text.indexOf(query) != -1) {
-                $(this).show();
-            } else {
-                $(this).hide();
+    if (transArray.length == 0) {
+        alert('No transactions were added.');
+    } else {
+        transArray.unshift({"saleId": @sale.getId});
+        $.ajax({
+            url: '@routes.CatalogController.makeTransaction()',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(transArray),
+            success: function () {
             }
         });
-    });
+        alert("Transaction has been made!");
+        location.reload();
+    }
+});
 </script>
-
 }

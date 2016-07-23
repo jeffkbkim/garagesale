@@ -66,6 +66,33 @@
     margin-left: -15px;
 }
 
+.total {
+    margin-left: 10px;
+    position: absolute;
+    bottom: 80px;
+}
+
+.total h4 {
+    font-weight: 600;
+}
+
+.value {
+    padding-left: 150px;
+    font-weight: 600;
+}
+
 .mdl-textfield {
     width: 60px;
+}
+
+.mdl-card {
+    min-height: 100px;
+}
+
+.mdl-card__title {
+    padding-top: 35px;
+    padding-left: 10px;
+    background: url('/assets/images/items/ipad.jpg') center / cover;
+    height: 100px;
+    display: block;
 }
