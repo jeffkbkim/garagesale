@@ -2,10 +2,16 @@ package controllers;
 
 import models.Sale;
 import models.User;
+import play.mvc.Http;
 import play.mvc.Result;
 import views.html.login;
 
+import java.io.File;
+
+import static play.mvc.Controller.flash;
+import static play.mvc.Controller.request;
 import static play.mvc.Controller.session;
+import static play.mvc.Results.badRequest;
 import static play.mvc.Results.ok;
 
 /**
@@ -73,4 +79,20 @@ public class Utils {
         user.save();
         return ok(login.render(""));
     }
+
+    public Result upload() {
+        Http.MultipartFormData<File> body = request().body().asMultipartFormData();
+        Http.MultipartFormData.FilePart<File> picture = body.getFile("picture");
+        if (picture != null) {
+            String fileName = picture.getFilename();
+            String contentType = picture.getContentType();
+            File file = picture.getFile();
+            file.renameTo(new File("/home/sunho207/Desktop/", fileName));
+            return ok("File uploaded");
+        } else {
+            flash("error", "Missing file");
+            return badRequest();
+        }
+    }
+
 }
