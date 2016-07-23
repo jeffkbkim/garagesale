@@ -4,27 +4,27 @@
 # --- !Ups
 
 create table item (
-  id                        integer not null,
+  id                        serial not null,
   name                      varchar(255),
   description               varchar(255),
   quantity                  integer,
-  price                     double,
-  minimum_price             double,
+  price                     float,
+  minimum_price             float,
   sale_id                   integer,
   constraint pk_item primary key (id))
 ;
 
 create table receipt (
-  id                        integer not null,
+  id                        serial not null,
   date                      varchar(255),
-  totalprofit               double,
+  totalprofit               float,
   user_id                   integer,
   sale_id                   integer,
   constraint pk_receipt primary key (id))
 ;
 
 create table role (
-  id                        integer not null,
+  id                        serial not null,
   user_id                   integer,
   sale_id                   integer,
   role                      integer,
@@ -33,19 +33,19 @@ create table role (
 ;
 
 create table sale (
-  id                        integer not null,
+  id                        serial not null,
   name                      varchar(255),
   location                  varchar(255),
   date                      varchar(255),
-  earnings                  double,
+  earnings                  float,
   is_open                   boolean,
   constraint pk_sale primary key (id))
 ;
 
 create table transaction (
-  id                        integer not null,
+  id                        serial not null,
   quantity                  integer,
-  profit                    double,
+  profit                    float,
   method                    varchar(255),
   buyer                     varchar(255),
   sale_id                   integer,
@@ -54,8 +54,8 @@ create table transaction (
   constraint pk_transaction primary key (id))
 ;
 
-create table user (
-  id                        integer not null,
+create table user_table (
+  id                        serial not null,
   user_name                 varchar(255),
   first_name                varchar(255),
   last_name                 varchar(255),
@@ -65,68 +65,40 @@ create table user (
   login_attempts            integer,
   is_locked                 boolean,
   is_super_user             boolean,
-  constraint uq_user_user_name unique (user_name),
-  constraint pk_user primary key (id))
+  constraint uq_user_table_user_name unique (user_name),
+  constraint pk_user_table primary key (id))
 ;
 
-create sequence item_seq;
-
-create sequence receipt_seq;
-
-create sequence role_seq;
-
-create sequence sale_seq;
-
-create sequence transaction_seq;
-
-create sequence user_seq;
-
-alter table item add constraint fk_item_sale_1 foreign key (sale_id) references sale (id) on delete restrict on update restrict;
+alter table item add constraint fk_item_sale_1 foreign key (sale_id) references sale (id);
 create index ix_item_sale_1 on item (sale_id);
-alter table receipt add constraint fk_receipt_user_2 foreign key (user_id) references user (id) on delete restrict on update restrict;
+alter table receipt add constraint fk_receipt_user_2 foreign key (user_id) references user_table (id);
 create index ix_receipt_user_2 on receipt (user_id);
-alter table receipt add constraint fk_receipt_sale_3 foreign key (sale_id) references sale (id) on delete restrict on update restrict;
+alter table receipt add constraint fk_receipt_sale_3 foreign key (sale_id) references sale (id);
 create index ix_receipt_sale_3 on receipt (sale_id);
-alter table role add constraint fk_role_user_4 foreign key (user_id) references user (id) on delete restrict on update restrict;
+alter table role add constraint fk_role_user_4 foreign key (user_id) references user_table (id);
 create index ix_role_user_4 on role (user_id);
-alter table role add constraint fk_role_sale_5 foreign key (sale_id) references sale (id) on delete restrict on update restrict;
+alter table role add constraint fk_role_sale_5 foreign key (sale_id) references sale (id);
 create index ix_role_sale_5 on role (sale_id);
-alter table transaction add constraint fk_transaction_sale_6 foreign key (sale_id) references sale (id) on delete restrict on update restrict;
+alter table transaction add constraint fk_transaction_sale_6 foreign key (sale_id) references sale (id);
 create index ix_transaction_sale_6 on transaction (sale_id);
-alter table transaction add constraint fk_transaction_item_7 foreign key (item_id) references item (id) on delete restrict on update restrict;
+alter table transaction add constraint fk_transaction_item_7 foreign key (item_id) references item (id);
 create index ix_transaction_item_7 on transaction (item_id);
-alter table transaction add constraint fk_transaction_receipt_8 foreign key (receipt_id) references receipt (id) on delete restrict on update restrict;
+alter table transaction add constraint fk_transaction_receipt_8 foreign key (receipt_id) references receipt (id);
 create index ix_transaction_receipt_8 on transaction (receipt_id);
 
 
 
 # --- !Downs
 
-SET REFERENTIAL_INTEGRITY FALSE;
+drop table if exists item cascade;
 
-drop table if exists item;
+drop table if exists receipt cascade;
 
-drop table if exists receipt;
+drop table if exists role cascade;
 
-drop table if exists role;
+drop table if exists sale cascade;
 
-drop table if exists sale;
+drop table if exists transaction cascade;
 
-drop table if exists transaction;
-
-drop table if exists user;
-
-SET REFERENTIAL_INTEGRITY TRUE;
-
-drop sequence if exists item_seq;
-
-drop sequence if exists receipt_seq;
-
-drop sequence if exists role_seq;
-
-drop sequence if exists sale_seq;
-
-drop sequence if exists transaction_seq;
-
-drop sequence if exists user_seq;
+drop table if exists user_table cascade;
 
