@@ -25,6 +25,8 @@ public final class User extends Model{
     private boolean isSuperUser;
     @OneToMany(mappedBy = "user")
     private List<Role> roles = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
+    private List<Receipt> receipts = new ArrayList<>();
 
 
     /**
@@ -260,18 +262,19 @@ public final class User extends Model{
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (userName != null ? userName.hashCode() : 0);
-        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + loginAttempts;
-        result = 31 * result + (isLocked ? 1 : 0);
-        result = 31 * result + (isSuperUser ? 1 : 0);
-        result = 31 * result + (roles != null ? roles.hashCode() : 0);
-        return result;
+//        int result = id;
+//        result = 31 * result + (userName != null ? userName.hashCode() : 0);
+//        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+//        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+//        result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
+//        result = 31 * result + (email != null ? email.hashCode() : 0);
+//        result = 31 * result + (password != null ? password.hashCode() : 0);
+//        result = 31 * result + loginAttempts;
+//        result = 31 * result + (isLocked ? 1 : 0);
+//        result = 31 * result + (isSuperUser ? 1 : 0);
+//        result = 31 * result + (roles != null ? roles.hashCode() : 0);
+//        return result;
+        return id;
     }
 
     /**

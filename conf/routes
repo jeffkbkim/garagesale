@@ -78,3 +78,5 @@ GET    /lock                        controllers.AdministrationController.lock(us
 GET    /unlock                      controllers.AdministrationController.unlock(userId: Int?=0)
 
 GET     /createsuperuser            controllers.Utils.createSuperUser
+
+GET     /suggestprice               controllers.PriceSuggestionController.suggestPrice(keyword: String?="", saleId: Int?=0)

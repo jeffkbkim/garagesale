@@ -2,6 +2,7 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.inject.Inject;
+import com.sun.webkit.dom.RectImpl;
 import models.*;
 import play.data.Form;
 import play.data.FormFactory;
@@ -131,8 +132,6 @@ public class CatalogController extends Controller {
         User user = Utils.getUserSession();
         Receipt r = Receipt.fetchReceiptById(receiptId);
         List<Transaction> transactions = Transaction.fetchTransactionByReceipt(r);
-//        scala.collection.immutable.List<Transaction> transactionsImm
-//                = JavaConverters.asScalaBufferConverter(transactions).asScala().toList();
         Sale sale = r.getSale();
         return ok(receipt.render(user, sale, r, transactions));
     }
@@ -142,7 +141,26 @@ public class CatalogController extends Controller {
         Sale sale = Sale.fetchById(saleId);
         List<Receipt> receipts = Receipt.fetchReceiptsBySale(sale);
         List<Item> items = Item.fetchItemsBySale(sale);
-        return ok(report.render(user, sale, receipts, items));
+
+        Set<Integer> userIds = new HashSet<>();
+        Map<User, List<Receipt>> userReceipts = new HashMap<>();
+        List<Role> rolesAdmin = Role.fetchBySaleIdForARole(sale.getId(), Role.RoleEnum.saleAdmin);
+        List<Role> rolesSeller = Role.fetchBySaleIdForARole(sale.getId(), Role.RoleEnum.seller);
+        List<Role> rolesCashier = Role.fetchBySaleIdForARole(sale.getId(), Role.RoleEnum.cashier);
+
+        userIds.addAll(Role.mapRolesToUserIds(rolesAdmin));
+        userIds.addAll(Role.mapRolesToUserIds(rolesSeller));
+        userIds.addAll(Role.mapRolesToUserIds(rolesCashier));
+
+        List<Receipt> tempReceipts;
+        for (int userId : userIds) {
+            User tempUser = User.fetchById(userId);
+            tempReceipts = Receipt.fetchReceiptsByUser(tempUser);
+
+            userReceipts.put(tempUser, tempReceipts);
+        }
+
+        return ok(report.render(user, sale, receipts, items, userReceipts));
     }
 
     /**
@@ -192,6 +210,7 @@ public class CatalogController extends Controller {
      * @return catalog page with updated transaction.
      */
     public Result makeTransaction() {
+        User user = Utils.getUserSession();
         JsonNode json = request().body().asJson();
         Iterator i = json.iterator();
         JsonNode firstItem = (JsonNode) i.next();
@@ -203,6 +222,7 @@ public class CatalogController extends Controller {
         Date date = new Date();
         receipt.setDate(dateFormat.format(date));
         receipt.setSale(sale);
+        receipt.setUser(user);
         receipt.save();
         double totalProfit = 0;
 

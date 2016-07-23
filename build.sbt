@@ -12,7 +12,8 @@ libraryDependencies ++= Seq(
   cache,
   javaWs,
   "org.postgresql" % "postgresql" % "9.3-1100-jdbc4",
-  "org.avaje.ebeanorm" % "avaje-ebeanorm" % "4.6.2"
+  "org.avaje.ebeanorm" % "avaje-ebeanorm" % "4.6.2",
+  "com.google.code.gson" % "gson" % "2.3.1"
 )
 
 
