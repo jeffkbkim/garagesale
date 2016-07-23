@@ -10,6 +10,7 @@ import java.util.*;
  * User Entity
  */
 @Entity
+@Table(name="user_table")
 public final class User extends Model{
     @Id
     private int id;
