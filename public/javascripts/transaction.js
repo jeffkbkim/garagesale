@@ -11,18 +11,29 @@ function bindAddItem(selector) {
             var itemID = parseInt(selector);
             var itemName = document.getElementById('name' + selector).innerHTML;
             var quantity = parseInt($('#quantity').val());
-            if(parseInt($('#priceAdjust').val()) >= 0) {
-                var itemPrice = parseInt($('#priceAdjust').val());
+            if ($('#minimum' + itemID).val() == 0) {
+                var minimum = document.getElementById('price' + selector).innerHTML;
             } else {
-                var itemPrice = document.getElementById('price' + selector).innerHTML;
+                var minimum = parseFloat($('#minimum' + itemID).val());
             }
+            var itemPrice = document.getElementById('price' + selector).innerHTML;
+            if (parseInt($('#priceAdjust').val()) > 0) {
+                if (parseInt($('#priceAdjust').val()) >= minimum) {
+                    var itemPrice = "$" + parseFloat($('#priceAdjust').val());
+                } else if ($('#minimum' + itemID).val() != 0) {
+                    alert("Price Adjust is above set minimum price");
+                } else {
+                    alert("Minimum is not set");
+                }
+            }
+
 
             var buyer = $('#buyerName').val();
             var payment = $('input[name=payment]:checked').val();
             var conglomerate = '<li><h4>' + quantity + 'x '+ itemName + '</h4><br /><p>' + buyer + ' (' + payment + ')</p></li>';
             if (quantity > 0) {
                 $('.transactions').append(conglomerate);
-                $('.price').append('<li><h5>$' + itemPrice + '</h5></li>');
+                $('.price').append('<li><h5>' + itemPrice + '</h5></li>');
                 transArray.push({
                     "id": itemID,
                     "quantity": quantity,
