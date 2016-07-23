@@ -11,14 +11,18 @@ function bindAddItem(selector) {
             var itemID = parseInt(selector);
             var itemName = document.getElementById('name' + selector).innerHTML;
             var quantity = parseInt($('#quantity').val());
-            var itemPrice = document.getElementById('price' + selector).innerHTML;
+            if(parseInt($('#priceAdjust').val()) >= 0) {
+                var itemPrice = parseInt($('#priceAdjust').val());
+            } else {
+                var itemPrice = document.getElementById('price' + selector).innerHTML;
+            }
+
             var buyer = $('#buyerName').val();
             var payment = $('input[name=payment]:checked').val();
             var conglomerate = '<li><h4>' + quantity + 'x '+ itemName + '</h4><br /><p>' + buyer + ' (' + payment + ')</p></li>';
             if (quantity > 0) {
                 $('.transactions').append(conglomerate);
-                $('.price').append('<li><h5>' + itemPrice + '</h5></li>');
-                document.getElementById("totalCost").innerHTML = itemPrice;
+                $('.price').append('<li><h5>$' + itemPrice + '</h5></li>');
                 transArray.push({
                     "id": itemID,
                     "quantity": quantity,

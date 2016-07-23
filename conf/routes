@@ -7,8 +7,9 @@ GET     /                           controllers.Application.home
 
 POST    /loginAttempt               controllers.LoginController.loginAttempt
 
-
 POST    /register                   controllers.LoginController.register
+
+POST    /upload                     controllers.Utils.upload
 
 #Home Route
 GET     /index.html                 controllers.Application.index

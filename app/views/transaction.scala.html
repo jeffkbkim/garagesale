@@ -35,10 +35,6 @@
                 </ul>
             </div>
         </div>
-        <div class="mdl-grid total">
-            <h4>Total:</h4>
-            <h4 id="totalCost" class="value">$0.00</h4>
-        </div>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-color-text--white confirm-button">
             Confirm
         </button>
@@ -68,6 +64,11 @@
             <input type="radio" id="option-3" class="mdl-radio__button" name="payment" value="credit">
             <span class="mdl-radio__label">Credit</span>
         </label>
+        <br /><br />
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="number" id="priceAdjust">
+            <label class="mdl-textfield__label" for="priceAdjust">Price Adjustment</label>
+        </div>
     </div>
     <div class="mdl-dialog__actions">
         <button type="button" class="mdl-button submit">Confirm</button>
