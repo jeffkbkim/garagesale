@@ -13,7 +13,8 @@ libraryDependencies ++= Seq(
   javaWs,
   "org.postgresql" % "postgresql" % "9.3-1100-jdbc4",
   "org.avaje.ebeanorm" % "avaje-ebeanorm" % "4.6.2",
-  "com.google.code.gson" % "gson" % "2.3.1"
+  "com.google.code.gson" % "gson" % "2.3.1",
+  "com.typesafe.play" %% "play-mailer" % "5.0.0-M1"
 )
 
 

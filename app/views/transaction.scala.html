@@ -2,6 +2,11 @@
 @main(title = "Transaction") {
 <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/transaction.css")">
 
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" id="email">
+    <label class="mdl-textfield__label" for="email">Email for Receipt</label>
+</div>
+
 <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--8-col register">
         <h2>Register</h2>
@@ -10,7 +15,7 @@
             <div class="mdl-cell mdl-cell--3-col">
                 <a id="@item.getId">
                     <div class="mdl-card mdl-shadow--2dp">
-                        <div class="mdl-card__title">
+                        <div class="mdl-card__title" style="background: url('http://localhost:9000/assets/data/@item.getId\.jpg'); background-size: contain; background-repeat: no-repeat;">
                             <p id="name@item.getId">@item.getName</p>
                             <p id="price@item.getId">$@item.getPrice</p>
                         </div>
@@ -35,6 +40,7 @@
                 </ul>
             </div>
         </div>
+
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-color-text--white confirm-button">
             Confirm
         </button>
@@ -86,6 +92,7 @@
     if (transArray.length == 0) {
         alert('No transactions were added.');
     } else {
+        transArray.unshift({"email": $('#email').val().toString()});
         transArray.unshift({"saleId": @sale.getId});
         $.ajax({
             url: '@routes.CatalogController.makeTransaction()',

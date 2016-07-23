@@ -6,6 +6,8 @@ import com.sun.webkit.dom.RectImpl;
 import models.*;
 import play.data.Form;
 import play.data.FormFactory;
+import play.libs.mailer.Email;
+import play.libs.mailer.MailerClient;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.*;
@@ -24,6 +26,13 @@ public class CatalogController extends Controller {
     // TODO: check validity of parameters for security
     @Inject
     private FormFactory formFactory;
+
+    private final MailerClient mailer;
+    @Inject
+    public CatalogController(MailerClient mailer)
+    {
+        this.mailer = mailer;
+    }
 
     /**
      * renders catalog page.
@@ -218,7 +227,10 @@ public class CatalogController extends Controller {
         JsonNode json = request().body().asJson();
         Iterator i = json.iterator();
         JsonNode firstItem = (JsonNode) i.next();
+        JsonNode secondItem = (JsonNode) i.next();
         int saleID = Integer.parseInt(String.valueOf(firstItem.findValue("saleId")));
+        String email = secondItem.findValue("email").toString();
+
         Sale sale = Sale.fetchById(saleID);
 
         Receipt receipt = new Receipt();
@@ -253,6 +265,7 @@ public class CatalogController extends Controller {
         sale.addEarnings(totalProfit);
         sale.update();
         receipt.update();
+        sendReceipt(receipt.getId(), email);
         return (redirect(routes.CatalogController.renderCatalogPage(saleID)));
     }
 
@@ -286,6 +299,22 @@ public class CatalogController extends Controller {
         Sale sale = Sale.fetchById(saleId);
         List<Receipt> receipts = Receipt.fetchReceiptsBySale(sale);
         return ok(views.html.allreceipts.render(user,receipts));
+    }
+
+    public  void sendReceipt(int receiptId, String address) {
+        if (address != null) {
+            Logger.debug(address);
+            Receipt r = Receipt.fetchReceiptById(receiptId);
+            List<Transaction> transactions = Transaction.fetchTransactionByReceipt(r);
+            User user = Utils.getUserSession();
+            Sale sale = Sale.fetchById(Utils.getSaleId());
+            Email email = new Email()
+                    .setSubject("Receipt for " + sale.getName())
+                    .setFrom("FFFF00 Team <noreply@ffff00.com>")
+                    .addTo("<" + address.replaceAll("\"", "") + ">")
+                    .setBodyHtml(receipt.render(user, sale, r, transactions).body());
+            mailer.send(email);
+        }
     }
 
 }
