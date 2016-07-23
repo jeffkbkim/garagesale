@@ -1,12 +1,17 @@
 package controllers;
 
+import models.Item;
 import models.Sale;
 import models.User;
+import play.Logger;
 import play.mvc.Http;
 import play.mvc.Result;
 import views.html.login;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 
 import static play.mvc.Controller.flash;
 import static play.mvc.Controller.request;
@@ -85,18 +90,23 @@ public class Utils {
     }
 
     public Result upload() {
+        Logger.error("Error: upload called");
+        Logger.debug("Debug: upload called");
         Http.MultipartFormData<File> body = request().body().asMultipartFormData();
         Http.MultipartFormData.FilePart<File> picture = body.getFile("picture");
+        int itemId = Integer.parseInt(request().body().asMultipartFormData().asFormUrlEncoded().get("itemId")[0]);
         if (picture != null) {
             String fileName = picture.getFilename();
             String contentType = picture.getContentType();
             File file = picture.getFile();
-            file.renameTo(new File("/home/sunho207/Desktop/", fileName));
+            file.renameTo(new File("public/data/", itemId + ".jpg"));
+            Logger.error(file.getAbsolutePath());
             return ok("File uploaded");
         } else {
             flash("error", "Missing file");
             return badRequest();
         }
+
     }
 
 }

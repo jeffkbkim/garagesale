@@ -7,6 +7,15 @@
 
       <div class="demo-card-wide">
           <div class="mdl-card mdl-card--border mdl-shadow--2dp mdl-card__supporting-text">
+              @form(action = routes.Utils.upload, 'enctype -> "multipart/form-data") {
+
+              <input type="file" name="picture">
+              <input type="hidden" value="@item.getId" name="itemId">
+              <p>
+                  <input type="submit">
+              </p>
+
+              }
             <form action="@routes.CatalogController.modifyItem" class="update-form" method="post">
               <ul>
                 <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -31,15 +40,6 @@
                   </li>
                   <input type="hidden" value="@sale.getId" name="saleId" />
                   <input type="hidden" value="@item.getId" name="itemId" />
-                  @form(action = routes.Utils.upload, 'enctype -> "multipart/form-data") {
-
-                      <input type="file" name="picture">
-
-                      <p>
-                          <input type="submit">
-                      </p>
-
-                  }
               </ul>
                 <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="submit">
                     Update Item
