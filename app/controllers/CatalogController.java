@@ -209,7 +209,8 @@ public class CatalogController extends Controller {
         item.setAllFields(itemFormData.getName(),
                             itemFormData.getDescription(),
                             itemFormData.getQuantity(),
-                            itemFormData.getPrice());
+                            itemFormData.getPrice(),
+                            itemFormData.getMinimumPrice());
         Sale sale = Sale.fetchById(itemFormData.getSaleId());
         item.setSale(sale);
         item.save();

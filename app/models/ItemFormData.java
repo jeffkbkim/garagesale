@@ -9,6 +9,7 @@ public class ItemFormData {
     private String name;
     private String description;
     private double price;
+    private double minimumPrice;
     private int quantity;
     private int saleId;
     private int itemId;
@@ -27,10 +28,11 @@ public class ItemFormData {
      * @param quantity item quantity
      */
     public ItemFormData(int id, String name, String description,
-                        double price, int quantity) {
+                        double price, double minimumPrice, int quantity) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.minimumPrice = minimumPrice;
         this.price = price;
         this.quantity = quantity;
     }
@@ -65,6 +67,14 @@ public class ItemFormData {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public double getMinimumPrice() {
+        return minimumPrice;
+    }
+
+    public void setMinimumPrice(double price) {
+        this.minimumPrice = price;
     }
 
     public int getQuantity() {

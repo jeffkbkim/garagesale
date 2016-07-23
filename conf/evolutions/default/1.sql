@@ -9,6 +9,7 @@ create table item (
   description               varchar(255),
   quantity                  integer,
   price                     double,
+  minimum_price             double,
   sale_id                   integer,
   constraint pk_item primary key (id))
 ;

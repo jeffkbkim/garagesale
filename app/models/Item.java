@@ -20,6 +20,7 @@ public class Item extends Model{
     private String description;
     private int quantity;
     private double price;
+    private double minimumPrice;
     @ManyToOne
     @JoinColumn(name = "sale_id")
     private Sale sale;
@@ -94,6 +95,15 @@ public class Item extends Model{
     }
 
     /**
+     * Item minimum price getter method.
+     * @return item minimumprice
+     */
+    public double getMinimumPrice() {
+        return this.minimumPrice;
+    }
+
+
+    /**
      * Sale (the Item is in) getter method.
      * @return Sale of item
      */
@@ -129,6 +139,14 @@ public class Item extends Model{
 
     /**
      * Item price setter method.
+     * @param minimumPrice item price
+     */
+    public void setMinimumPrice(double minimumPrice) {
+        this.minimumPrice = minimumPrice;
+    }
+
+    /**
+     * Item price setter method.
      * @param price item price
      */
     public void setPrice(double price) {
@@ -150,11 +168,12 @@ public class Item extends Model{
      * @param quantity item quantity
      * @param price item price
      */
-    public void setAllFields(String name, String description, int quantity, double price) {
+    public void setAllFields(String name, String description, int quantity, double price, double minimumPrice) {
         this.name = name;
         this.description = description;
         this.quantity = quantity;
         this.price = price;
+        this.minimumPrice = minimumPrice;
     }
 
     /**
