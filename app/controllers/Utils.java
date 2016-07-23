@@ -28,6 +28,10 @@ public class Utils {
         return User.fetchByUsername(username);
     }
 
+    public static String currToString(double curr) {
+        return String.format("%.2f", curr);
+    }
+
     /**
      * Get username
      *
