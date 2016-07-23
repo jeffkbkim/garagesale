@@ -24,4 +24,39 @@
         </div>
         }
     </div>
+
+    @if(!sale.isOpen) {
+        <h4 class="mdl-color-text--grey-600">Unsold Items for closed sale "@sale.getName":</h4>
+        @*<a href="https://my.freecycle.org/home/posts" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color-text--white add-item">*@
+        <a href="https://my.freecycle.org/home/posts" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+            DONATE
+        </a>
+
+        <div class="demo-card-wide">
+            <div class="mdl-card--border">
+                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp sales-table">
+                    <thead>
+                        <tr>
+                            <th class="mdl-data-table__cell--non-numeric">Item Name</th>
+                            <th>Description</th>
+                            @*<th>price</th>*@
+                            <th>Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @for(item <- items) {
+                        <tr class="item-row" >
+                            <td class="mdl-data-table__cell--non-numeric">
+                            @item.getName
+                            </td>
+                            <td class="mdl-data-table__cell">@item.getDescription()</td>
+                            @*<td class="mdl-data-table__cell">@item.getPrice()</td>*@
+                            <td class="mdl-data-table__cell">@item.getQuantity()</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
 }
