@@ -173,7 +173,7 @@ public class Item extends Model{
         this.description = description;
         this.quantity = quantity;
         this.price = price;
-        this.price = minimumPrice;
+        this.minimumPrice = minimumPrice;
     }
 
     /**

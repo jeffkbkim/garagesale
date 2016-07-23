@@ -73,8 +73,8 @@ public class ItemFormData {
         return minimumPrice;
     }
 
-    public void setMinimumPrice(double minimumPrice) {
-        this.minimumPrice = minimumPrice;
+    public void setMinimumPrice(double price) {
+        this.minimumPrice = price;
     }
 
     public int getQuantity() {

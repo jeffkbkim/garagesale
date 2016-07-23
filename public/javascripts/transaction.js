@@ -11,16 +11,16 @@ function bindAddItem(selector) {
             var itemID = parseInt(selector);
             var itemName = document.getElementById('name' + selector).innerHTML;
             var quantity = parseInt($('#quantity').val());
-            if ($('#minimum' + itemID).val() == 0) {
+            if (document.getElementById('minimum' + selector).innerHTML == 0) {
                 var minimum = document.getElementById('price' + selector).innerHTML;
             } else {
-                var minimum = parseFloat($('#minimum' + itemID).val());
+                var minimum =  document.getElementById('minimum' + selector).innerHTML;
             }
             var itemPrice = document.getElementById('price' + selector).innerHTML;
-            if (parseInt($('#priceAdjust').val()) > 0) {
-                if (parseInt($('#priceAdjust').val()) >= minimum) {
+            if (parseFloat($('#priceAdjust').val()) > 0) {
+                if (parseFloat($('#priceAdjust').val()) >= minimum) {
                     var itemPrice = "$" + parseFloat($('#priceAdjust').val());
-                } else if ($('#minimum' + itemID).val() != 0) {
+                } else if (document.getElementById('minimum' + selector).innerHTML > 0) {
                     alert("Price Adjust is above set minimum price");
                 } else {
                     alert("Minimum is not set");
