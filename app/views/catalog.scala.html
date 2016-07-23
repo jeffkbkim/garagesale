@@ -5,7 +5,6 @@
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/table.css")">
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/catalog.css")">
 
-    @if(sale.isOpen) {
         <h4 class="mdl-color-text--grey-600">Catalog</h4>
 
         <div class="mdl-grid">
@@ -85,7 +84,4 @@
                 </table>
             </div>
         </div>
-    } else {
-        <h1 class="mdl-color-text--red">This sale has been CLOSED</h1>
-    }
 }

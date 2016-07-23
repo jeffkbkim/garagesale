@@ -37,8 +37,12 @@ public class CatalogController extends Controller {
         Sale sale = Sale.fetchById(saleId);
 
         List<Item> items = Item.fetchItemsBySale(sale);
+        items = Item.filterAvailableItems(items);
 
         Role.RoleEnum role = userRoleForSale(user, sale);
+        if (!sale.isOpen()) {
+            return ok(catalogreadonly.render(user, sale, items));
+        }
         return ok(catalog.render(user, sale, role, items));
     }
 
