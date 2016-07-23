@@ -1,0 +1,71 @@
+.register {
+    padding-left: 15px;
+    height: 500px;
+}
+
+.register h2 {
+    font-weight: 500;
+    font-size: 24px;
+    color: #000;
+    margin-top: 10px;
+    margin-bottom: -10px;
+}
+
+.cart {
+    background-color: #fff;
+    padding-left: 15px;
+    height: 500px;
+    width: 292px;
+}
+
+.cart h2 {
+    font-weight: 500;
+    font-size: 24px;
+    color: #000;
+    margin-top: 10px;
+    margin-bottom: -10px;
+}
+
+.cart ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cart li {
+    padding: 0;
+}
+
+.cart h4 {
+    font-size: 14px;
+    opacity: 0.9;
+    line-height: 16px;
+    margin: 0;
+}
+
+.cart h5 {
+    font-size: 14px;
+    opacity: 0.9;
+    line-height: 16px;
+    margin: 0;
+    margin-bottom: 34px;
+}
+
+.cart p {
+    font-size: 10px;
+    opacity: 0.7;
+    line-height: 14px;
+    margin-top: -20px;
+    margin-left: 15px;
+}
+
+.confirm-button {
+    position: absolute;
+    bottom: 36px;
+    width: 292px;
+    margin-left: -15px;
+}
+
+.mdl-textfield {
+    width: 60px;
+}
