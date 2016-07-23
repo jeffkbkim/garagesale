@@ -1,22 +1,29 @@
 @(users: List[User], currUser: User, sale: Sale)
 @main(title = "Administration") {
 <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/administration.css")">
+<script src="@routes.Assets.versioned("javascripts/share.js")"></script>
 
 <h4 class="mdl-color-text--grey-600">Manage Sale</h4>
 <div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--4-col">
+    <div class="mdl-cell mdl-cell--3-col">
         <div class="manage">
-            <i class="material-icons">create</i> <br />
-            <a href="">Update Sale</a>
+            <i class="material-icons" role="presentation">thumb_up</i><br />
+            <a href="#" id="share">Share</a>
         </div>
     </div>
-    <div class="mdl-cell mdl-cell--4-col">
+    <div class="mdl-cell mdl-cell--3-col">
         <div class="manage">
             <i class="material-icons">group</i> <br />
             <a href="@routes.SalesController.renderAddUserRolePage(Utils.getSaleId)">Add Role</a>
         </div>
     </div>
-    <div class="mdl-cell mdl-cell--4-col">
+    <div class="mdl-cell mdl-cell--3-col">
+        <div class="manage">
+            <i class="material-icons">create</i> <br />
+            <a href="">Update Sale</a>
+        </div>
+    </div>
+    <div class="mdl-cell mdl-cell--3-col">
         <div class="manage">
             <i class="material-icons">delete</i> <br />
             <a href="@routes.SalesController.closeSale(Utils.getSaleId)">Close Sale</a>

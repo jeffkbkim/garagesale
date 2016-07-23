@@ -65,6 +65,12 @@
     margin-left: -15px;
 }
 
+.emailReceipts {
+    position: absolute;
+    bottom: 65px;
+    width: 250px;
+}
+
 .total {
     margin-left: 10px;
     position: absolute;
@@ -80,8 +86,8 @@
     font-weight: 600;
 }
 
-.mdl-textfield {
-    width: 225px;
+.textfield {
+    width: 200px;
     margin-bottom: -25px;
 }
 
