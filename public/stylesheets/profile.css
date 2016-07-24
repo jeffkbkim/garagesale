@@ -10,3 +10,11 @@
     background: url(/assets/images/login-background-alt.jpg) no-repeat center center;
     background-size: cover
 }
+
+.picture {
+    width: 100%;
+}
+
+.mdl-card {
+    width: 350px;
+}

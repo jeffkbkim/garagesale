@@ -24,6 +24,7 @@ public final class User extends Model{
     private int loginAttempts;
     private boolean isLocked;
     private boolean isSuperUser;
+    private String picture;
     @OneToMany(mappedBy = "user")
     private List<Role> roles = new ArrayList<>();
     @OneToMany(mappedBy = "user")
@@ -163,6 +164,14 @@ public final class User extends Model{
     }
 
     /**
+     * picture getter method
+     * @return url of photo location
+     */
+    public String getPicture() {
+        return picture;
+    }
+
+    /**
      * user first name setter method
      * @param firstName first name
      */
@@ -218,6 +227,14 @@ public final class User extends Model{
      */
     public void setIsSuperUser(boolean isSuperUser) {
         this.isSuperUser = isSuperUser;
+    }
+
+    /**
+     * picture setter method
+     * @param picture address of picture
+     */
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     /**
