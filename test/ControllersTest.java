@@ -1,22 +1,11 @@
 import controllers.routes;
 import models.*;
-import org.eclipse.jetty.io.ClientConnectionFactory;
 import org.junit.*;
 
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
-import play.Mode;
-import play.db.Database;
-import play.db.evolutions.Evolution;
-import play.db.evolutions.Evolutions;
-import play.inject.guice.GuiceApplicationBuilder;
-import play.api.mvc.RequestHeader;
 import play.mvc.*;
-import play.test.*;
-import play.Application;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
