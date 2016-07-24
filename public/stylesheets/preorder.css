@@ -1,0 +1,9 @@
+.mdl-card {
+    width: 450px;
+    padding-left: 30px;
+}
+
+.mdl-card ul {
+    list-style-type: none;
+    padding: 0px;
+}

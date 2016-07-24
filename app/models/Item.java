@@ -26,6 +26,9 @@ public class Item extends Model{
     private Sale sale;
     @OneToMany(mappedBy = "item")
     private List<Transaction> transactions = new ArrayList<>();
+    private List<User> preorder = new ArrayList<>();
+    private User bidUser;
+    private double bidPrice;
 
     /**
      * creates Finder for Item Entity.
@@ -219,5 +222,33 @@ public class Item extends Model{
 
     public static void setFind(Finder<Integer, Item> find) {
         Item.find = find;
+    }
+
+    public double getBidPrice() {
+        return bidPrice;
+    }
+
+    public void setBidPrice(double bidPrice) {
+        this.bidPrice = bidPrice;
+    }
+
+    public User getBidUser() {
+        return bidUser;
+    }
+
+    public void setBidUser(User bidUser) {
+        this.bidUser = bidUser;
+    }
+
+    public void addPreorder(User user) {
+        preorder.add(user);
+    }
+
+    public List<User> getPreorder() {
+        return preorder;
+    }
+
+    public void setPreorder(List<User> preorder) {
+        this.preorder = preorder;
     }
 }

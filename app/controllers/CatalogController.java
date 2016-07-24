@@ -318,4 +318,32 @@ public class CatalogController extends Controller {
         }
     }
 
+    /**
+     * Controller for preorder page
+     * @return preorder page
+     */
+    public Result preorder(int saleId, int itemId) {
+        User user = Utils.getUserSession();
+        Sale sale = Sale.fetchById(saleId);
+        Item item = Item.fetchItemById(itemId);
+        return ok(views.html.preorder.render(user,sale,item));
+    }
+
+    /**
+     * adds item bid
+     *
+     * @return redirect to add item page with added item.
+     */
+    public Result preorderItem(int saleId, int itemId) {
+        //TODO: need to validate form, sale, and user
+        User user = Utils.getUserSession();
+        Sale sale = Sale.fetchById(saleId);
+        Item item = Item.fetchItemById(itemId);
+        item.addPreorder(user);
+        item.save();
+        return redirect(routes.CatalogController.renderCatalogReadOnlyPage(sale.getId()));
+    }
+
+
+
 }

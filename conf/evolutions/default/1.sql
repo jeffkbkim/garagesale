@@ -11,6 +11,7 @@ create table item (
   price                     double,
   minimum_price             double,
   sale_id                   integer,
+  bid_price                 double,
   constraint pk_item primary key (id))
 ;
 

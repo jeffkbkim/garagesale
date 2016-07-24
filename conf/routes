@@ -70,7 +70,13 @@ GET     /genreport                  controllers.CatalogController.renderReport(s
 
 GET     /allreceipts                controllers.CatalogController.allReceipts(saleId: Int ?=0)
 
+GET     /preorder                   controllers.CatalogController.preorder(saleId: Int ?=0, itemId: Int?=0)
+
 GET     /transaction                controllers.TransactionController.renderTransactionPage(saleId: Int ?=0)
+
+GET    /preorderItem                controllers.CatalogController.preorderItem(saleId: Int ?=0, itemId: Int?=0)
+
+
 
 #Administration Routes
 GET     /administration             controllers.AdministrationController.administration()
