@@ -78,6 +78,7 @@
 
         <nav class="navigation mdl-navigation mdl-color--white">
           <a class="mdl-navigation__link" href="@routes.Application.index()"><i class="material-icons" role="presentation">home</i>Home</a>
+          <a class="mdl-navigation__link" href="@routes.Application.map()"><i class="material-icons" role="presentation">language</i>Map</a>
           @if(Utils.getSaleId != -1) {
             <a class="mdl-navigation__link" href="@routes.CatalogController.renderCatalogPage(Utils.getSaleId)"><i class="material-icons" role="presentation">inbox</i>Catalog</a>
             @if(Role.fetchBySaleIdAndUserId(Utils.getSaleId(), Utils.getUserSession.getId).get(0).getRole().equals(Role.RoleEnum.saleAdmin)) {

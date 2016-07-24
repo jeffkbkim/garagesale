@@ -32,6 +32,7 @@
     </div>
 
     <h4 class="mdl-color-text--grey-600">Browse All Sales</h4>
+
     <div class="mdl-grid">
         @for(sale <- Sale.fetchAllSales()) {
             @if(sale.getStatus() == "Open") {

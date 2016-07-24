@@ -244,6 +244,12 @@ public class SalesController extends Controller {
         return ok(views.html.allsales.render(user, salesNotManagedAndOpen));
     }
 
+    public static List<Sale> getAllSales() {
+        User user = Utils.getUserSession();
+        List<Sale> allSales = Sale.fetchAllSales();
+        return allSales;
+    }
+
     public static List<Sale> getUserSales() {
         User user = Utils.getUserSession();
         List<Role> saleRoles = Role.fetchByUserId(user.getId());

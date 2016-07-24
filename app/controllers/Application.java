@@ -27,6 +27,13 @@ public class Application extends Controller {
         return ok(login.render(""));
     }
 
+    public Result map() {
+        if (session("connected") != null) {
+            return ok(map.render());
+        }
+        return ok(login.render(""));
+    }
+
     /**
      * clears user session and redirects to home page.
      */
