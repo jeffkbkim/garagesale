@@ -12,8 +12,6 @@
         var currentSaleID;
         var currentSaleName;
         var activeInfoWindow;
-        var sales = [];
-        var count = 0;
         function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: -34.397, lng: 150.644},
@@ -29,17 +27,17 @@
               lng: position.coords.longitude
             };
             map.setCenter(pos);
+            createSelfMarker(pos);
             @for(sale <- SalesController.getAllSales) {
             console.log('@sale.getName');
-            var id = @sale.getId
-            var name = '@sale.getName'
-            sales.push({id: id, name: name});
+            var id@sale.getId = @sale.getId
+            var name@sale.getId = '@sale.getName'
             service.nearbySearch({
                 location: pos,
                 radius: 5000,
                 keyword: '@sale.getLocation'
             },function(results, status) {
-                callback(results, status);
+                callback(results, status, id@sale.getId, name@sale.getId);
             });
         }
           }, function() {
@@ -53,32 +51,43 @@
         var service = new google.maps.places.PlacesService(map);
 
 
-        function callback(results, status) {
-
+        function callback(results, status, id, name) {
+            console.log(results);
             if (status === google.maps.places.PlacesServiceStatus.OK) {
-                createMarker(results[0], count);
+                createSaleMarker(results[0], id, name);
             }
-            count++;
         }
 
-        function createMarker(place, c) {
-        var placeLoc = place.geometry.location;
-        var marker = new google.maps.Marker({
-          map: map,
-          position: place.geometry.location
-        });
+        function createSaleMarker(place, id, name) {
+            var placeLoc = place.geometry.location;
+            var marker = new google.maps.Marker({
+              map: map,
+              position: place.geometry.location
+            });
 
-        google.maps.event.addListener(marker, 'mouseover', function(event) {
-            if (activeInfoWindow != null) activeInfoWindow.close();
-            infoWindow.open(map, marker);
-            infoWindow.setContent(sales[c].name);
-        });
+            google.maps.event.addListener(marker, 'mouseover', function(event) {
+                if (activeInfoWindow != null) activeInfoWindow.close();
+                infoWindow.open(map, marker);
+                infoWindow.setContent(name);
+            });
 
-        google.maps.event.addListener(marker, 'click', function() {
-          window.location.replace('/viewcatalog?saleId=' + sales[c].id)
-        });
-      }
+            google.maps.event.addListener(marker, 'click', function() {
+              window.location.replace('/viewcatalog?saleId=' + id)
+            });
+        }
 
+        function createSelfMarker(loc) {
+            var marker = new google.maps.Marker({
+                map: map,
+                position: loc
+            });
+
+            google.maps.event.addListener(marker, 'mouseover', function(event) {
+                if (activeInfoWindow != null) activeInfoWindow.close();
+                infoWindow.open(map, marker);
+                infoWindow.setContent('You Are Here');
+            });
+        }
       }
 
       function handleLocationError(browserHasGeolocation, infoWindow, pos) {

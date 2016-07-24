@@ -22,7 +22,8 @@
 <script>
     $('.qrBox').each(function() {
         if($(this).children().length == 0) {
-                $(this).qrcode($(this).attr('id'));
+                var url = document.location.origin + '@routes.CatalogController.qrTransaction(sale.getId, item.getId, user.getUserName, user.getPassword)';
+                $(this).qrcode(url);
         }
     });
 </script>
