@@ -7,6 +7,7 @@ create table item (
   id                        integer not null,
   name                      varchar(255),
   description               varchar(255),
+  image_name                varchar(255),
   quantity                  integer,
   price                     double,
   minimum_price             double,
