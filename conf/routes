@@ -62,6 +62,8 @@ GET     /gentag                     controllers.CatalogController.renderTag(sale
 
 GET     /alltags                    controllers.CatalogController.renderAllTags(saleId: Int ?=0)
 
+GET     /qrTransaction              controllers.CatalogController.qrTransaction(saleId: Int ?=0, itemId: Int ?=0, username: String ?="", password: String ?="")
+
 POST    /makeTransaction            controllers.CatalogController.makeTransaction
 
 GET     /genreceipt                 controllers.CatalogController.renderReceipt(transactionId: Int ?=0)

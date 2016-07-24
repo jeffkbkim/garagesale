@@ -270,6 +270,34 @@ public class CatalogController extends Controller {
         return (redirect(routes.CatalogController.renderCatalogPage(saleID)));
     }
 
+    public Result qrTransaction(int saleId, int itemId, String username, String password) {
+        User user = User.fetchByUsername(username);
+        if (password != user.getPassword()) {
+            return ok("Failed");
+        }
+        Sale sale = Sale.fetchById(saleId);
+        Receipt receipt = new Receipt();
+        Item item = Item.fetchItemById(itemId);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        receipt.setDate(dateFormat.format(date));
+        receipt.setSale(sale);
+        receipt.setUser(user);
+        receipt.save();
+        Transaction t = new Transaction(1, item.getPrice(), "???", "QR CHECKOUT");
+        t.setSale(sale);
+        t.setItem(item);
+        t.setReceipt(receipt);
+        t.save();
+        item.setQuantity(item.getQuantity() - 1);
+        item.update();
+        receipt.setProfit(item.getPrice());
+        sale.addEarnings(item.getPrice());
+        sale.update();
+        receipt.update();
+        return ok("Transaction successful!");
+    }
+
     /**
      * print owners of the sale, separated by commas
      * @param sale relevant sale
