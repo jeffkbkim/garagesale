@@ -31,31 +31,7 @@ import static play.test.Helpers.route;
  *
  */
 @RunWith(MockitoJUnitRunner.class)
-public class ControllersTest extends WithApplication {
-
-    public final int TIMEOUT = 20000;
-
-    @Override
-    protected Application provideApplication() {
-        return new GuiceApplicationBuilder()
-                .configure((Map) Helpers.inMemoryDatabase())
-                .in(Mode.TEST)
-                .build();
-    }
-
-    @Override
-    public void startPlay()
-    {
-        super.startPlay();
-        // mock or otherwise provide a context
-        Http.Context.current.set(new Http.Context(1L,
-                Mockito.mock(RequestHeader.class),
-                Mockito.mock(Http.Request.class),
-                Collections.<String, String>emptyMap(),
-                Collections.<String, String>emptyMap(),
-                Collections.<String, Object>emptyMap()));
-
-    }
+public class ControllersTest extends BaseTest {
 
     @Before
     public void setUp() {
