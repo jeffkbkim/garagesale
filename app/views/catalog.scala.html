@@ -18,7 +18,7 @@
                     }
                         <div class="mdl-shadow--2dp">
                             <div class="mdl-grid">
-                                <div class="mdl-cell--3-col mdl-card__left" style="background: url('http://localhost:9000/assets/data/@item.getId\.jpg'); background-size: cover; background-repeat: no-repeat;">
+                                <div class="mdl-cell--3-col mdl-card__left" style="background: url('@routes.Assets.versioned("data/" + item.getImageName)'); background-size: cover; background-repeat: no-repeat;">
                                     <h2 class="mdl-card__title-text">@item.getName()</h2>
                                 </div>
                                 <div class="mdl-cell--6-col mdl-card__right">
