@@ -15,6 +15,7 @@ create table item (
   id                        integer not null,
   name                      varchar(255),
   description               varchar(255),
+  image_name                varchar(255),
   quantity                  integer,
   price                     double,
   minimum_price             double,
@@ -83,6 +84,7 @@ create table user_table (
   login_attempts            integer,
   is_locked                 boolean,
   is_super_user             boolean,
+  image_name                varchar(255),
   constraint uq_user_table_user_name unique (user_name),
   constraint pk_user_table primary key (id))
 ;

@@ -18,6 +18,7 @@ public class Item extends Model{
     private int id;
     private String name;
     private String description;
+    private String imageName;
     private int quantity;
     private double price;
     private double minimumPrice;
@@ -54,6 +55,15 @@ public class Item extends Model{
         this.quantity = quantity;
         this.price = price;
         this.description = description;
+        this.imageName = "ipad.jpg";
+    }
+
+    public String getImageName() {
+        return this.imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 
     /**

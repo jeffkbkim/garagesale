@@ -10,3 +10,31 @@
     background: url(/assets/images/login-background-alt.jpg) no-repeat center center;
     background-size: cover
 }
+
+.picture {
+    width: 100%;
+}
+
+.mdl-card {
+    width: 350px;
+}
+
+#form-wrapper {
+    background-color: rgba(0,0,0,0.5);
+    display: none;
+    color: white;
+    text-align: center;
+    height: 30px;
+    cursor: pointer;
+}
+
+#form-wrapper.p {
+    padding: 10px;
+
+}
+
+
+input {
+    margin-bottom: 5px;
+
+}

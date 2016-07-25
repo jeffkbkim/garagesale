@@ -62,4 +62,9 @@ li {
 .preorder {
     margin-top: 40px;
     margin-left: 105px;
+
+.item-name {
+    width: 100%;
+    text-shadow: 0px 0px 2px #000;
+    background-color: rgba(0,0,0,0.5);
 }

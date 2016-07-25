@@ -64,4 +64,13 @@ public class ProfileController extends Controller {
         }
         return ok(login.render("User not found."));
     }
+//
+//    public String getPhoto() {
+//        User user = Utils.getUserSession();
+//        if (user.getPicture() == null) {
+//            return @routes.Assets.versioned("images/guest-icon.png")
+//        } else {
+//            return "images/guest-icon";
+//        }
+//    }
 }

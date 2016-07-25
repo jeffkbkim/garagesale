@@ -10,7 +10,7 @@
             <div class="mdl-cell mdl-cell--3-col">
                 <a id="@item.getId">
                     <div class="mdl-card mdl-shadow--2dp">
-                        <div class="mdl-card__title" style="background: url('http://localhost:9000/assets/data/@item.getId\.jpg'); background-size: contain; background-repeat: no-repeat;">
+                        <div class="mdl-card__title" style="background: url('@routes.Assets.versioned("data/" + item.getImageName)'); background-size: contain; background-repeat: no-repeat;">
                             <p id="name@item.getId">@item.getName</p>
                             <p id="price@item.getId">$@item.getPrice</p>
                             <p display="hidden" id="minimum@item.getId">@item.getMinimumPrice</p>

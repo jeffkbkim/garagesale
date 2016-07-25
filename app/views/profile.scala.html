@@ -1,7 +1,9 @@
+@import helper._
 @(user: User)
 @main(title = "Hi " + user.getFirstName + "! Here's your profile.") {
 
 <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/profile.css")">
+
 
 <dialog class="mdl-dialog">
     <h4 class="mdl-dialog-title">Please enter your password.</h4>
@@ -12,15 +14,47 @@
         <button type="button" class="mdl-button enter">Enter</button>
     </div>
 </dialog>
-
-<div class="mdl-grid">
+<div class="mdl-grid picture">
     <div id="welcome-card" class="mdl-cell mdl-cell--3-col">
         <div class="mdl-card mdl-shadow--2dp">
             <!--            <div class="mdl-card__title profile-header">
                             <h2 class="mdl-card__title-text">Hi, @user.getFirstName! Here's your profile.</h2>
                         </div>-->
-            <div class="mdl-card__media" style='height:300;background:url(@routes.Assets.versioned("images/user.png"));background-size:cover;'>
-            </div>
+                <div class="mdl-card__media" id="profile-picture" style='height:300;background:url(@routes.Assets.versioned("data/user/" + user.getImageName));background-size:cover;'>
+                    <div id="form-wrapper">
+                        @form(action = routes.Utils.uploadProfile, 'enctype -> "multipart/form-data", 'id -> "pictureForm") {
+
+                        <div style='height: 0px;width: 0px; overflow:hidden;'><input id="picupload" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" type="file" name="picture"></div>
+                        <p>Upload New Picture</p>
+                        <div style='height: 0px;width: 0px; overflow:hidden;'>
+                            <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" type="submit">
+                        </div>
+
+                        }
+                    </div>
+                </div>
+            <script>
+                $('#profile-picture').hover(
+                    function() {
+                        $('#form-wrapper').fadeIn();
+                    },
+                    function() {
+                        $('#form-wrapper').fadeOut();
+                    }
+                );
+                $('#form-wrapper').click(
+                    function(e) {
+                        e.stopImmediatePropagation();
+                        $('#picupload').click();
+                    }
+                );
+                $('#picupload').click(function(e) {
+                    e.stopImmediatePropagation();
+                });
+                $('#picupload').change( function() {
+                    $('#pictureForm').submit();
+                });
+            </script>
 
         <div class="mdl-card__supporting-text">
             <form action="@routes.ProfileController.updateProfile" class="update-form" method="post">
@@ -44,6 +78,8 @@
                     <label class="mdl-textfield__label" for="phone">Phone</label>
                 </div>
             </form>
+
+
         </div>
         <div class="mdl-card__actions mdl-card--border save">
             <div class="mdl-grid">
@@ -59,13 +95,13 @@
         </div>
     </div>
 
-    <div id="detail-card" class="mdl-cell mdl-cell--6-col">
-        <div class="mdl-card mdl-shadow--2dp">
-            <div class="mdl-card__title mdl-color--primary mdl-color-text--white detail-card-header">
-                <h3 class="mdl-card__title-text">Profile</h3>
-            </div>
-        </div>
-    </div>
+    @*<div id="detail-card" class="mdl-cell mdl-cell--6-col">*@
+        @*<div class="mdl-card mdl-shadow--2dp">*@
+            @* <div class="mdl-card__title mdl-color--primary mdl-color-text--white detail-card-header">*@
+                @*<h3 class="mdl-card__title-text">Profile</h3>*@
+            @*</div>*@
+        @*</div>*@
+    @*</div>*@
 
 </div>
 <script>
