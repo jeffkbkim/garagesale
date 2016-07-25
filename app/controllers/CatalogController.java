@@ -176,6 +176,33 @@ public class CatalogController extends Controller {
         return ok(report.render(user, sale, receipts, items, userReceipts));
     }
 
+    public Result renderReducedReport(int saleId) {
+        User user = Utils.getUserSession();
+        Sale sale = Sale.fetchById(saleId);
+        List<Receipt> receipts = Receipt.fetchReceiptsBySale(sale);
+        List<Item> items = Item.fetchItemsBySale(sale);
+
+        Set<Integer> userIds = new HashSet<>();
+        Map<User, List<Receipt>> userReceipts = new HashMap<>();
+        List<Role> rolesAdmin = Role.fetchBySaleIdForARole(sale.getId(), Role.RoleEnum.saleAdmin);
+        List<Role> rolesSeller = Role.fetchBySaleIdForARole(sale.getId(), Role.RoleEnum.seller);
+        List<Role> rolesCashier = Role.fetchBySaleIdForARole(sale.getId(), Role.RoleEnum.cashier);
+
+        userIds.addAll(Role.mapRolesToUserIds(rolesAdmin));
+        userIds.addAll(Role.mapRolesToUserIds(rolesSeller));
+        userIds.addAll(Role.mapRolesToUserIds(rolesCashier));
+
+        List<Receipt> tempReceipts;
+        for (int userId : userIds) {
+            User tempUser = User.fetchById(userId);
+            tempReceipts = Receipt.fetchReceiptsByUser(tempUser);
+
+            userReceipts.put(tempUser, tempReceipts);
+        }
+
+        return ok(reducedpricereport.render(user, sale, receipts, items, userReceipts));
+    }
+
     /**
      * adds item
      *
