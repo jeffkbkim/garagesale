@@ -1,0 +1,32 @@
+@(donation: Donation)
+@main(title = "Donation Acknowledgement Letter") {
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/receipt.css")">
+    <table>
+        <tbody>
+        <br />
+        FFF00<br />
+        266 Ferst Drive NW<br />
+        Atlanta, GA 30318<br />
+        <br />
+        @donation.getDate()<br />
+        <br />
+        @donation.getName()<br />
+        @donation.getAddress()<br />
+        <br />
+        <br />
+        Dear @donation.getName(),<br />
+        Thank you for your contribution of $ @donation.getContribution().<br />
+        Please keep this written acknowledgment of your donation for your tax records.<br />
+        Starting January 1, 1994, the IRS will no longer accept your canceled check as proof of any donation of $250 or more.<br />
+        Changes in tax law also require us to estimate the value of goods or services, if any, that have been rendered to you in return for your contribution,
+        and to remind you that your contribution is deductible only to the extent that it exceeds what we have provided.<br />
+        Thank you for your continuing support for our important work in this field!<br />
+        <br />
+        Very truly yours,
+        <br />
+        <br />
+        </tbody>
+    </table>
+    <h5>FFFF00</h5>
+}

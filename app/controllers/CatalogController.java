@@ -346,4 +346,17 @@ public class CatalogController extends Controller {
         }
     }
 
+    public Result renderDonationPage() {
+        return ok(views.html.donationPage.render());
+    }
+
+    public Result createDonationLetter() {
+        Form<DonationDataForm> donationForm = formFactory.form(DonationDataForm.class).bindFromRequest();
+        DonationDataForm newDonation = donationForm.get();
+
+        Donation donation = new Donation(newDonation.getName(), newDonation.getAddress(), newDonation.getDate(), newDonation.getContribution());
+
+        return ok(views.html.donationLetter.render(donation));
+    }
+
 }

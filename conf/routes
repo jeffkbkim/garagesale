@@ -88,3 +88,8 @@ GET    /unlock                      controllers.AdministrationController.unlock(
 GET     /createsuperuser            controllers.Utils.createSuperUser
 
 GET     /suggestprice               controllers.PriceSuggestionController.suggestPrice(keyword: String?="", saleId: Int?=0)
+
+#Donation
+GET     /renderDonationPage         controllers.CatalogController.renderDonationPage
+
+POST    /createDonationLetter       controllers.CatalogController.createDonationLetter
