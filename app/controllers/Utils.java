@@ -149,4 +149,52 @@ public class Utils {
 
     }
 
+    public Result uploadProfile() {
+        Http.MultipartFormData<File> body = request().body().asMultipartFormData();
+        Http.MultipartFormData.FilePart<File> picture = body.getFile("picture");
+        User user = getUserSession();
+        if (picture != null) {
+            String fileName = picture.getFilename();
+            String contentType = picture.getContentType();
+            String extension = ".jpg";
+            File file = picture.getFile();
+            try {
+                ImageInputStream inputStream = ImageIO.createImageInputStream(file);
+                ImageReader reader = ImageIO.getImageReaders(inputStream).next();
+                if (reader != null) {
+                    String formatName = reader.getFormatName();
+                    switch (formatName) {
+                        case "JPEG":
+                            extension = ".jpg";
+                            break;
+                        case "PNG":
+                            extension = ".png";
+                            break;
+                        case "GIF":
+                            extension = ".gif";
+                            break;
+                        default:
+                    }
+                }
+            } catch (IOException e) {
+                Logger.debug("IOException");
+            }
+            String newFilename = user.getId() + extension;
+            Logger.debug(newFilename);
+            try {
+                Files.copy(file.toPath(), (new File("public/data/user", newFilename)).toPath(), StandardCopyOption.REPLACE_EXISTING);
+                user.setImageName(newFilename);
+                user.update();
+            } catch (FileNotFoundException e) {
+                Logger.error("The file was not found");
+            } catch (IOException e) {
+                Logger.error("IO Exception");
+            }
+            return redirect(routes.ProfileController.view());
+        } else {
+            flash("error", "Missing file");
+            return badRequest();
+        }
+    }
+
 }

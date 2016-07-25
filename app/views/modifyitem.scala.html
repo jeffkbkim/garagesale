@@ -7,16 +7,34 @@
 
       <div class="demo-card-wide">
           <div class="mdl-card mdl-card--border mdl-shadow--2dp mdl-card__supporting-text">
-              @form(action = routes.Utils.upload, 'enctype -> "multipart/form-data") {
+                <img src="@routes.Assets.versioned("data/" + item.getImageName)">
+          </div>
+          <div class="mdl-card mdl-card--border mdl-shadow--2dp mdl-card__supporting-text">
+              <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" id="uploadPhoto">
+                  Upload Photo
+                  </button>
+                  @form(action = routes.Utils.upload, 'enctype -> "multipart/form-data", 'id -> "pictureForm") {
 
-              <input type="file" name="picture">
-              <input type="hidden" value="@item.getId" name="itemId">
-              <input type="hidden" value="@sale.getId" name="saleId">
-              <p>
-                  <input type="submit">
-              </p>
+                  <div style='height: 0px;width: 0px; overflow:hidden;'><input id="picupload" type="file" name="picture"></div>
+                  <input type="hidden" value="@item.getId" name="itemId">
+                  <input type="hidden" value="@sale.getId" name="saleId">
+                  <div style='height: 0px;width: 0px; overflow:hidden;'><input type="submit"></div>
 
-              }
+                  }
+              <script>
+                $('#uploadPhoto').click(
+                    function(e) {
+                        e.stopImmediatePropagation();
+                        $('#picupload').click();
+                    }
+                );
+                $('#picupload').click(function(e) {
+                    e.stopImmediatePropagation();
+                });
+                $('#picupload').change( function() {
+                    $('#pictureForm').submit();
+                });
+              </script>
             <form action="@routes.CatalogController.modifyItem" class="update-form" method="post">
               <ul>
                 <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">

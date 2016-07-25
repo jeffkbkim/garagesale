@@ -1,7 +1,9 @@
+@import helper._
 @(user: User)
 @main(title = "Hi " + user.getFirstName + "! Here's your profile.") {
 
 <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/profile.css")">
+
 
 <dialog class="mdl-dialog">
     <h4 class="mdl-dialog-title">Please enter your password.</h4>
@@ -18,14 +20,42 @@
             <!--            <div class="mdl-card__title profile-header">
                             <h2 class="mdl-card__title-text">Hi, @user.getFirstName! Here's your profile.</h2>
                         </div>-->
-            @if(user.getPicture == null) {
-                <div class="mdl-card__media" style='height:300;background:url(@routes.Assets.versioned("images/guest-icon.png"));background-size:cover;'>
-                </div>
-            } else {
-                <div class="mdl-card__media" style='height: 300;background:url(@routes.Assets.versioned(user.getPicture));background-size:cover;'>
+                <div class="mdl-card__media" id="profile-picture" style='height:300;background:url(@routes.Assets.versioned("data/user/" + user.getImageName));background-size:cover;'>
+                    <div id="form-wrapper">
+                        @form(action = routes.Utils.uploadProfile, 'enctype -> "multipart/form-data", 'id -> "pictureForm") {
 
+                        <div style='height: 0px;width: 0px; overflow:hidden;'><input id="picupload" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" type="file" name="picture"></div>
+                        <p>Upload New Picture</p>
+                        <div style='height: 0px;width: 0px; overflow:hidden;'>
+                            <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" type="submit">
+                        </div>
+
+                        }
+                    </div>
                 </div>
-            }
+            <script>
+                $('#profile-picture').hover(
+                    function() {
+                        $('#form-wrapper').fadeIn();
+                    },
+                    function() {
+                        $('#form-wrapper').fadeOut();
+                    }
+                );
+                $('#form-wrapper').click(
+                    function(e) {
+                        e.stopImmediatePropagation();
+                        $('#picupload').click();
+                    }
+                );
+                $('#picupload').click(function(e) {
+                    e.stopImmediatePropagation();
+                });
+                $('#picupload').change( function() {
+                    $('#pictureForm').submit();
+                });
+            </script>
+
         <div class="mdl-card__supporting-text">
             <form action="@routes.ProfileController.updateProfile" class="update-form" method="post">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label firstname">
@@ -48,6 +78,8 @@
                     <label class="mdl-textfield__label" for="phone">Phone</label>
                 </div>
             </form>
+
+
         </div>
         <div class="mdl-card__actions mdl-card--border save">
             <div class="mdl-grid">
@@ -72,7 +104,7 @@
     @*</div>*@
 
 </div>
-<script><script>
+<script>
     var dialog = document.querySelector('dialog');
     var saveButton = document.querySelector('.saveButton');
     if (! dialog.showModal) {

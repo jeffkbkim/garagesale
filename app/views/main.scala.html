@@ -57,7 +57,7 @@
 
       <div class="drawer mdl-layout__drawer mdl-color-text--blue-grey-50">
         <header class="drawer-header">
-          <img src="@routes.Assets.versioned("images/guest-icon.png")" class="user">
+          <img src="@routes.Assets.versioned("data/user/" + Utils.getUserSession.getImageName)" class="user">
           <div class="user-dropdown">
             <p class="user-text">Welcome @Utils.getUsername!</p>
             <div class="mdl-layout-spacer"></div>

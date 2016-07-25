@@ -66,6 +66,7 @@ create table user_table (
   login_attempts            integer,
   is_locked                 boolean,
   is_super_user             boolean,
+  image_name                varchar(255),
   constraint uq_user_table_user_name unique (user_name),
   constraint pk_user_table primary key (id))
 ;

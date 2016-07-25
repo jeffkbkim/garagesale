@@ -24,7 +24,7 @@ public final class User extends Model{
     private int loginAttempts;
     private boolean isLocked;
     private boolean isSuperUser;
-    private String picture;
+    private String imageName;
     @OneToMany(mappedBy = "user")
     private List<Role> roles = new ArrayList<>();
     @OneToMany(mappedBy = "user")
@@ -58,6 +58,7 @@ public final class User extends Model{
         this.email = email;
         this.password = password;
         this.isSuperUser = false;
+        this.imageName = "guest-icon.png";
     }
 
     /**
@@ -115,6 +116,10 @@ public final class User extends Model{
         return email;
     }
 
+    public String getImageName() {
+        return this.imageName;
+    }
+
     /**
      * this method finds the role of a user
      *
@@ -161,14 +166,6 @@ public final class User extends Model{
      */
     public boolean getIsSuperUser() {
         return isSuperUser;
-    }
-
-    /**
-     * picture getter method
-     * @return url of photo location
-     */
-    public String getPicture() {
-        return picture;
     }
 
     /**
@@ -233,8 +230,8 @@ public final class User extends Model{
      * picture setter method
      * @param picture address of picture
      */
-    public void setPicture(String picture) {
-        this.picture = picture;
+    public void setImageName(String picture) {
+        this.imageName = picture;
     }
 
     /**

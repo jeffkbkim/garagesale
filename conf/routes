@@ -11,6 +11,8 @@ POST    /register                   controllers.LoginController.register
 
 POST    /upload                     controllers.Utils.upload
 
+POST    /uploadProfile              controllers.Utils.uploadProfile
+
 #Home Route
 GET     /index.html                 controllers.Application.index
 
