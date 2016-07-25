@@ -247,12 +247,13 @@ public class CatalogController extends Controller {
             JsonNode transaction = (JsonNode) i.next();
             int itemID = Integer.parseInt(String.valueOf(transaction.findValue("id")));
             int quantity = Integer.parseInt(String.valueOf(transaction.findValue("quantity")));
+            double price = Double.parseDouble(String.valueOf(transaction.findValue("price")).replace('$', ' ').replace('"',' ').trim());
             String buyer = transaction.findValue("buyer").toString();
             String method = transaction.findValue("payment").toString();
             buyer = buyer.substring(1, buyer.length() - 1);
             Logger.debug(itemID + " " + quantity + " " + buyer);
             Item item = Item.fetchItemById(itemID);
-            double profit = item.getPrice() * quantity;
+            double profit = price * quantity;
             totalProfit += profit;
             Transaction t = new Transaction(quantity, profit, buyer, method);
             t.setSale(sale);
