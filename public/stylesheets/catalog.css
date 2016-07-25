@@ -21,6 +21,7 @@ li {
     padding-left: 15px;
     margin-right: -15px;
     max-height: 150px;
+    min-width: 200px;
 }
 
 .mdl-card__left h2 {
