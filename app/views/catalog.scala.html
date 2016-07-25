@@ -9,7 +9,7 @@
 
         <div class="mdl-grid">
             @for(item <- items) {
-                <div class="mdl-cell mdl-cell--6-col">
+                <div class="mdl-cell mdl-cell--4-col">
                     @if(role.equals(Role.RoleEnum.saleAdmin)
                     || role.equals(Role.RoleEnum.seller)) {
                         <a href="@routes.CatalogController.renderModifyItemPage(sale.getId, item.getId)">
@@ -18,10 +18,10 @@
                     }
                         <div class="mdl-shadow--2dp">
                             <div class="mdl-grid">
-                                <div class="mdl-cell--3-col mdl-card__left" style="background: url('@routes.Assets.versioned("data/" + item.getImageName)'); background-size: cover; background-repeat: no-repeat;">
-                                    <h2 class="mdl-card__title-text">@item.getName()</h2>
+                                <div class="mdl-cell--5-col mdl-card__left" style="background: url('@routes.Assets.versioned("data/" + item.getImageName)'); background-size: cover; background-repeat: no-repeat;">
+                                    <h2 class="mdl-card__title-text item-name">@item.getName()</h2>
                                 </div>
-                                <div class="mdl-cell--6-col mdl-card__right">
+                                <div class="mdl-cell--5-col mdl-card__right">
                                     <h4>Price</h4>
                                     <p>$@item.getPrice()</p>
                                     <h4>Description</h4>
