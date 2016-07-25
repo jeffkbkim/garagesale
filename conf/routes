@@ -98,3 +98,9 @@ GET     /suggestprice               controllers.PriceSuggestionController.sugges
 GET     /modifySale                 controllers.SalesController.modifySale(saleId: Int ?=0)
 
 POST    /updateSale                 controllers.SalesController.updateSale
+
+#Donation
+GET     /renderDonationPage         controllers.CatalogController.renderDonationPage
+
+POST    /createDonationLetter       controllers.CatalogController.createDonationLetter
+
