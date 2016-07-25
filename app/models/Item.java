@@ -26,7 +26,6 @@ public class Item extends Model{
     private Sale sale;
     @OneToMany(mappedBy = "item")
     private List<Transaction> transactions = new ArrayList<>();
-    private List<User> preorder = new ArrayList<>();
     private User bidUser;
     private double bidPrice;
 
@@ -238,17 +237,5 @@ public class Item extends Model{
 
     public void setBidUser(User bidUser) {
         this.bidUser = bidUser;
-    }
-
-    public void addPreorder(User user) {
-        preorder.add(user);
-    }
-
-    public List<User> getPreorder() {
-        return preorder;
-    }
-
-    public void setPreorder(List<User> preorder) {
-        this.preorder = preorder;
     }
 }

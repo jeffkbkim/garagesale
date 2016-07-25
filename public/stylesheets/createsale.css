@@ -33,3 +33,11 @@
     /*margin-left: auto;*/
     /*margin-right: auto;*/
 }
+
+.mdl-card ul {
+    list-style-type: none;
+}
+
+.number_text {
+    width: 150px;
+}

@@ -3,6 +3,14 @@
 
 # --- !Ups
 
+create table bid (
+  id                        integer not null,
+  user_id                   integer,
+  item_id                   integer,
+  bid_price                 double,
+  constraint pk_bid primary key (id))
+;
+
 create table item (
   id                        integer not null,
   name                      varchar(255),
@@ -13,6 +21,13 @@ create table item (
   sale_id                   integer,
   bid_price                 double,
   constraint pk_item primary key (id))
+;
+
+create table preorder (
+  id                        integer not null,
+  user_id                   integer,
+  item_id                   integer,
+  constraint pk_preorder primary key (id))
 ;
 
 create table receipt (
@@ -40,6 +55,8 @@ create table sale (
   date                      varchar(255),
   earnings                  double,
   is_open                   boolean,
+  presale                   integer,
+  bid                       integer,
   constraint pk_sale primary key (id))
 ;
 
@@ -70,7 +87,11 @@ create table user_table (
   constraint pk_user_table primary key (id))
 ;
 
+create sequence bid_seq;
+
 create sequence item_seq;
+
+create sequence preorder_seq;
 
 create sequence receipt_seq;
 
@@ -82,22 +103,30 @@ create sequence transaction_seq;
 
 create sequence user_table_seq;
 
-alter table item add constraint fk_item_sale_1 foreign key (sale_id) references sale (id) on delete restrict on update restrict;
-create index ix_item_sale_1 on item (sale_id);
-alter table receipt add constraint fk_receipt_user_2 foreign key (user_id) references user_table (id) on delete restrict on update restrict;
-create index ix_receipt_user_2 on receipt (user_id);
-alter table receipt add constraint fk_receipt_sale_3 foreign key (sale_id) references sale (id) on delete restrict on update restrict;
-create index ix_receipt_sale_3 on receipt (sale_id);
-alter table role add constraint fk_role_user_4 foreign key (user_id) references user_table (id) on delete restrict on update restrict;
-create index ix_role_user_4 on role (user_id);
-alter table role add constraint fk_role_sale_5 foreign key (sale_id) references sale (id) on delete restrict on update restrict;
-create index ix_role_sale_5 on role (sale_id);
-alter table transaction add constraint fk_transaction_sale_6 foreign key (sale_id) references sale (id) on delete restrict on update restrict;
-create index ix_transaction_sale_6 on transaction (sale_id);
-alter table transaction add constraint fk_transaction_item_7 foreign key (item_id) references item (id) on delete restrict on update restrict;
-create index ix_transaction_item_7 on transaction (item_id);
-alter table transaction add constraint fk_transaction_receipt_8 foreign key (receipt_id) references receipt (id) on delete restrict on update restrict;
-create index ix_transaction_receipt_8 on transaction (receipt_id);
+alter table bid add constraint fk_bid_user_1 foreign key (user_id) references user_table (id) on delete restrict on update restrict;
+create index ix_bid_user_1 on bid (user_id);
+alter table bid add constraint fk_bid_item_2 foreign key (item_id) references item (id) on delete restrict on update restrict;
+create index ix_bid_item_2 on bid (item_id);
+alter table item add constraint fk_item_sale_3 foreign key (sale_id) references sale (id) on delete restrict on update restrict;
+create index ix_item_sale_3 on item (sale_id);
+alter table preorder add constraint fk_preorder_user_4 foreign key (user_id) references user_table (id) on delete restrict on update restrict;
+create index ix_preorder_user_4 on preorder (user_id);
+alter table preorder add constraint fk_preorder_item_5 foreign key (item_id) references item (id) on delete restrict on update restrict;
+create index ix_preorder_item_5 on preorder (item_id);
+alter table receipt add constraint fk_receipt_user_6 foreign key (user_id) references user_table (id) on delete restrict on update restrict;
+create index ix_receipt_user_6 on receipt (user_id);
+alter table receipt add constraint fk_receipt_sale_7 foreign key (sale_id) references sale (id) on delete restrict on update restrict;
+create index ix_receipt_sale_7 on receipt (sale_id);
+alter table role add constraint fk_role_user_8 foreign key (user_id) references user_table (id) on delete restrict on update restrict;
+create index ix_role_user_8 on role (user_id);
+alter table role add constraint fk_role_sale_9 foreign key (sale_id) references sale (id) on delete restrict on update restrict;
+create index ix_role_sale_9 on role (sale_id);
+alter table transaction add constraint fk_transaction_sale_10 foreign key (sale_id) references sale (id) on delete restrict on update restrict;
+create index ix_transaction_sale_10 on transaction (sale_id);
+alter table transaction add constraint fk_transaction_item_11 foreign key (item_id) references item (id) on delete restrict on update restrict;
+create index ix_transaction_item_11 on transaction (item_id);
+alter table transaction add constraint fk_transaction_receipt_12 foreign key (receipt_id) references receipt (id) on delete restrict on update restrict;
+create index ix_transaction_receipt_12 on transaction (receipt_id);
 
 
 
@@ -105,7 +134,11 @@ create index ix_transaction_receipt_8 on transaction (receipt_id);
 
 SET REFERENTIAL_INTEGRITY FALSE;
 
+drop table if exists bid;
+
 drop table if exists item;
+
+drop table if exists preorder;
 
 drop table if exists receipt;
 
@@ -119,7 +152,11 @@ drop table if exists user_table;
 
 SET REFERENTIAL_INTEGRITY TRUE;
 
+drop sequence if exists bid_seq;
+
 drop sequence if exists item_seq;
+
+drop sequence if exists preorder_seq;
 
 drop sequence if exists receipt_seq;
 

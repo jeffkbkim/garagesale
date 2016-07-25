@@ -5,6 +5,7 @@
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/table.css")">
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/catalog.css")">
 
+
         <h4 class="mdl-color-text--grey-600">Catalog</h4>
 
         <div class="mdl-grid">
@@ -26,6 +27,16 @@
                                     <p>$@item.getPrice()</p>
                                     <h4>Description</h4>
                                     <p>@item.getDescription()</p>
+                                    @if(sale.getPresale == 1) {
+                                        <h4>Preordered</h4>
+                                        <p>@Preorder.fetchByItemIdString(item.getId)</p>
+                                    }
+                                    @if(sale.getBid == 1) {
+                                    <h4>Highest Bid</h4>
+                                    <p>$@Bid.fetchByItemId(item.getId).get(0).getBidPrice
+                                        (@Bid.fetchByItemId(item.getId).get(0).getUser.getUserName)</p>
+                                    }
+
                                 </div>
                             </div>
                         </div>

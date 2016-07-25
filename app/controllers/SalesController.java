@@ -257,4 +257,26 @@ public class SalesController extends Controller {
         return sales;
     }
 
+    public Result modifySale(int saleId) {
+        User user = Utils.getUserSession();
+        Sale sale = Sale.fetchById(saleId);
+        return ok(views.html.modifysale.render(user, sale));
+    }
+
+    public Result updateSale() {
+        Form<UpdateSaleFormData> saleForm = formFactory.form(UpdateSaleFormData.class).bindFromRequest();
+        UpdateSaleFormData saleFormData = saleForm.get();
+        Sale sale = Sale.fetchById(saleFormData.getSaleID());
+        String name = saleFormData.getName();
+        String location = saleFormData.getLocation();
+        int bid = saleFormData.getBid();
+        int presale = saleFormData.getPresale();
+        sale.setName(name);
+        sale.setLocation(location);
+        sale.setBid(bid);
+        sale.setPresale(presale);
+        sale.save();
+        return redirect(routes.AdministrationController.saleAdministration(sale.getId()));
+    }
+
 }

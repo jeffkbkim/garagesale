@@ -1,0 +1,37 @@
+@import helper._
+@(user: User)(sale: Sale)
+@main(title = "Modify Sale") {
+
+
+      <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/createsale.css")">
+
+      <div class="demo-card-wide">
+          <div class="mdl-card mdl-card--border mdl-shadow--2dp mdl-card__supporting-text">
+            <form action="@routes.SalesController.updateSale" class="update-form" method="post">
+              <ul>
+                <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" name="name" id="sale-name" value="@sale.getName" />
+                    <label class="mdl-textfield__label" for="sale-name">Sale Name</label>
+                </li>
+                <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" name="location" id="sale-location" value="@sale.getLocation" />
+                    <label class="mdl-textfield__label" for="sale-location">Location</label>
+                </li>
+                  <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label number_text">
+                      <input class="mdl-textfield__input" type="number" name="presale" id="sale-presale" value="@sale.getPresale" />
+                      <label class="mdl-textfield__label" for="sale-presale">Allow Presale (0/1)</label>
+                  </li>
+                  <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label number_text">
+                      <input class="mdl-textfield__input" type="number" name="bid" id="sale-bid" value="@sale.getBid" />
+                      <label class="mdl-textfield__label" for="sale-bid">Allow Bid (0/1)</label>
+                  </li>
+                  <input type="hidden" value="@sale.getId" name="saleID" />
+              </ul>
+                <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="submit">
+                    Update Sale
+                </button>
+            </form>
+        </div>
+    </div>
+
+}

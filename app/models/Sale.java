@@ -19,6 +19,9 @@ public final class Sale extends Model {
     private String date;
     private double earnings;
     private boolean isOpen;
+    private int presale;
+    private int bid;
+
     private static final String SALE = "sale";
     @OneToMany(mappedBy = SALE)
     private List<Transaction> transactions = new ArrayList<>();
@@ -264,5 +267,21 @@ public final class Sale extends Model {
 
     public static void setFind(Finder<Integer, Sale> find) {
         Sale.find = find;
+    }
+
+    public int getBid() {
+        return bid;
+    }
+
+    public void setBid(int bid) {
+        this.bid = bid;
+    }
+
+    public int getPresale() {
+        return presale;
+    }
+
+    public void setPresale(int presale) {
+        this.presale = presale;
     }
 }

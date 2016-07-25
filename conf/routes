@@ -76,9 +76,9 @@ GET     /preorder                   controllers.CatalogController.preorder(saleI
 
 GET     /transaction                controllers.TransactionController.renderTransactionPage(saleId: Int ?=0)
 
-GET    /preorderItem                controllers.CatalogController.preorderItem(saleId: Int ?=0, itemId: Int?=0)
+GET     /preorderItem               controllers.CatalogController.preorderItem(saleId: Int ?=0, itemId: Int?=0)
 
-
+POST    /bidItem                    controllers.CatalogController.bidItem
 
 #Administration Routes
 GET     /administration             controllers.AdministrationController.administration()
@@ -92,3 +92,7 @@ GET    /unlock                      controllers.AdministrationController.unlock(
 GET     /createsuperuser            controllers.Utils.createSuperUser
 
 GET     /suggestprice               controllers.PriceSuggestionController.suggestPrice(keyword: String?="", saleId: Int?=0)
+
+GET     /modifySale                 controllers.SalesController.modifySale(saleId: Int ?=0)
+
+POST    /updateSale                 controllers.SalesController.updateSale

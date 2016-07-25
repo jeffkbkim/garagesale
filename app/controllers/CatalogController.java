@@ -358,7 +358,7 @@ public class CatalogController extends Controller {
     }
 
     /**
-     * adds item bid
+     * adds item preorder
      *
      * @return redirect to add item page with added item.
      */
@@ -367,11 +367,35 @@ public class CatalogController extends Controller {
         User user = Utils.getUserSession();
         Sale sale = Sale.fetchById(saleId);
         Item item = Item.fetchItemById(itemId);
-        item.addPreorder(user);
-        item.save();
+        Preorder preorder = new Preorder(user, item);
+        preorder.save();
         return redirect(routes.CatalogController.renderCatalogReadOnlyPage(sale.getId()));
     }
 
-
-
+    /**
+     * adds item
+     *
+     * @return redirect to add item page with added item.
+     */
+    public Result bidItem() {
+        //TODO: need to validate form, sale, and user
+        Form<BidFormData> bidForm = formFactory.form(BidFormData.class).bindFromRequest();
+        BidFormData bidFormData = bidForm.get();
+        User user = Utils.getUserSession();
+        Sale sale = Sale.fetchById(bidFormData.getSaleId());
+        Item item = Item.fetchItemById(bidFormData.getItemId());
+        double bidPrice = bidFormData.getBidPrice();
+        Bid bid;
+        if (Bid.fetchByItemId(item.getId()).size() == 0) {
+            bid = new Bid(user, item, bidPrice);
+        } else {
+            bid = Bid.fetchByItemId(item.getId()).get(0);
+            if (bidPrice > bid.getBidPrice()) {
+                bid.setBidPrice(bidPrice);
+                bid.setUser(user);
+            }
+        }
+        bid.save();
+        return redirect(routes.CatalogController.renderCatalogReadOnlyPage(sale.getId()));
+    }
 }

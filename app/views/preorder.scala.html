@@ -5,7 +5,7 @@
 
       <div class="demo-card-wide">
           <div class="mdl-card mdl-card--border mdl-shadow--2dp mdl-card__supporting-text">
-            <form class="update-form" method="post">
+            <form action="@routes.CatalogController.bidItem" class="update-form" method="post">
                 <h4>Preorder @item.getName</h4>
               <ul>
                   <li>
@@ -14,24 +14,31 @@
                   <li>
                       <p>Original Price: $@item.getPrice</p>
                   </li>
-                  <li>
-                      @if(item.getBidPrice == 0.0) {
-                        <p>Current Bid: No Current Bid</p>
-                      } else {
-                        <p>Current Bid: $@item.getBidPrice (@item.getBidUser.getUserName)</p>
-                      }
-                  </li>
-                <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" name="bidPrice" id="bid"/>
-                    <label class="mdl-textfield__label" for="bid">My Bid Price</label>
-                </li>
+                  @if(sale.getBid == 1) {
+                      <li>
+                          @if(Bid.fetchByItemId(item.getId).length != 0) {
+                          <p>Current Bid: $@Bid.fetchByItemId(item.getId).get(0).getBidPrice (@Bid.fetchByItemId(item.getId).get(0).getUser.getUserName)</p>
+
+                          } else {
+                          <p>Current Bid: No Current Bid</p>
+                          }
+                      </li>
+                      <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                          <input class="mdl-textfield__input" type="float" name="bidPrice" id="bid"/>
+                          <label class="mdl-textfield__label" for="bid">My Bid Price</label>
+                      </li>
+                  }
+
                   <input type="hidden" value="@sale.getId" name="saleId" />
+                  <input type="hidden" value="@item.getId" name="itemId" />
               </ul>
-                <a href="" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                <a href="@routes.CatalogController.preorderItem(sale.getId, item.getId)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                     Preorder
                 </a>
-                <a href="" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                    Confirm Bid
+                @if(sale.getBid == 1) {
+                    <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="submit">
+                        Confirm Bid
+                }
                 </a>
             </form>
         </div>
