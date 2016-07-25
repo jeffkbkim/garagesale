@@ -27,7 +27,6 @@ function bindAddItem(selector) {
                 }
             }
 
-
             var buyer = $('#buyerName').val();
             var payment = $('input[name=payment]:checked').val();
             var conglomerate = '<li><h4>' + quantity + 'x '+ itemName + '</h4><br /><p>' + buyer + ' (' + payment + ')</p></li>';
@@ -38,7 +37,8 @@ function bindAddItem(selector) {
                     "id": itemID,
                     "quantity": quantity,
                     "buyer": buyer,
-                    "payment": payment
+                    "payment": payment,
+                    "price": itemPrice
                 });
             } else {
                 alert('Please fill out the quantity and buyer name.');
