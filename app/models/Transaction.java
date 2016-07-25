@@ -36,7 +36,6 @@ public class Transaction extends Model{
      */
     private static Finder<Integer, Transaction> find
             = new Finder<>(Transaction.class);
-
     /**
      * Transaction no-arg constructor
      */
