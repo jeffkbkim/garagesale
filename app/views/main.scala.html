@@ -88,6 +88,7 @@
               <a class="mdl-navigation__link" href="@routes.CatalogController.renderAllTags(Utils.getSaleId)"><i class="material-icons" role="presentation">local_offer</i>Print Tags</a>
               <a class="mdl-navigation__link" href="@routes.CatalogController.renderReport(Utils.getSaleId)"><i class="material-icons" role="presentation">account_balance</i>Reports</a>
               <a class="mdl-navigation__link" href="@routes.CatalogController.allReceipts(Utils.getSaleId)"><i class="material-icons" role="presentation">monetization_on</i>Receipts</a>
+              <a class="mdl-navigation__link" href="@routes.CatalogController.renderDonationPage()"><i class="material-icons" role="presentation">loyalty</i>Donation</a>
               <a class="mdl-navigation__link" href="@routes.AdministrationController.saleAdministration(Utils.getSaleId)"><i class="material-icons" role="presentation">people</i>Administration</a>
             }
             @if(Role.fetchBySaleIdAndUserId(Utils.getSaleId(), Utils.getUserSession.getId).get(0).getRole().equals(Role.RoleEnum.seller)) {
@@ -95,19 +96,23 @@
               <a class="mdl-navigation__link" href="@routes.CatalogController.renderAllTags(Utils.getSaleId)"><i class="material-icons" role="presentation">local_offer</i>Print Tags</a>
               <a class="mdl-navigation__link" href="@routes.CatalogController.renderReport(Utils.getSaleId)"><i class="material-icons" role="presentation">account_balance</i>Reports</a>
               <a class="mdl-navigation__link" href="@routes.CatalogController.allReceipts(Utils.getSaleId)"><i class="material-icons" role="presentation">monetization_on</i>Receipts</a>
+              <a class="mdl-navigation__link" href="@routes.CatalogController.renderDonationPage()"><i class="material-icons" role="presentation">loyalty</i>Donation</a>
             }
             @if(Role.fetchBySaleIdAndUserId(Utils.getSaleId(), Utils.getUserSession.getId).get(0).getRole().equals(Role.RoleEnum.clerk)) {
               <a class="mdl-navigation__link" href="@routes.TransactionController.renderTransactionPage(Utils.getSaleId)"><i class="material-icons" role="presentation">shopping_cart</i>Transaction</a>
               <a class="mdl-navigation__link" href="@routes.CatalogController.renderAllTags(Utils.getSaleId)"><i class="material-icons" role="presentation">local_offer</i>Print Tags</a>
               <a class="mdl-navigation__link" href="@routes.CatalogController.renderReport(Utils.getSaleId)"><i class="material-icons" role="presentation">account_balance</i>Reports</a>
               <a class="mdl-navigation__link" href="@routes.CatalogController.allReceipts(Utils.getSaleId)"><i class="material-icons" role="presentation">monetization_on</i>Receipts</a>
+              <a class="mdl-navigation__link" href="@routes.CatalogController.renderDonationPage()"><i class="material-icons" role="presentation">loyalty</i>Donation</a>
             }
             @if(Role.fetchBySaleIdAndUserId(Utils.getSaleId(), Utils.getUserSession.getId).get(0).getRole().equals(Role.RoleEnum.cashier)) {
               <a class="mdl-navigation__link" href="@routes.TransactionController.renderTransactionPage(Utils.getSaleId)"><i class="material-icons" role="presentation">shopping_cart</i>Transaction</a>
               <a class="mdl-navigation__link" href="@routes.CatalogController.allReceipts(Utils.getSaleId)"><i class="material-icons" role="presentation">monetization_on</i>Receipts</a>
+              <a class="mdl-navigation__link" href="@routes.CatalogController.renderDonationPage()"><i class="material-icons" role="presentation">loyalty</i>Donation</a>
             }
             @if(Role.fetchBySaleIdAndUserId(Utils.getSaleId(), Utils.getUserSession.getId).get(0).getRole().equals(Role.RoleEnum.bookkeeper)) {
               <a class="mdl-navigation__link" href="@routes.CatalogController.renderReport(Utils.getSaleId)"><i class="material-icons" role="presentation">account_balance</i>Reports</a>
+              <a class="mdl-navigation__link" href="@routes.CatalogController.renderDonationPage()"><i class="material-icons" role="presentation">loyalty</i>Donation</a>
             }
           }
         </nav>

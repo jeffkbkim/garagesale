@@ -1,0 +1,58 @@
+@main(title = "Create Donation Letter") {
+
+  <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/createsale.css")">
+
+  <div class="demo-card-wide">
+      <div class="mdl-card mdl-card--border mdl-shadow--2dp mdl-card__supporting-text">
+        <form action="@routes.CatalogController.createDonationLetter" class="update-form" method="post">
+          <ul>
+            <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="name" id="name"/>
+                <label class="mdl-textfield__label" for="name">Name of Donor</label>
+            </li>
+            <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="address" id="address"/>
+                <label class="mdl-textfield__label" for="address">Address of Donor</label>
+            </li>
+            <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="date" id="date"/>
+                <label class="mdl-textfield__label" for="date">Date</label>
+            </li>
+            <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="text" name="contribution" id="contribution"/>
+                  <label class="mdl-textfield__label" for="contribution">Amount of Contribution</label>
+            </li>
+          </ul>
+            <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="submit">
+                Create
+            </button>
+        </form>
+    </div>
+</div>
+
+      @*<div class="mdl-card__actions mdl-card--border save">*@
+        @*<div class="mdl-grid">*@
+          @*<div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">*@
+          @*</div>*@
+          @*<div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">*@
+            @*<button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect createButton">*@
+              @*Create*@
+            @*</button>*@
+          @*</div>*@
+        @*</div>*@
+      @*</div>*@
+
+    @*<script>*@
+            @*var dialog = document.querySelector('dialog');*@
+            @*var saveButton = document.querySelector('.createButton');*@
+            @*saveButton.addEventListener('click', function() {*@
+                @*var enteredPassword = $('#pword').val();*@
+                @*$.post('@routes.SalesController.getSales()',*@
+                        @*{*@
+                            @*salename: $('#salename').val(),*@
+                            @*location: $('#location').val()*@
+                        @*});*@
+            @*});*@
+    @*</script>*@
+
+}
