@@ -2,7 +2,6 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.inject.Inject;
-import com.sun.webkit.dom.RectImpl;
 import models.*;
 import play.data.Form;
 import play.data.FormFactory;
